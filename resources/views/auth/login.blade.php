@@ -181,17 +181,29 @@ h2 {
       <div class="login-box">
         <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
           <h2><b>Sign in</b></h2>
-            <form action="#" method="POST">
+
+              @if ($errors->any())
+                <div>
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                </div>
+              @endif
+
+            <form method="POST" action="{{ route('login') }}">
+                  @csrf
                 <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required>
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password">
                 </div>
                 <div class="input-group">
-                    <a href="dashboard.html" class="submit-button">Sign in</a>
+                  <button class="submit-button" type="submit">Login</button>
                 </div>
             </form>
       </div>
