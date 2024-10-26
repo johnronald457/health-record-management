@@ -7,7 +7,6 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
 </head>
 <body>
     <div id="sidenav" class="sidenav">
@@ -49,7 +48,7 @@
         <div class="dropdownCashier">
         <span class="main"><b>CLINIC</b></span><br>
         <span class="sub"><b>Clinic Action</b></span><br><br>
-        <button class="dropdown-btn"> <i class='bx bx-home-smile' ></i>  
+        <button class="dropdown-btn parent-hover"> <i class='bx bx-home-smile' ></i>  
           <span class="droplinks_name">Clinic</span>
           <i class="fa fa-caret-down"></i>
         </button>
@@ -160,5 +159,9 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }
 </script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>

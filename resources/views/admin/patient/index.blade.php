@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="card shadow mb-4">
+<div class="shadow mb-4 w-full p-5">
     <div class="card-header">
         <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
@@ -19,13 +19,12 @@
         </div>
         <div class="card-body">
 
-            <div class="table-responsive">
-                <table class="table table-bordered" id="tableData" width="100%" cellspacing="0">
+            <div class="table  px-1">
+                <table class="table table-striped table-hover" id="myTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
-                            <th>Patient ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                        <tr class="table-secondary">
+                            <!-- <th>Patient ID</th> -->
+                            <th>Name</th>
                             <th>Sex</th>
                             <th>Email</th>
                             <th>Contact #</th>
@@ -37,16 +36,13 @@
                     <tbody>
                         @foreach($patients as $patient)
                             <tr>
-                                <td>{{ $patient->id }}</td>
-                                <td>{{ $patient->firstname }}</td>
-                                <td>{{ $patient->lastname }}</td>
+                                <!-- <td>{{ $patient->id }}</td> -->
+                                <td>{{ $patient->firstname }} {{ $patient->lastname }}</td>
                                 <td>{{ $patient->sex }}</td>
                                 <td>{{ $patient->email }}</td>
                                 <td>{{ $patient->contact_no }}</td>
                                 <td>{{ $patient->emergency_contact }}</td>
-                                <td>{{ $patient->addresss }}</td>
-                               
-
+                                <td>{{ $patient->address }}</td>
                                 <td>
                                 <button class="btn btn-primary btn"><i class="fa-solid fa-pen-to-square"></i></button>
                                     <form action="{{ route('admin.patient.destroy', $patient) }}" method="POST" style="display: inline-block;">
@@ -62,6 +58,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
