@@ -17,13 +17,23 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
+    if (Auth::attempt($request->only('email', 'password'))) {
+        $user = Auth::user();
+        
+        // Redirect based on user role
+        if ($user->role === 'doctor') {
+            return redirect()->intended('/doctor-dashboard');
+        } elseif($user->role === 'nurse') {
+            return redirect()->intended('/nurse-dashboard');
+        }
+        else {
             return redirect()->intended('/dashboard');
         }
+    }
 
         throw ValidationException::withMessages([
             'email' => __('auth.failed'),

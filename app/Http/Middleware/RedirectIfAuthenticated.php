@@ -18,9 +18,18 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        // If the user is authenticated, redirect to the dashboard
         if (Auth::guard($guard)->check()) {
-            return redirect('/dashboard');
+            $user = Auth::guard($guard)->user();
+
+            if ($user->role === 'doctor') {
+                return redirect('/doctor-dashboard'); 
+            } elseif ($user->role === 'nurse'){
+                return redirect('/nurse-dashboard');
+            } else {
+                return redirect('/dashboard');
+            }
+
+
         }
 
         return $next($request);
