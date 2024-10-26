@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bestlink College - Login</title>
-
-    
-
+    <meta http-equiv="cache-control" content="private, max-age=0, no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
     <style>
 * {
   margin: 0;
@@ -209,5 +209,6 @@ h2 {
       </div>
   </div>
 
+    </script>
 </body>
 </html>

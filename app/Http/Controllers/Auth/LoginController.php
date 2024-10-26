@@ -22,6 +22,9 @@ class LoginController extends Controller
         ]);
 
     if (Auth::attempt($request->only('email', 'password'))) {
+        
+        $request->session()->regenerate();
+        
         $user = Auth::user();
         
         // Redirect based on user role

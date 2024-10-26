@@ -133,7 +133,13 @@
       <p>Display patient records here...</p>
     </div>
   </main>
-
+<script>
+    // Disable back button navigation
+    window.history.pushState(null, '', window.location.href);
+    window.onpopstate = function() {
+        window.history.pushState(null, '', window.location.href);
+    };
+</script>
 </body>
 </html>
 
