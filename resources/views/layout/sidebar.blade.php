@@ -26,16 +26,25 @@
             <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar"><br><br>
             <table class="user-profile">
               <tr>
-                <td><span class="user-name"><b>Juan Dela cruz</b></span></td>
+                <td><span class="user-name"><b>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</b></span></td>
               </tr>
               <tr>
-                  <td> <span class="user-mail">20156548@bcp.edu.ph</span></td>    
+                  <td> <span class="user-mail">{{ Auth::user()->email }}</span></td>    
               </tr>
             </table>        
         </ul><br>
 
-        
+      <div class="dropdownCashier">
+      @php
+        $role = auth()->user()->role;
+      @endphp
 
+      @if($role === 'nurse' || $role === 'doctor')               
+        <button class="dropdown-btn"> <i class='bx bx-user-circle' ></i>  
+          <span>{{ ucfirst(auth()->user()->role) }}</span>
+        </button>
+      </div>  
+      <br>    
         <div class="dropdownCashier">
         <span class="main"><b>CLINIC</b></span><br>
         <span class="sub"><b>Clinic Action</b></span><br><br>
@@ -47,8 +56,6 @@
           <a class="dropdown-a" href="#"><span class="droplinks_name">Student management</span></a>
           <a class="dropdown-a" href="#"><span class="droplinks_name">Health record</span></a>
           <a class="dropdown-a" href="#"><span class="droplinks_name">Treatment management</span></a>
-          
-          
         </div>
 
       </div>
@@ -65,7 +72,36 @@
         </div>
 
       </div>
+      @else 
+      <!-- STUDENT MODULES -->
+      <div class="dropdownCashier">
+        <span class="main"><b>CLINIC</b></span><br>
+        <span class="sub"><b>Clinic Action</b></span><br><br>
+        <button class="dropdown-btn"> <i class='bx bx-plus-medical' ></i>  
+          <span class="droplinks_name">Clinic</span>
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <a class="dropdown-a" href="#"><span class="droplinks_name">Student Info</span></a>
+          <a class="dropdown-a" href="#"><span class="droplinks_name">My Health Record</span></a>
+          <a class="dropdown-a" href="#"><span class="droplinks_name">Treatment</span></a>   
+        </div>
 
+      </div>
+
+      <div class="dropdownCashier">
+        
+        <button class="dropdown-btn"> <i class='bx bx-plus-medical' ></i>  
+          <span class="droplinks_name">Medical</span>
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <a class="dropdown-a" href="medical.html"><span class="droplinks_name">Medical result</span></a>
+          
+        </div>
+
+      </div>
+      @endif
  
               <!--Medical-->
            
