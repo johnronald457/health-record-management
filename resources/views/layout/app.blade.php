@@ -6,6 +6,8 @@
   	<title>Bestlink College of the Philippines</title>
 
     <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link href="{{ asset('css/student-style.css') }}" rel="stylesheet">
+    
   </head>
   <body>
 
