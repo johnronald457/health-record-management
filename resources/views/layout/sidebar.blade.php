@@ -11,28 +11,29 @@
 </head>
 <body>
     <div id="sidenav" class="sidenav">
-        <img src="{{ asset('img/logo.png') }}" alt="img" class="bcplogo">
-        <ul class="nav-link">
-            <li class="bellNotiff">
-            <a href="#" class="active">
-                <i class='bx bx-bell'></i>
-            </a>
-            </li>
-            <li class="userProfile">
-            <a href="#">
-                 <i class='bx bx-user'></i>
-            </a>
-            </li>
-            <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar"><br><br>
-            <table class="user-profile">
-              <tr>
-                <td><span class="user-name"><b>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</b></span></td>
-              </tr>
-              <tr>
-                  <td> <span class="user-mail">{{ Auth::user()->email }}</span></td>    
-              </tr>
-            </table>        
-        </ul><br>
+      <div class="d-flex align-items-center justify-content-between w-100 px-4 mb-5">
+          <div class="m-auto">
+              <img src="{{ asset('img/logo.png') }}" alt="Logo" class="bcplogo">
+          </div>
+          <div class="mx-4">
+              <a href="#" class="active">
+                  <i class='bx bx-bell' style="font-size: 24px;"></i>
+              </a>
+          </div>
+          <div>
+              <a href="#">
+                  <i class='bx bx-user' style="font-size: 24px;"></i>
+              </a>
+          </div>
+      </div>
+
+        <div class="d-flex flex-column align-items-center w-100 text-light">
+            <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar">
+            <br>
+            <span><b>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</b></span>
+            <span class="user-mail">{{ Auth::user()->email }}</span>
+            <br>
+        </div>
 
       <div class="dropdownCashier">
       @php
@@ -48,18 +49,18 @@
         <div class="dropdownCashier">
         <span class="main"><b>CLINIC</b></span><br>
         <span class="sub"><b>Clinic Action</b></span><br><br>
-        <button class="dropdown-btn"> <i class='bx bx-plus-medical' ></i>  
+        <button class="dropdown-btn"> <i class='bx bx-home-smile' ></i>  
           <span class="droplinks_name">Clinic</span>
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a class="dropdown-a" href="#"><span class="droplinks_name">Student management</span></a>
+          <a class="dropdown-a" href="{{ route('admin.patient.index')}}"><span class="droplinks_name">Student management</span></a>
           <a class="dropdown-a" href="#"><span class="droplinks_name">Health record</span></a>
           <a class="dropdown-a" href="#"><span class="droplinks_name">Treatment management</span></a>
         </div>
 
       </div>
-
+      <br>
       <div class="dropdownCashier">
         
         <button class="dropdown-btn"> <i class='bx bx-plus-medical' ></i>  
@@ -101,19 +102,19 @@
         </div>
 
       </div>
-      @endif
- 
-              <!--Medical-->
-           
+      @endif  
     </div>
     <div id="uppernav">
         <div class="upnav">
         <button class="openbtn" onclick="toggleNav()">☰</button>
     </div>
-<!---   Conent   --->
+
+<!---   Haader   --->
+@include('layout.header')
+<!---   Content   --->
 @yield('content')
 
-  <!--Medical Information Responsive-->
+<!--Medical Information Responsive-->
 <script>
   window.addEventListener('resize', function() {
   const screenWidth = window.innerWidth;

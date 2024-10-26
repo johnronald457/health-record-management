@@ -17,66 +17,18 @@ body{
     transition: 0.3s;
     padding-top: 39px;
     z-index: 1;
+
 }
 
 .sidenav .bcplogo{
-    width: 11%;
-    height: 3.4%;
-    margin-top: -150px;
-    margin-left: 9%;
+    width: 23%;
+    height: 30%;
 }
-
-
-/* upper nav open*/
-.sidenav .nav-link{
-    margin-top: -16%;
-    margin-left: 38%;
-}
-
-.sidenav .nav-link li{
-    position: relative;
-    list-style: none;
-    height: 50px;
-    width: 45%;
-  }
-
-.sidenav .nav-link .bellNotiff{
-    margin-top: -16%;
-    margin-left: 10%;
-}
-
-.sidenav .nav-link .userProfile{
-    margin-top: -38%;
-    margin-left: 50%;
-}
-
-.sidenav .nav-link li a{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.4s ease;
-  }
-
-.sidenav .nav-link li i{
-    min-width: 60px;
-    text-align: center;
-    font-size: 22px;
-    color: lightgray;
-  }
 
   .avatar{
-    width: 80%;
-    height: 80%;
-    margin-left: -47%;
-    margin-top: 30%;
+    width: 50%;
+    height: 20%;
     border-radius: 50%;
-  }
-
-.user-profile{
-    margin-left: -60%;
-    
   }
 
   tr,td{

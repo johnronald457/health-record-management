@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Nurse;
@@ -10,14 +11,18 @@ use App\Http\Middleware\PreventBackHistory;
 
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
-Route::middleware('auth', PreventBackHistory::class)->post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     // Doctor routes
     Route::middleware(Doctor::class)->group(function () {
+        //Dahboard routes
         Route::get('/doctor-dashboard', function () {
             return view('admin.index');
         });
+        //Student management routes
+        Route::get('/patients', [PatientController::class, 'index'])->name('admin.patient.index');
+        Route::delete('/patients/{user}', [PatientController::class, 'destroy'])->name('admin.patient.destroy');
     });
 
     // Nurse routes

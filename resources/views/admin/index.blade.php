@@ -10,36 +10,6 @@
   <title>Clinic Dashboard</title>
   <style>
 
-    /* Top Navigation */
-    .top-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #2a3d66;
-      color: #fff;
-      padding: 10px 20px;
-    }
-
-    .top-nav h1 {
-      font-size: 1.5rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 15px;
-    }
-
-    .nav-links a {
-      color: #b0c4de;
-      text-decoration: none;
-      padding: 8px;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #fff;
-    }
-
     /* Main Content */
     .main-content {
       padding: 20px;
@@ -90,18 +60,7 @@
 </head>
 <body>
 
-  <!-- Top Navigation -->
-  <header class="top-nav">
-    <h1>Clinic Dashboard</h1>
-    <nav class="nav-links">
-      <a href="#">Dashboard</a>
-      <a href="#">Appointments</a>
-      <a href="#">Patients</a>
-      <a href="#">Doctors</a>
-      <a href="#">Billing</a>
-      <a href="#">Reports</a>
-    </nav>
-  </header>
+
 
   <!-- Main Content -->
   <main class="main-content">
@@ -133,13 +92,6 @@
       <p>Display patient records here...</p>
     </div>
   </main>
-<script>
-    // Disable back button navigation
-    window.history.pushState(null, '', window.location.href);
-    window.onpopstate = function() {
-        window.history.pushState(null, '', window.location.href);
-    };
-</script>
 </body>
 </html>
 
