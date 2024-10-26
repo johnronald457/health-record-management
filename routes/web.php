@@ -14,7 +14,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', function () {
-    return 'Welcome to your dashboard!';
+     return view('admin.index');
 })->middleware('auth');
 
 
