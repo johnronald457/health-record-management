@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Treatment;
 use Illuminate\Database\Seeder;
+use App\Models\HealthAssessment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,6 +46,34 @@ class DatabaseSeeder extends Seeder
             'contact_no' => '09876543210',
             'emergency_contact' => '09876543210',
             'address' => '456 Another St, City, Country',
+        ]);
+        
+        HealthAssessment::create([
+            'user_id' => 2,
+            'medical_history' => 'Asthma',
+            'height' => '5ft 8in',  
+            'weight' => '150 lbs', 
+            'blood_pressure' => '120.0', 
+            'heart_rate' => '72.0 BPM',
+            'medical_conditions' => 'Asthma',
+            'allergies' => 'peanuts',
+            'symptoms' => 'Frequent shortness of breath, occasional chest tightness',
+        ]);
+
+        Treatment::create([
+            'student_id' => 1,
+            'health_assessment_id' => 1, 
+            'interpretation_comments' => 'All tests are within normal limits.',
+            'recommendation' => 'Continue regular exercise and maintain a balanced diet.',
+            'result_summary' => 'Overall health is good, minor concerns with cholesterol levels.',
+        ]);
+
+        Treatment::create([
+            'student_id' => 2, // Assuming user with ID 2 exists
+            'health_assessment_id' => 1, // Assuming health assessment with ID 1 exists
+            'interpretation_comments' => 'Elevated blood pressure noted.',
+            'recommendation' => 'Monitor blood pressure and consider dietary changes.',
+            'result_summary' => 'Health shows some concerns, specifically with blood pressure.',
         ]);
         
 
