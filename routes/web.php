@@ -8,6 +8,8 @@ use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Nurse;
 use App\Http\Middleware\Patient;
 use App\Http\Middleware\PreventBackHistory;
+use App\Http\Controllers\Patient\InfoController;
+use App\Http\Controllers\Patient\HealthAssessmentController;
 
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
@@ -31,12 +33,13 @@ Route::middleware('auth')->group(function () {
             return view('admin.index');
         });
     });
-
-    // Routes accessible by both teacher and student
+    
     Route::middleware(Patient::class)->group(function () {
         Route::get('/dashboard', function () {
-            return view('admin.index');
+            return view('patient.index');
         });
+        Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
+        Route::get('/health-record', [HealthAssessmentController::class, 'getHealthRecord'])->name('patient.health-record');
     });
 });
 
