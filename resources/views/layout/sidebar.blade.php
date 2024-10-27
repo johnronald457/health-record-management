@@ -72,23 +72,28 @@
         </div>
 
       </div>
-      @else 
-      <!-- STUDENT MODULES -->
-      <div class="dropdownCashier">
+      @elseif($role === 'teacher' || $role === 'student')       
+      <!-- STUDENT MODULES -->         
+        <button class="dropdown-btn"> <i class='bx bx-user-circle' ></i>  
+          <span>{{ ucfirst(auth()->user()->role) }}</span>
+        </button>
+      </div>  
+      <br>    
+        <div class="dropdownCashier">
         <span class="main"><b>CLINIC</b></span><br>
         <span class="sub"><b>Clinic Action</b></span><br><br>
-        <button class="dropdown-btn"> <i class='bx bx-plus-medical' ></i>  
+        <button class="dropdown-btn parent-hover"> <i class='bx bx-home-smile' ></i>  
           <span class="droplinks_name">Clinic</span>
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a class="dropdown-a" href="#"><span class="droplinks_name">Student Info</span></a>
-          <a class="dropdown-a" href="#"><span class="droplinks_name">My Health Record</span></a>
+          <a class="dropdown-a" href="{{ route('patient.info')}}"><span class="droplinks_name">Student Info</span></a>
+          <a class="dropdown-a" href="{{ route('patient.health-record')}}"><span class="droplinks_name">My Health Record</span></a>
           <a class="dropdown-a" href="#"><span class="droplinks_name">Treatment</span></a>   
         </div>
 
       </div>
-
+      <br>
       <div class="dropdownCashier">
         
         <button class="dropdown-btn"> <i class='bx bx-plus-medical' ></i>  
