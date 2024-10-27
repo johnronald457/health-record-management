@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('treatment', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('health_assessment_id')->constrained('health_assessment')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('health_assessment_id')->constrained('health_assessments')->onDelete('cascade');
             $table->text('interpretation_comments');
             $table->text('recommendation');
             $table->text('result_summary');
