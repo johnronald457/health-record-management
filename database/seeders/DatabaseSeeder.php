@@ -61,18 +61,20 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Treatment::create([
-            'student_id' => 1,
+            'user_id' => 1,
             'health_assessment_id' => 1, 
             'interpretation_comments' => 'All tests are within normal limits.',
-            'recommendation' => 'Continue regular exercise and maintain a balanced diet.',
+            'recommendations' => 'Continue regular exercise and maintain a balanced diet.',
+            'prescriptions' => 'Some prescriptions here...',
             'result_summary' => 'Overall health is good, minor concerns with cholesterol levels.',
         ]);
 
         Treatment::create([
-            'student_id' => 2, // Assuming user with ID 2 exists
+            'user_id' => 2, // Assuming user with ID 2 exists
             'health_assessment_id' => 1, // Assuming health assessment with ID 1 exists
             'interpretation_comments' => 'Elevated blood pressure noted.',
-            'recommendation' => 'Monitor blood pressure and consider dietary changes.',
+            'recommendations' => 'Monitor blood pressure and consider dietary changes.',
+            'prescriptions' => 'Some prescriptions here...',
             'result_summary' => 'Health shows some concerns, specifically with blood pressure.',
         ]);
         
