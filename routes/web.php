@@ -10,6 +10,7 @@ use App\Http\Middleware\Patient;
 use App\Http\Middleware\PreventBackHistory;
 use App\Http\Controllers\Patient\InfoController;
 use App\Http\Controllers\Patient\HealthAssessmentController;
+use App\Http\Controllers\Patient\TreatmentController;
 
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
         });
         Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
         Route::get('/health-record', [HealthAssessmentController::class, 'getHealthRecord'])->name('patient.health-record');
+        Route::get('/treatment', [TreatmentController::class, 'index'])->name('patient.treatment');
     });
 });
 
