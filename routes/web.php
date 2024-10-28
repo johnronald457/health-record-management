@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
         });
         Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
         Route::get('/health-record', [HealthAssessmentController::class, 'getHealthRecord'])->name('patient.health-record');
-        Route::get('/treatment', [TreatmentController::class, 'index'])->name('patient.treatment');
+        Route::get('/treatment', [TreatmentController::class, 'getUserTreatment'])->name('patient.treatment');
     });
 });
 
