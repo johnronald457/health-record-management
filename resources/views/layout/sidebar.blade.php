@@ -87,9 +87,9 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a class="dropdown-a" href="{{ route('patient.info')}}"><span class="droplinks_name">Student Info</span></a>
-          <a class="dropdown-a" href="{{ route('patient.health-record')}}"><span class="droplinks_name">My Health Record</span></a>
-          <a class="dropdown-a" href="#"><span class="droplinks_name">Treatment</span></a>   
+          <a class="dropdown-a" href="{{ route('patient.info') }}"><span class="droplinks_name">Student Info</span></a>
+          <a class="dropdown-a" href="{{ route('patient.health-record') }}"><span class="droplinks_name">My Health Record</span></a>
+          <a class="dropdown-a" href="{{ route('patient.treatment') }}"><span class="droplinks_name">Treatment</span></a>   
         </div>
 
       </div>
