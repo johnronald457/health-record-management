@@ -6,9 +6,9 @@
     <div class="card-header">
         <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                <h1 class="display-6 fw-bolder text-uppercase">Users</h1>
+                <h1 class="display-6 fw-bolder text-uppercase">Patients</h1>
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Patients</div>
+                        Total</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $patients->count() }}</div>
 
                 </div>
@@ -25,32 +25,21 @@
                         <tr class="table-secondary">
                             <!-- <th>Patient ID</th> -->
                             <th>Name</th>
-                            <th>Sex</th>
+                            <th>Individual</th>
                             <th>Email</th>
-                            <th>Contact #</th>
-                            <th>Emergency #</th>
                             <th>Address</th>
-                            <th>Action</th>
+                            <th>Contact #</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($patients as $patient)
-                            <tr>
-                                <!-- <td>{{ $patient->id }}</td> -->
+                            <tr onclick="window.location='{{ route('patients.show', $patient->id) }}';" style="cursor: pointer;">
                                 <td>{{ $patient->firstname }} {{ $patient->lastname }}</td>
-                                <td>{{ $patient->sex }}</td>
+                                <td>{{ ucfirst($patient->role) }}</td>
                                 <td>{{ $patient->email }}</td>
-                                <td>{{ $patient->contact_no }}</td>
-                                <td>{{ $patient->emergency_contact }}</td>
                                 <td>{{ $patient->address }}</td>
-                                <td>
-                                <button class="btn btn-primary btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    <form action="{{ route('admin.patient.destroy', $patient) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-danger btn" data-toggle="modal" data-target="#deleteUserModal{{$patient->id}}"><i class="fas fa-trash text-white"></i></button>
-                                    </form>
-                                </td>
+                                <td>{{ $patient->contact_no }}</td>
                             </tr>
                         @endforeach
                     </tbody>

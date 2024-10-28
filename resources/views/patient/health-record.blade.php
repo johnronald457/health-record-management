@@ -24,7 +24,7 @@
                         </div>
 
                         <hr>
-
+                        @if ($healthData)
                         <!-- Health Information -->
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -37,6 +37,10 @@
                                 <p><strong>Allergies:</strong> {{ $healthData->allergies }}</p>
                             </div>
                         </div>
+                        @else
+                            <p>No health Information found.</p>
+                        @endif
+
 
                         <hr>
 

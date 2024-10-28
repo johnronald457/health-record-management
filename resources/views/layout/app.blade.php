@@ -6,6 +6,7 @@
   	<title>Bestlink College of the Philippines</title>
     <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
     <link href="{{ asset('css/student-style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM7ayBueSxX0Ie63rDReC1xv3pYp9TOJ60l3D" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 

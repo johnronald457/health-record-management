@@ -15,6 +15,12 @@ class PatientController extends Controller
         return view('admin.patient.index', compact('patients'));
     }
 
+        public function show($id)
+    {
+        $patient = User::findOrFail($id);
+        return view('admin.patient.show', compact('patient'));
+    }
+
     // // Show the form for creating a new user
     // public function create()
     // {

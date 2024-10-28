@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
         });
         //Student management routes
         Route::get('/patients', [PatientController::class, 'index'])->name('admin.patient.index');
+        Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
         Route::delete('/patients/{user}', [PatientController::class, 'destroy'])->name('admin.patient.destroy');
     });
 
