@@ -8,9 +8,6 @@
             <div class="col-md-8 mx-auto">
                 <div class="card">
                 <h2>Student Information</h2>
-                    <!-- <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0">Student Information</h5>
-                    </div> -->
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
