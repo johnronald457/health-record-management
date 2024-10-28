@@ -5,63 +5,34 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Treatment;
 
 class TreatmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        $treatments = Treatment::with(['user', 'healthAssessment'])->get();
-        return view('treatments.index', compact('treatments')); // Adjust the view as needed
+        $treatments = Treatment::all();
+        return view('patient.treatment', compact('treatments'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function getUserTreatment()
     {
-        //
+        $user = Auth::user();
+        
+        if ($user) {
+            $treatment = Treatment::where('user_id', $user->id)->first();
+    
+            // Check if treatment data exists for the user
+            if ($treatment) {
+                return view('patient.treatment', compact('user', 'treatment'));
+            } else {
+                return response()->json(['error' => 'No treatment data found for this user'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        $treatment = Treatment::with(['user', 'healthAssessment'])->findOrFail($id);
-        return view('treatments.show', compact('treatment')); // Adjust the view as needed
-    }
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Treatment $treatment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Treatment $treatment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Treatment $treatment)
-    {
-        //
-    }
+    
 }
