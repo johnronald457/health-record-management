@@ -12,7 +12,8 @@ class Treatment extends Model
         'user_id', 
         'health_assessment_id', 
         'interpretation_comments',
-        'recommendation',
+        'recommendations',
+        'prescriptions',
         'result_summary'
     ];
 }
