@@ -101,6 +101,7 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
+          <a class="dropdown-a" href="{{ route('patient.medical-request') }}"><span class="droplinks_name">Request for Medical</span></a>
           <a class="dropdown-a" href="medical.html"><span class="droplinks_name">Medical result</span></a>
           
         </div>
