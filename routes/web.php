@@ -11,6 +11,7 @@ use App\Http\Middleware\PreventBackHistory;
 use App\Http\Controllers\Patient\InfoController;
 use App\Http\Controllers\Patient\HealthAssessmentController;
 use App\Http\Controllers\Patient\TreatmentController;
+use App\Http\Controllers\Patient\MedicalRequestController;
 
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
@@ -43,6 +44,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
         Route::get('/health-record', [HealthAssessmentController::class, 'getHealthRecord'])->name('patient.health-record');
         Route::get('/treatment', [TreatmentController::class, 'getUserTreatment'])->name('patient.treatment');
+
+        Route::get('medical-request/create', [MedicalRequestController::class, 'create'])->name('patient.medical-request');
+        Route::post('medical-request', [MedicalRequestController::class, 'store'])->name('patient.medical-request.store');
+        
     });
 });
 
