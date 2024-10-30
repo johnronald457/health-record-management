@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\HealthAssessment;
+
 
 class InfoController extends Controller
 {
@@ -16,7 +18,10 @@ class InfoController extends Controller
             $userName = $user->name;
             $userEmail = $user->email;
        
-            return view('patient.info', compact('user'));
+            $fullName = trim($user->firstname . ' ' . $user->middlename . ' ' . $user->lastname);
+            $healthData = HealthAssessment::where('user_id', $user->id)->first();
+
+            return view('patient.info', compact('user','fullName','healthData'));
         } else {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
