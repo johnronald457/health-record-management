@@ -42,7 +42,11 @@ Route::middleware('auth')->group(function () {
             return view('patient.index');
         });
         Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
-        Route::get('/health-record', [HealthAssessmentController::class, 'getHealthRecord'])->name('patient.health-record');
+        Route::get('/health-assessment', [HealthAssessmentController::class, 'getHealthRecord'])->name('patient.health-assessment');
+        Route::post('health-assessment-store', [HealthAssessmentController::class, 'store'])->name('patient.health-assessment.store');
+        Route::get('/health-assessment/{id}/edit', [HealthAssessmentController::class, 'edit'])->name('health.edit');
+        Route::post('/health-assessment/{id}/update', [HealthAssessmentController::class, 'update'])->name('health.update');
+
         Route::get('/treatment', [TreatmentController::class, 'getUserTreatment'])->name('patient.treatment');
 
         Route::get('medical-request/create', [MedicalRequestController::class, 'create'])->name('patient.medical-request');
