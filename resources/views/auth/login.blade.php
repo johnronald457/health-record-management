@@ -3,195 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bestlink College - Login</title>
-    <meta http-equiv="cache-control" content="private, max-age=0, no-cache">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="expires" content="0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="clusterlogin2.css">
     <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            
+        }
 
-body{
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+        body, html {
+            height: 100%;
+            background-color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #495057;
+        }
 
-  background-color: #f4f4f4;
-  animation: fadeIn 1s ease-in-out; 
-}
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
-}
+        .login-box {
+            background-color: #ffffff; /* Updated to #343a40 */
+            padding: 40px;
+            border-radius: 8px;
+            width: 375px;
+            text-align: center;
+        
+        }
 
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
+        .logo img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
 
-.login-box {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 280px;
-  box-shadow: 5px 5px 10px #888888;
-  animation: fadeInBox 1s ease-in-out;
-}
+        h2 {
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #343a40; /* Updated to white for contrast */
+        }
 
-@keyframes fadeInBox {
-  from {
-      opacity: 0;
-      transform: translateY(20px); 
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
+        form {
+            width: 100%;
+        }
 
-.logo {
-  width: 100px;
-  margin-bottom: 15px;
-  opacity: 0;
-  animation: fadeInBox 1s ease-in-out forwards; 
-}
+        /* Input Group Styling */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-h2 {
-  color: #28282b;
-  margin-bottom: 15px;
-  font-size: 23px;
-  opacity: 0;
-  animation: fadeInBox 1s ease-in-out forwards; 
-}
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #343a40; /* Updated to white for contrast */
+            font-weight: bold;
+        }
 
-.input-group {
-  margin-bottom: 15px;
-  text-align: left;
-  opacity: 0;
-  animation: fadeInBox 1s ease-in-out forwards; 
-}
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #495057;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #343a40;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.input-group label {
-  display: block;
-  font-size: 14px;
-  color: #333333;
-  margin-bottom: 5px;
-}
+        .input-group input:focus {
+            border-color: #343a40;
+            box-shadow: 0 4px 12px rgba(134, 133, 133, 0.3);
+            outline: none;
+        }
 
-.input-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #dddddd;
-  border-radius: 5px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+        /* Submit Button Styling */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #495057;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
 
-.input-group input:focus {
-  border-color: #003366;
-  box-shadow: 0 0 5px rgba(0, 51, 102, 0.2); 
-}
+        button:hover {
+            background-color: #6c757d;
+            transform: scale(1.05);
+        }
 
-.input-group button {
-  width: 100%;
-  padding: 10px;
-  background-color: #003366;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; 
-}
+        /* Sign Up Link Styling */
+        .signup-link {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #495057; /* Updated to white for contrast */
+        }
 
-.input-group button:hover {
-  background-color: #002244;
-  box-shadow: 0 4px 15px rgba(0, 34, 68, 0.2); 
-}
+        .signup-link a {
+            color: #495057;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
 
-.input-group button:active {
-  transform: scale(0.98); 
-}
+        .signup-link a:hover {
+            color: #6c757d;
+        }
 
-.button-container {
-  text-align: center;
-}
+        /* Logo text styling */
+        .txt {
+            font-size: 20px;
+            font-weight: bold;
+            color: #495057;
+            text-transform: uppercase;
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+        }
 
-.submit-button {
-  display: inline-block;
-  padding: 10px 80px;
-  font-size: 16px;
-  color: white;
-  background-color: #003366; 
-  border: none;
-  border-radius: 5px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s, ease;
-}
-  
-.submit-button:hover {
-  background-color: #003366; 
-}
-  
-.submit-button:active {
-  background-color: #002244; 
-  box-shadow: 0 5px #003366;
-  transform: translateY(2px);
-}
-  
-.footer {
-  margin-top: 20px;
-  font-size: 12px;
-  color: #777;
-  opacity: 0;
-  animation: fadeInBox 1s ease-in-out forwards; 
-}
 
-.footer a {
-  color: #003366;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: #002244;
-}
-
-</style>
+    </style>
 </head>
 
 <body>
-
-  <div class="login-container">
-      <div class="login-box">
-        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
-          <h2><b>Sign in</b></h2>
-
-              @if ($errors->any())
-                <div>
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
-                </div>
-              @endif
-
+    <div class="container">
+        <div class="login-box">
+            <div class="txt">
+              <P><b>BESTLINK COLLEGE OF THE <br> PHILIPPINES </b></P>
+            </div>
+            <h2>Sign in</h2>
             <form method="POST" action="{{ route('login') }}">
                   @csrf
                 <div class="input-group">
@@ -203,12 +156,12 @@ h2 {
                     <input type="password" id="password" name="password">
                 </div>
                 <div class="input-group">
-                  <button class="submit-button" type="submit">Login</button>
+                  <button class="submit-button" type="submit">Sign in</button>
+                  <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
                 </div>
             </form>
-      </div>
-  </div>
-
-    </script>
+        </div>
+    </div>
 </body>
 </html>
+
