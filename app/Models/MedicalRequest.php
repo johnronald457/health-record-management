@@ -12,6 +12,7 @@ class MedicalRequest extends Model
         'patient_id',
         'preferred_date',
         'notes',
+        'status',
     ];
 
     // Define relationship if needed (assuming 'User' model exists)

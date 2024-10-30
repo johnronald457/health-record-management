@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doctor\PatientController;
+use App\Http\Controllers\Doctor\RequestsController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Nurse;
@@ -28,6 +29,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/patients', [PatientController::class, 'index'])->name('admin.patient.index');
         Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
         Route::delete('/patients/{user}', [PatientController::class, 'destroy'])->name('admin.patient.destroy');
+        //Requests management routes
+        Route::get('/requests', [RequestsController::class, 'index'])->name('admin.requests.index');
+        Route::put('/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
+        Route::delete('/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
     });
 
     // Nurse routes

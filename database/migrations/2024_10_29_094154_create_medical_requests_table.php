@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('patient_id'); 
             $table->date('preferred_date')->nullable(); 
-            $table->text('notes')->nullable(); 
+            $table->text('notes')->nullable();
+            $table->enum('status', ['request', 'approved']); 
             $table->timestamps(); 
             
             $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
