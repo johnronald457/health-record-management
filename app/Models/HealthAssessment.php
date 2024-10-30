@@ -10,12 +10,14 @@ class HealthAssessment extends Model
 
     public $fillable = [
         'user_id', 
+        'medical_conditions', 
         'medical_history', 
         'height',
         'weight',
         'blood_pressure',
         'heart_rate',
-        'symptoms'
+        'symptoms',
+        'allergies'
     ];
     
 }
