@@ -1,9 +1,9 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container mt-5">
-    <div class="card shadow">
-        <div class="card-body">
+<div class="container">
+    <div class=" shadow">
+        <div class="card-body px-5 pt-5">
             <div class="d-flex justify-content-between">
                 <h1 class="mb-4">Patient Details</h1>
                 <div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body px-5 pb-5">
             <h5 class="card-text"><strong>Name:</strong> {{ $patient->firstname }} {{ $patient->lastname }}</h5>
             <br>
             <p class="card-text"><strong>Individual:</strong> {{ ucfirst($patient->role) }}</p>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Controllers\Doctor\RequestsController;
+use App\Http\Controllers\Doctor\DashboardController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Nurse;
@@ -23,9 +24,7 @@ Route::middleware('auth')->group(function () {
     // Doctor routes
     Route::middleware(Doctor::class)->group(function () {
         //Dahboard routes
-        Route::get('/doctor-dashboard', function () {
-            return view('admin.index');
-        })->name('doctor.index');
+        Route::get('/doctor-dashboard', [DashboardController::class, 'index'])->name('doctor.index');
         //Student management routes
         Route::get('/patients', [PatientController::class, 'index'])->name('admin.patient.index');
         Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');

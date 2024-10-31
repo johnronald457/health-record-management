@@ -12,7 +12,7 @@
 
     /* Main Content */
     .main-content {
-      padding: 20px;
+      padding: 14px;
     }
 
     /* KPI Section */
@@ -58,7 +58,7 @@
     }
     /* Greeting Card Styles */
     .greeting-card {
-      background-color: #E0E0E0; /* Light purple background */
+      background-color: #E6E6FA; /* Light purple background */
       border-radius: 15px;
       padding: 20px;
       display: flex;
@@ -99,34 +99,36 @@
   <!-- Main Content -->
   <main class="container main-content">
     
-  <div class="row">
-    <div class="col-12">
-      <div class="greeting-card d-flex align-items-center">
-        <!-- Image Avatar -->
-        <img src="{{ asset('img/doctor-avatar.png') }}" alt="Doctor Avatar">
-        <!-- Greeting Text -->
-        <div class="greeting-text ms-3">
-          <h2>Good Day, Rogar Curtis</h2>
-          <p>Whatever you do, do it with determination. You have one life to live, so don't neglect your health. <br>
-            Do your work with passion and always give your best</p>
-        </div>
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-12">
+    <div class="card greeting-card p-4 d-flex align-items-center flex-md-row text-center text-md-start">
+      <!-- Image Avatar -->
+      <img src="{{ asset('img/doctor.webp') }}" alt="Doctor Avatar" class="rounded-circle me-md-4 mb-3 mb-md-0" style="width: 125px; height: 125px; object-fit: cover;">
+
+      <!-- Greeting Text -->
+      <div >
+        <h2 class="display-6 mb-1">Good day!</h2>
+        <h4 class="text-danger mb-1">Doctor {{ Auth::user()->firstname }}</h4>
+        <p class="mb-0 text-muted">Caring for Every Life, Committed to Excellence.</p>
       </div>
     </div>
   </div>
+</div>
+
 
     <!-- KPI Section -->
     <div class="kpi-container">
       <div class="kpi">
         <h3>Total Patients</h3>
-        <p>150</p>
+        <p>{{ $totalPatients }}</p>
       </div>
       <div class="kpi">
-        <h3>Appointments Today</h3>
-        <p>25</p>
+        <h3>Total Nurses</h3>
+        <p>{{ $totalNurses }}</p>
       </div>
       <div class="kpi">
-        <h3>Pending Bills</h3>
-        <p>5</p>
+        <h3>Medical Requests</h3>
+        <p>11</p>
       </div>
     </div>
 

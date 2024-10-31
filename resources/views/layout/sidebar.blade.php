@@ -5,7 +5,7 @@
 
     <!-- User Profile Info -->
     <div class="d-flex flex-column align-items-center w-100 text-light">
-        <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar">
+        <img src="{{ asset('img/medic_logo.png') }}" alt="avatar" class="avatar">
         <br>
         <span><b>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</b></span>
         <span class="user-mail">{{ Auth::user()->email }}</span>
@@ -80,16 +80,12 @@
             
         </div>
         @endif  
+        
+            <button type="button" style="text-align: center; width: 100%;" class="btn-logout" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
 
-        <!-- Logout Form -->
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="text-align: center;">
-            @csrf
-            <button type="submit" class="btn-logout">Logout</button>
-        </form>
     </div>
 </div>
-
-
+@include('auth.logoutConfirmationModal')
 <style>
     .btn-logout {
         background: none;
