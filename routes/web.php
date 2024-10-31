@@ -13,6 +13,7 @@ use App\Http\Controllers\Patient\InfoController;
 use App\Http\Controllers\Patient\HealthAssessmentController;
 use App\Http\Controllers\Patient\TreatmentController;
 use App\Http\Controllers\Patient\MedicalRequestController;
+use App\Http\Controllers\Patient\PatientDashboardController;
 
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
@@ -24,7 +25,7 @@ Route::middleware('auth')->group(function () {
         //Dahboard routes
         Route::get('/doctor-dashboard', function () {
             return view('admin.index');
-        });
+        })->name('doctor.index');
         //Student management routes
         Route::get('/patients', [PatientController::class, 'index'])->name('admin.patient.index');
         Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
@@ -43,11 +44,14 @@ Route::middleware('auth')->group(function () {
     });
     
     Route::middleware(Patient::class)->group(function () {
-        Route::get('/dashboard', function () {
-            return view('patient.index');
-        });
+        // Route::get('/dashboard', function () {
+        //     return view('patient.index');
+        // })->name('patient.index');
+        
+        Route::get('/dashboard', [PatientDashboardController::class, 'dashboard'])->name('patient.index');
         Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
         Route::get('/health-assessment', [HealthAssessmentController::class, 'getHealthRecord'])->name('patient.health-assessment');
+        Route::get('/health-assessment-add', [HealthAssessmentController::class, 'create'])->name('patient.create-health-assessment');
         Route::post('health-assessment-store', [HealthAssessmentController::class, 'store'])->name('patient.health-assessment.store');
         Route::get('/health-assessment/{id}/edit', [HealthAssessmentController::class, 'edit'])->name('health.edit');
         Route::post('/health-assessment/{id}/update', [HealthAssessmentController::class, 'update'])->name('health.update');
