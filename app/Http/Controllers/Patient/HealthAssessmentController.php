@@ -12,6 +12,16 @@ class HealthAssessmentController extends Controller
 {
     public function create()
     {
+        $user = Auth::user();
+        if ($user) {
+            // Assuming these fields exist in the users table
+            $fullName = trim($user->firstname . ' ' . $user->middlename . ' ' . $user->lastname);
+    
+            return view('patient.create-health-assessment', compact('user', 'fullName'));
+            // return view('patient.info', compact('user', 'fullName', 'healthData'));
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
         return view('patient.create-health-assessment');
     }
 
