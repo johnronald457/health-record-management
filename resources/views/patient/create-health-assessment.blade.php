@@ -7,9 +7,9 @@
         <div class="row">
             <div class="col-md-12 mx-auto">
                 <div class="card">
-                    <h2>Health Assessment</h2>
                     <div class="card-body">
-                        <form action="{{ route('health.store') }}" method="POST">
+                    <h2>Health Assessment</h2>
+                        <form action="{{ route('patient.health-assessment.store') }}" method="POST">
                             @csrf
 
                             <!-- Personal Details -->
@@ -82,8 +82,9 @@
                                     <input type="text" name="allergies" id="allergies" class="form-control" value="{{ old('allergies') }}">
                                 </div>
                             </div>
-
-                            <button type="submit" class="btn btn-primary mt-3">Save Record</button>
+                            <div class="d-flex mt-3 float-end">
+                                <button type="submit" class="btn btn-primary mt-3">Save Assessment</button>
+                            </div>
                         </form>
                     </div>
                 </div>
