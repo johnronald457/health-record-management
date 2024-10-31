@@ -89,38 +89,6 @@
     </div>
 </div>
 
-<!-- Responsive Sidebar Script -->
-<script>    //SideNav
-    const toggleButton = document.getElementById('toggleButton');
-    const sidenav = document.getElementById('sidenav');
-    const mainContent = document.getElementById('mainContent');
-
-    toggleButton.addEventListener('click', () => {
-        sidenav.classList.toggle('hidden');
-        mainContent.classList.toggle('shift');
-    });
-
-    // Dropdown
-    function toggleDropdown(button){
-    button.classList.toggle("active");
-    var dropdownContent = button.nextElementSibling;
-    dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
-}
-
-    window.onclick = function(event){
-        if (!event.target.matches('.dropdown-btn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-container");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.style.display === "block"){
-                    openDropdown.style.display = "none";
-                }
-            }
-        }
-    };
-
-
-</script>
 
 <style>
     .btn-logout {
