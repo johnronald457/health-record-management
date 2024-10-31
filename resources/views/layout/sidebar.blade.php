@@ -47,47 +47,10 @@
                     
                 </div>
             </div>
-            <!-- <div class="dropdownSmsprofile">
-                <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;">Request for Medical</a>
-                <a class="dropdown-a" href="medical.html" style="text-decoration: none;">Medical Result</a>
-                <a class="dropdown-a" href="#" style="text-decoration: none;"><i class='bx bx-log-out'></i> <span>LogOut</span></a>  
-            </div> -->
         </div>
 
         @elseif($role === 'teacher' || $role === 'student')
         
-            <!-- <div class="dropdownSmsprofile">
-                <button class="dropdown-btn parent-hover">
-                    <i class='bx bx-home-smile'></i> <span>Dashboard</span>
-                </button>
-            </div> -->
-
-            <!-- Clinic Dropdown for Students/Teachers -->
-            <!-- <div class="dropdownSmsprofile">
-                <span class="main"><b>CLINIC</b></span><br>
-                <button class="dropdown-btn parent-hover">
-                    <i class='bx bx-home-smile'></i> <span>Clinic</span>
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    <a class="dropdown-a" href="{{ route('patient.info') }}">Student Info</a>
-                    <a class="dropdown-a" href="{{ route('patient.health-assessment') }}">My Health Record</a>
-                    <a class="dropdown-a" href="{{ route('patient.treatment') }}">Treatment</a>
-                </div>
-            </div> -->
-            <!-- Medical Dropdown -->
-            <!-- <div class="dropdownSmsprofile">
-                <button class="dropdown-btn">
-                    <i class='bx bx-plus-medical'></i> <span>Medical</span>
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    <a class="dropdown-a" href="{{ route('patient.medical-request') }}">Request for Medical</a>
-                    <a class="dropdown-a" href="medical.html">Medical Result</a>
-                </div>
-            </div> -->
-
-            
         <div class="container mt-5">
             <div class="dropdownSmsprofile">
                 <a class="dropdown-a" href="{{ route('patient.index') }}" style="text-decoration: none;"><i class='bx bx-grid-alt'></i> Dashboard</a>  
@@ -114,11 +77,7 @@
                     
                 </div>
             </div>
-            <!-- <div class="dropdownSmsprofile">
-                <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;">Request for Medical</a>
-                <a class="dropdown-a" href="medical.html" style="text-decoration: none;">Medical Result</a>
-                <a class="dropdown-a" href="#" style="text-decoration: none;"><i class='bx bx-log-out'></i> <span>LogOut</span></a>  
-            </div> -->
+            
         </div>
         @endif  
 
@@ -172,15 +131,5 @@
         padding: 7px 0;
         font-size: 18px;
     }
-    /* .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 3vh; 
-        }
-
-        .content {
-        margin: auto;
-        } */
-
+    
 </style>
