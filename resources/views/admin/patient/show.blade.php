@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container mt-5">
-        <div class="card shadow">
+    <div class="card shadow">
+        <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h1 class="mb-4">Patient Details</h1>
                 <div>
@@ -14,7 +15,7 @@
                     </form>
                 </div>
             </div>
-
+        </div>
         <div class="card-body">
             <h5 class="card-text"><strong>Name:</strong> {{ $patient->firstname }} {{ $patient->lastname }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ ucfirst($patient->role) }}</h6>
