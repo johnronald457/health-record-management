@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="shadow mb-4 w-full p-5">
+<!-- <div class="shadow mb-4 w-full p-5"> -->
     <div class="container">
         <div class="row">
             <div class="col-md-12 mx-auto">
@@ -101,7 +101,11 @@
                             </div>
                             
                             <div class="d-flex mt-3 float-end">
-                                <a href="{{ route('health.edit', $healthData->id) }}" class="btn btn-warning">Update Assessment</a>
+                                @if ($healthData)
+                                    <a href="{{ route('health.edit', $healthData->id) }}" class="btn btn-warning">Update Assessment</a>
+                                @else
+                                    <p>No health data available</p>
+                                @endif
                             </div>
                         </form>
                     </div>
@@ -109,7 +113,7 @@
             </div>
         </div>
     </div>
-</div>
+<!-- </div> -->
 
 
 
