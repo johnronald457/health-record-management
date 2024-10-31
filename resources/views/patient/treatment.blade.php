@@ -6,8 +6,13 @@
         <div class="row">
             <div class="col-md-12 mx-auto">
                 <div class="card">
-                    <h2>Health Assessment</h2>
                     <div class="card-body">
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    <h2>Health Assessment</h2>
                         <form action="{{ route('patient.health-assessment.store') }}" method="POST" id="healthForm">
                             @csrf
                             
@@ -80,6 +85,8 @@
                             </div>
                             <hr>
                             <h2>Treatment Details</h2>
+
+                            @if ($treatment)
                             <strong>Interpretation Comments</strong>
                             <p>{{ $treatment->interpretation_comments }}</p>
 
@@ -91,6 +98,12 @@
                             
                             <strong>Result Summary</strong>
                             <p>{{ $treatment->result_summary }}</p>
+                            
+                            @else
+                                <p>No treatment data provided yet...</p>
+                            @endif
+
+                            
                         </form>
                     </div>
                 </div>
