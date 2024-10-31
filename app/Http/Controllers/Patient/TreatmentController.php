@@ -26,11 +26,8 @@ class TreatmentController extends Controller
             $treatment = Treatment::where('user_id', $user->id)->first();
             $healthData = HealthAssessment::where('user_id', $user->id)->first();
             
-            if ($treatment) {
-                return view('patient.treatment', compact('user', 'treatment', 'fullName', 'healthData'));
-            } else {
-                return response()->json(['error' => 'No treatment data found for this user'], 404);
-            }
+            return view('patient.treatment', compact('user', 'treatment', 'fullName', 'healthData'));
+                
         } else {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
