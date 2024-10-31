@@ -2,12 +2,8 @@
 
 @section('content')
 <div class="container mt-5">
-<<<<<<< Updated upstream
     <div class="card shadow">
         <div class="card-body">
-=======
-        <div class="card shadow p-5">
->>>>>>> Stashed changes
             <div class="d-flex justify-content-between">
                 <h1 class="mb-4">Patient Details</h1>
                 <div>
