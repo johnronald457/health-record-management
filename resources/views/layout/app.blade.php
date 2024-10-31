@@ -164,43 +164,9 @@
 
 @include('layout.sidebar')
 
-<!-- <div class="main" id="mainContent" style="display: flex; flex-direction: column;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <button class="btn" id="toggleButton">&nbsp; ☰ &nbsp;</button>
-        
-        <div style="display: flex; align-items: center;">
-            @php
-                $role = auth()->user()->role;
-            @endphp
-            
-            @if($role === 'nurse' || $role === 'doctor')      
-                <a class="text-sm" href="#" style="margin-right: 15px;">Submissions</a>
-            @elseif($role === 'teacher' || $role === 'student')
-                <a href="#" style="margin-right: 15px;">Create Form</a>
-            @endif
-            
-            <a href="#" style="margin-right: 15px;">Reports</a>
-            
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" style="background: none; border: none; color: #f8595b; cursor: pointer; padding: 7px 0; font-size: 18px;">
-                    Logout
-                </button>
-            </form>
-        </div>
-    </div>
-    <hr> -->
-
-
-    @include('layout.header')
+@include('layout.header')
 
 @yield('content')
-    <!-- Main Content Goes Here -->
-    <!-- <div class="box">
-        <h2>Main Content Area</h2>
-        <p>Your main content will go here.</p>
-    </div>
-</div> -->
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
