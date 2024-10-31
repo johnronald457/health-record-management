@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Log In</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/medic_logo.png') }}">
     <link rel="stylesheet" href="clusterlogin2.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: "Poppins", sans-serif;
             
         }
 
@@ -22,7 +25,6 @@
             align-items: center;
             color: #495057;
         }
-
         .container {
             display: flex;
             justify-content: center;
@@ -37,6 +39,17 @@
             width: 375px;
             text-align: center;
         
+            animation: fadeInBox 1s ease-in-out;
+            }
+            @keyframes fadeInBox {
+            from {
+                opacity: 0;
+                transform: translateY(20px); 
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .logo img {
@@ -45,7 +58,7 @@
         }
 
         h2 {
-            margin: 20px 0;
+            margin: 16px 0;
             font-size: 24px;
             font-weight: bold;
             color: #343a40; /* Updated to white for contrast */
@@ -133,8 +146,45 @@
             position: relative;
             margin-bottom: 40px;
         }
+    /* Button styling */
+    .submit-button {
+        width: 100%;
+        padding: 12px;
+        background-color: #495057;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 18px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+    /* Spinner styling */
+    .submit-button.loading::after {
+        content: "";
+        width: 16px;
+        height: 16px;
+        border: 2px solid #ffffff;
+        border-top-color: transparent;
+        border-radius: 50%;
+        position: absolute;
+        right: 15px;
+        animation: spinner 0.6s linear infinite;
+    }
 
+    /* Loading state */
+    .submit-button.loading {
+        pointer-events: none; /* Prevent multiple clicks */
+        opacity: 0.8;
+    }
+
+    /* Spinner animation */
+    @keyframes spinner {
+        to { transform: rotate(360deg); }
+    }
     </style>
 </head>
 
@@ -144,8 +194,17 @@
             <div class="txt">
               <P><b>BESTLINK COLLEGE OF THE <br> PHILIPPINES </b></P>
             </div>
-            <h2>Sign in</h2>
-            <form method="POST" action="{{ route('login') }}">
+            <h2>Log in</h2>
+            @if ($errors->any())
+                <div>
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                        <div style="color:red;">{{ $error }}</div>
+                      @endforeach
+                  </ul>
+                </div>
+              @endif
+            <form method="POST" action="{{ route('login') }}" onsubmit="showLoading(event)">
                   @csrf
                 <div class="input-group">
                     <label for="email">Email</label>
@@ -153,15 +212,24 @@
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password">
+                    <input type="password" id="password" name="password" required>
                 </div>
                 <div class="input-group">
-                  <button class="submit-button" type="submit">Sign in</button>
-                  <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+                  <button class="submit-button" type="submit">Login</button>
+                  <!-- <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p> -->
                 </div>
             </form>
         </div>
     </div>
+
+    <script>
+        // Add loading effect to the button on form submission
+        function showLoading(event) {
+            const button = document.querySelector('.submit-button');
+            button.classList.add('loading');
+            button.disabled = true; // Disable the button to prevent multiple clicks
+        }
+    </script>
 </body>
 </html>
 
