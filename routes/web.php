@@ -25,11 +25,7 @@ Route::middleware('auth')->group(function () {
         //Dahboard routes
         Route::get('/doctor-dashboard', function () {
             return view('admin.index');
-<<<<<<< Updated upstream
         })->name('doctor.index');
-=======
-        })->name('admin.dashboard');
->>>>>>> Stashed changes
         //Student management routes
         Route::get('/patients', [PatientController::class, 'index'])->name('admin.patient.index');
         Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
