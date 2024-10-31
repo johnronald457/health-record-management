@@ -56,14 +56,64 @@
       color: #2a3d66;
       margin-bottom: 15px;
     }
+    /* Greeting Card Styles */
+    .greeting-card {
+      background-color: #E0E0E0; /* Light purple background */
+      border-radius: 15px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 20px auto;
+    }
+
+    .greeting-card img {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+    .greeting-text {
+      font-size: 18px;
+    }
+
+    .greeting-text h5 {
+      color: #333;
+    }
+
+    .greeting-text .name {
+      color: red;
+      font-weight: bold;
+    }
+
+    .greeting-text p {
+      color: #666;
+      font-size: 14px;
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
-
-
-
+  
   <!-- Main Content -->
-  <main class="main-content">
+  <main class="container main-content">
+    
+  <div class="row">
+    <div class="col-12">
+      <div class="greeting-card d-flex align-items-center">
+        <!-- Image Avatar -->
+        <img src="{{ asset('img/doctor-avatar.png') }}" alt="Doctor Avatar">
+        <!-- Greeting Text -->
+        <div class="greeting-text ms-3">
+          <h2>Good Day, Rogar Curtis</h2>
+          <p>Whatever you do, do it with determination. You have one life to live, so don't neglect your health. <br>
+            Do your work with passion and always give your best</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <!-- KPI Section -->
     <div class="kpi-container">
       <div class="kpi">
