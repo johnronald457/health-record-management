@@ -2,23 +2,28 @@
     <!-- Header for Clinic Department -->
     <h4 class="text-center text-white" style="font-size: 20px;">Clinic Department</h4>
     <br><br>
+    @php
+        $role = auth()->user()->role;
+    @endphp
 
     <!-- User Profile Info -->
     <div class="d-flex flex-column align-items-center w-100 text-light">
+        @if($role === 'teacher' || $role === 'student')
         <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar">
+        @endif
         <br>
         <span><b>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</b></span>
         <span class="user-mail">{{ Auth::user()->email }}</span>
         <br>
+
     </div>
 
     <div class="container mt-5">
         <!-- Role and Modules Based on User Type -->
-        @php
-            $role = auth()->user()->role;
-        @endphp
+
 
         @if($role === 'nurse' || $role === 'doctor')
+<<<<<<< Updated upstream
              
         <div class="container mt-5">
             <div class="dropdownSmsprofile">
@@ -28,6 +33,23 @@
             <div class="dropdownSmsprofile">
                 <button class="dropdown-btn" onclick="toggleDropdown(this)">
                     <i class='bx bx-home-smile'></i> Clinic <i class="fa fa-caret-down" style="float: right;"></i>
+=======
+            <!-- Nurse/Doctor Modules -->
+            <!-- <div class="dropdownSmsprofile">
+                <button class="dropdown-btn">
+                    <i class='bx bx-user-circle'></i> <span>{{ ucfirst($role) }}</span>
+                </button>
+            </div> -->
+            <!-- <br> -->
+            <div class="dropdownSmsprofile">
+                <a class="dropdown-a" href="{{ route('admin.dashboard') }}"><i class='bx bx-grid-alt'></i> Dashboard</a>
+            </div>
+            <!-- Clinic Dropdown -->
+            <div class="dropdownSmsprofile">
+                <button class="dropdown-btn parent-hover">
+                    <i class='bx bx-home-smile'></i> <span>Clinic</span>
+                    <i class="fa fa-caret-down"></i>
+>>>>>>> Stashed changes
                 </button>
                 <div class="dropdown-container">
                     
@@ -63,8 +85,12 @@
             </div> -->
 
             <!-- Clinic Dropdown for Students/Teachers -->
+<<<<<<< Updated upstream
             <!-- <div class="dropdownSmsprofile">
                 <span class="main"><b>CLINIC</b></span><br>
+=======
+            <div class="dropdownSmsprofile">
+>>>>>>> Stashed changes
                 <button class="dropdown-btn parent-hover">
                     <i class='bx bx-home-smile'></i> <span>Clinic</span>
                     <i class="fa fa-caret-down"></i>
@@ -165,6 +191,7 @@
 
 <style>
     .btn-logout {
+        width: 100%;
         background: none;
         border: none;
         color: #f8595b;

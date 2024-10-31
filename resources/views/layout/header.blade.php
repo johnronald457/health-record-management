@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 <div class="main" id="mainContent" style="display: flex; flex-direction: column;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <button class="btn" id="toggleButton">&nbsp; ☰ &nbsp;</button>
@@ -25,6 +28,7 @@
         </div>
     </div>
     <hr>
+<<<<<<< Updated upstream
 
   <!-- Top Navigation -->
   <!-- <header class="top-nav">
@@ -49,3 +53,5 @@
     </nav>
   </header> -->
   
+=======
+>>>>>>> Stashed changes

@@ -17,12 +17,12 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
+        <div class="">
 
-            <div class="table  px-1">
-                <table class="table table-striped table-hover" id="myTable" width="100%" cellspacing="0">
+            <div class="table">
+                <table class="table table-hover" id="myTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr class="table-secondary">
+                        <tr class="table-light ">
                             <!-- <th>Patient ID</th> -->
                             <th>Name</th>
                             <th>Individual</th>
