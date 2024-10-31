@@ -19,56 +19,51 @@
         @endphp
 
         @if($role === 'nurse' || $role === 'doctor')
-            <!-- Nurse/Doctor Modules -->
-            <!-- <div class="dropdownSmsprofile">
-                <button class="dropdown-btn">
-                    <i class='bx bx-user-circle'></i> <span>{{ ucfirst($role) }}</span>
-                </button>
-            </div> -->
-            <!-- <br> -->
-
-            <!-- Clinic Dropdown -->
+             
+        <div class="container mt-5">
             <div class="dropdownSmsprofile">
-                <span class="main"><b>CLINIC</b></span><br>
-                <button class="dropdown-btn parent-hover">
-                    <i class='bx bx-home-smile'></i> <span>Clinic</span>
-                    <i class="fa fa-caret-down"></i>
+                <a class="dropdown-a" href="{{ route('doctor.index') }}" style="text-decoration: none;"><i class='bx bx-grid-alt'></i> Dashboard</a>  
+            </div>
+            
+            <div class="dropdownSmsprofile">
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">
+                    <i class='bx bx-home-smile'></i> Clinic <i class="fa fa-caret-down" style="float: right;"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a class="dropdown-a" href="{{ route('admin.patient.index') }}">Student Management</a>
+                    
+                <a class="dropdown-a" href="{{ route('admin.patient.index') }}">Student Management</a>
                     <a class="dropdown-a" href="#">Health Record</a>
                     <a class="dropdown-a" href="#">Treatment Management</a>
                 </div>
             </div>
-            <!-- <br> -->
-
-            <!-- Medical Dropdown -->
+    
             <div class="dropdownSmsprofile">
-                <button class="dropdown-btn">
-                    <i class='bx bx-plus-medical'></i> <span>Medical</span>
-                    <i class="fa fa-caret-down"></i>
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">
+                    <i class='bx bx-user'></i> Medical<i class="fa fa-caret-down" style="float: right;"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a class="dropdown-a" href="medical.html">Medical Result</a>
+                    <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;"><span>Request for Medical</span></a>
+                    <a class="dropdown-a" href="#" style="text-decoration: none;"><span>Medical result</span></a>
+                    
                 </div>
             </div>
+            <!-- <div class="dropdownSmsprofile">
+                <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;">Request for Medical</a>
+                <a class="dropdown-a" href="medical.html" style="text-decoration: none;">Medical Result</a>
+                <a class="dropdown-a" href="#" style="text-decoration: none;"><i class='bx bx-log-out'></i> <span>LogOut</span></a>  
+            </div> -->
+        </div>
 
         @elseif($role === 'teacher' || $role === 'student')
-            <!-- Teacher/Student Modules -->
+        
             <!-- <div class="dropdownSmsprofile">
-                <button class="dropdown-btn">
-                    <i class='bx bx-user-circle'></i> <span>{{ ucfirst($role) }}</span>
+                <button class="dropdown-btn parent-hover">
+                    <i class='bx bx-home-smile'></i> <span>Dashboard</span>
                 </button>
             </div> -->
-            <!-- <br> -->
-            
-            <!-- Dashboard Link -->
-            <div class="dropdownSmsprofile">
-                <a class="dropdown-a" href="#"><i class='bx bx-grid-alt'></i> Dashboard</a>
-            </div>
 
             <!-- Clinic Dropdown for Students/Teachers -->
-            <div class="dropdownSmsprofile">
+            <!-- <div class="dropdownSmsprofile">
                 <span class="main"><b>CLINIC</b></span><br>
                 <button class="dropdown-btn parent-hover">
                     <i class='bx bx-home-smile'></i> <span>Clinic</span>
@@ -79,11 +74,9 @@
                     <a class="dropdown-a" href="{{ route('patient.health-assessment') }}">My Health Record</a>
                     <a class="dropdown-a" href="{{ route('patient.treatment') }}">Treatment</a>
                 </div>
-            </div>
-            <!-- <br> -->
-
+            </div> -->
             <!-- Medical Dropdown -->
-            <div class="dropdownSmsprofile">
+            <!-- <div class="dropdownSmsprofile">
                 <button class="dropdown-btn">
                     <i class='bx bx-plus-medical'></i> <span>Medical</span>
                     <i class="fa fa-caret-down"></i>
@@ -92,7 +85,41 @@
                     <a class="dropdown-a" href="{{ route('patient.medical-request') }}">Request for Medical</a>
                     <a class="dropdown-a" href="medical.html">Medical Result</a>
                 </div>
+            </div> -->
+
+            
+        <div class="container mt-5">
+            <div class="dropdownSmsprofile">
+                <a class="dropdown-a" href="{{ route('patient.index') }}" style="text-decoration: none;"><i class='bx bx-grid-alt'></i> Dashboard</a>  
             </div>
+            
+            <div class="dropdownSmsprofile">
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">
+                    <i class='bx bx-home-smile'></i> Clinic <i class="fa fa-caret-down" style="float: right;"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a class="dropdown-a" href="{{ route('patient.info') }}" style="text-decoration: none;"><span>Student Info</span></a>
+                    <a class="dropdown-a" href="#" style="text-decoration: none;"><span>My Health Record</span></a>
+                    <a class="dropdown-a" href="{{ route('patient.treatment') }}" style="text-decoration: none;"><span>Treatment</span></a>
+                </div>
+            </div>
+    
+            <div class="dropdownSmsprofile">
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">
+                    <i class='bx bx-user'></i> Medical<i class="fa fa-caret-down" style="float: right;"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;"><span>Request for Medical</span></a>
+                    <a class="dropdown-a" href="#" style="text-decoration: none;"><span>Medical result</span></a>
+                    
+                </div>
+            </div>
+            <!-- <div class="dropdownSmsprofile">
+                <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;">Request for Medical</a>
+                <a class="dropdown-a" href="medical.html" style="text-decoration: none;">Medical Result</a>
+                <a class="dropdown-a" href="#" style="text-decoration: none;"><i class='bx bx-log-out'></i> <span>LogOut</span></a>  
+            </div> -->
+        </div>
         @endif  
 
         <!-- Logout Form -->
@@ -104,28 +131,36 @@
 </div>
 
 <!-- Responsive Sidebar Script -->
-<script>
-    window.addEventListener('resize', function() {
-        const screenWidth = window.innerWidth;
-        const medicalInfo = document.querySelector('.medical-info');
-        medicalInfo.style.padding = screenWidth < 768 ? '15px' : '30px';
+<script>    //SideNav
+    const toggleButton = document.getElementById('toggleButton');
+    const sidenav = document.getElementById('sidenav');
+    const mainContent = document.getElementById('mainContent');
+
+    toggleButton.addEventListener('click', () => {
+        sidenav.classList.toggle('hidden');
+        mainContent.classList.toggle('shift');
     });
 
-    function toggleNav() {
-        const sidenav = document.getElementById("sidenav");
-        const uppernav = document.getElementById("uppernav");
+    // Dropdown
+    function toggleDropdown(button){
+    button.classList.toggle("active");
+    var dropdownContent = button.nextElementSibling;
+    dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
+}
 
-        sidenav.style.left = sidenav.style.left === "-280px" ? "0" : "-280px";
-        uppernav.style.marginLeft = sidenav.style.left === "0" ? "280px" : "0";
-    }
+    window.onclick = function(event){
+        if (!event.target.matches('.dropdown-btn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-container");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === "block"){
+                    openDropdown.style.display = "none";
+                }
+            }
+        }
+    };
 
-    document.querySelectorAll(".dropdown-btn").forEach(button => {
-        button.addEventListener("click", function() {
-            this.classList.toggle("active");
-            const dropdownContent = this.nextElementSibling;
-            dropdownContent.style.display = dropdownContent.style.display === "none" ? "block" : "none";
-        });
-    });
+
 </script>
 
 <style>
@@ -137,4 +172,15 @@
         padding: 7px 0;
         font-size: 18px;
     }
+    /* .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 3vh; 
+        }
+
+        .content {
+        margin: auto;
+        } */
+
 </style>

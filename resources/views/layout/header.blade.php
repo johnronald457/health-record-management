@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 <div class="main" id="mainContent" style="display: flex; flex-direction: column;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <button class="btn" id="toggleButton">&nbsp; ☰ &nbsp;</button>
@@ -11,10 +11,10 @@
             @if($role === 'nurse' || $role === 'doctor')      
                 <a class="text-sm" href="#" style="margin-right: 15px;">Submissions</a>
             @elseif($role === 'teacher' || $role === 'student')
-                <a href="#" style="margin-right: 15px;">Create Form</a>
+                <!-- <a href="#" style="margin-right: 15px;">Create Form</a> -->
             @endif
             
-            <a href="#" style="margin-right: 15px;">Reports</a>
+            <!-- <a href="#" style="margin-right: 15px;">Reports</a> -->
             
             <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
@@ -25,9 +25,9 @@
         </div>
     </div>
     <hr>
-=======
+
   <!-- Top Navigation -->
-  <header class="top-nav">
+  <!-- <header class="top-nav">
     <h1 class="mt-2">Health Management System</h1>
     <nav class="nav-links">
       <a href="#">Dashboard</a>
@@ -47,5 +47,5 @@
         </button>
     </form>
     </nav>
-  </header>
->>>>>>> Stashed changes
+  </header> -->
+  
