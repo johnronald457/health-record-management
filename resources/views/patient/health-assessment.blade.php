@@ -82,6 +82,18 @@
                             <div class="d-flex mt-3 float-end">
                                 <a href="{{ route('health.edit', $healthData->id) }}" class="btn btn-warning">Update Assessment</a>
                             </div>
+                            <!-- @php
+                                $oneMonthAgo = now()->subMonth();
+                            @endphp
+
+                            <div class="d-flex mt-3 float-end">
+                                @if($healthData->created_at <= $oneMonthAgo)
+                                    <a href="{{ route('health.create') }}" class="btn btn-primary">Create New Assessment</a>
+                                @else
+                                    <a href="{{ route('health.edit', $healthData->id) }}" class="btn btn-warning">Update Assessment</a>
+                                @endif
+                            </div> -->
+
                         </form>
                     </div>
                 </div>
