@@ -98,8 +98,9 @@
         <img src="{{ asset('img/doctor-avatar.png') }}" alt="Doctor Avatar">
         <!-- Greeting Text -->
         <div class="greeting-text ms-3">
-          <h5>Good Day, <span class="name">{{ $fullName }}</span></h5>
-          <p>Whatever you do, do with determination. You have one life to live; do your work with passion and give your best.</p>
+          <h2>Good Day!, <text class="text-danger"> {{ $fullName }}</text></h2>
+          <p>Approach everything you do with determination and focus. Prioritize your health, pursue activities with passion,
+             and always strive to do your best <br> —it all contributes to a balanced and fulfilling life.</p>
         </div>
       </div>
     </div>
@@ -107,10 +108,6 @@
 
   <!-- KPI Section -->
   <div class="kpi-container">
-    <div class="kpi">
-      <h3>Total Patients</h3>
-      <p>150</p>
-    </div>
     <div class="kpi">
       <h3>Appointments Today</h3>
       <p>25</p>
