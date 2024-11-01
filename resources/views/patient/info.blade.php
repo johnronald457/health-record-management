@@ -102,9 +102,20 @@
                                     <p>{{ $healthData->allergies ?? old('allergies') }}</p>
                                 </div>
                             </div>
-                            <div class="d-flex mt-3 float-end">
+                            <!-- <div class="d-flex mt-3 float-end">
                                 <a href="{{ route('health.edit', $healthData->id) }}" class="btn btn-warning">Update Assessment</a>
+                            </div> -->
+
+
+                            <div class="d-flex mt-3 float-end">
+                                @if($showCreateButton)
+                                    <a href="{{ route('patient.create-health-assessment') }}" class="btn btn-primary">Create New Assessment</a>
+                                @else
+                                    <a href="{{ route('health.edit', $healthData->id) }}" class="btn btn-warning">Update Assessment</a>
+                                @endif
                             </div>
+
+
                             @else
                                 <p>Assessment data not available..</p>
                                 <div class="d-flex mt-3 float-end">
