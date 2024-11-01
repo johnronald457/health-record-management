@@ -22,8 +22,20 @@ class InfoController extends Controller
        
             $fullName = trim($user->firstname . ' ' . $user->middlename . ' ' . $user->lastname);
             $healthData = HealthAssessment::where('user_id', $user->id)->first();
+            $showCreateButton = false;
 
-            return view('patient.info', compact('user','fullName','healthData'));
+            if ($healthData) {
+                // Calculate the time difference if health data exists
+                $lastAssessmentDate = $healthData->created_at;
+                $showCreateButton = $lastAssessmentDate->diffInMonths(now()) >= 1;
+            } else {
+                // Set to true to show the "Create New Assessment" button if no record exists
+                $showCreateButton = true;
+            }
+            
+            return view('patient.info', compact('user', 'fullName', 'healthData', 'showCreateButton'));
+
+            // return view('patient.info', compact('user','fullName','healthData'));
         } else {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
