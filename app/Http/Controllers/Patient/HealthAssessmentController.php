@@ -29,13 +29,27 @@ class HealthAssessmentController extends Controller
     {
         $user = Auth::user();
         if ($user) {
-            // Assuming these fields exist in the users table
             $fullName = trim($user->firstname . ' ' . $user->middlename . ' ' . $user->lastname);
     
             // Fetch health data from the database
+            // $healthData = HealthAssessment::where('user_id', $user->id)->first();
+            // $lastAssessmentDate = $healthData->created_at;
+            // $showCreateButton = $lastAssessmentDate->diffInMonths(now()) >= 1;
+
+            // Fetch health data from the database
             $healthData = HealthAssessment::where('user_id', $user->id)->first();
-    
-            return view('patient.info', compact('user', 'fullName', 'healthData'));
+            $showCreateButton = false;
+
+            if ($healthData) {
+                // Calculate the time difference if health data exists
+                $lastAssessmentDate = $healthData->created_at;
+                $showCreateButton = $lastAssessmentDate->diffInMonths(now()) >= 1;
+            } else {
+                // Set to true to show the "Create New Assessment" button if no record exists
+                $showCreateButton = true;
+            }
+            
+            return view('patient.info', compact('user', 'fullName', 'healthData', 'showCreateButton'));
         } else {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
