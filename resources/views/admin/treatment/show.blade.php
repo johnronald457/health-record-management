@@ -7,7 +7,7 @@
             <div class="d-flex justify-content-between">
                 <h1 class="mb-4">Treatment Details</h1>
                 <div>
-                    <a  class="btn btn-primary"><i class="fas fa-edit me-2"></i>Edit</a>
+                    <a href="{{ route('admin.health.edit', $treatment->health_assessment->id) }}" class="btn btn-primary"><i class="fas fa-edit me-2"></i>Edit</a>
                     <!-- Delete Button with Form -->
                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $treatment->id }}">
                         <i class="fas fa-trash"></i>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="card-body px-5 pb-5">
-            <h5 class="card-text"><strong>Name:</strong> {{ $treatment->user->firstname }} {{ $treatment->lastname }}</h5>
+            <h5 class="card-text"><strong>{{$treatment->health_assessment->id}}Name:</strong> {{ $treatment->user->firstname }} {{ $treatment->lastname }}</h5>
             <br>
             <!-- <p class="card-text"><strong>Individual:</strong> {{ ucfirst($treatment->role) }}</p>
             <p class="card-text"><strong>Email:</strong> {{ $treatment->email }}</p>

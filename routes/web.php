@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
         //Treatment management routes
         Route::get('/treatments', [DoctorTreatmentController::class, 'index'])->name('admin.treatment.index');
         Route::get('/treatment/{id}', [DoctorTreatmentController::class, 'show'])->name('treatment.show');
+        Route::get('/health-assessment/{id}', [DoctorTreatmentController::class, 'edit'])->name('admin.health.edit');
+        Route::post('/health-assessment/{id}/', [DoctorTreatmentController::class, 'update'])->name('admin.health.update');
         Route::delete('/treatment/{treatment}', [DoctorTreatmentController::class, 'destroy'])->name('admin.treatment.destroy');
         //Requests management routes
         Route::get('/requests', [RequestsController::class, 'index'])->name('admin.requests.index');
