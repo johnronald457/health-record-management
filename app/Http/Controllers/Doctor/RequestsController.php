@@ -90,7 +90,7 @@ class RequestsController extends Controller
     {
         $request = MedicalRequest::findOrFail($request);
         $request->delete();
-
+        session()->flash('success', 'Request deleted successfully.');
         return redirect()->route('admin.requests.index')->with('success', 'Request deleted successfully.');
     }
 }

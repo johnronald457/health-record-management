@@ -16,4 +16,12 @@ class Treatment extends Model
         'prescriptions',
         'result_summary'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function health_assessment()
+    {
+        return $this->belongsTo(HealthAssessment::class);
+    }
 }
