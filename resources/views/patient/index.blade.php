@@ -98,7 +98,7 @@
         <img src="{{ asset('img/doctor-avatar.png') }}" alt="Doctor Avatar">
         <!-- Greeting Text -->
         <div class="greeting-text ms-3">
-          <h2>Good Day!, <text class="text-danger"> {{ $fullName }}</text></h2>
+          <h2>Good Day! <text class="text-danger"> {{ $fullName }}</text></h2>
           <p>Approach everything you do with determination and focus. Prioritize your health, pursue activities with passion,
              and always strive to do your best <br> —it all contributes to a balanced and fulfilling life.</p>
         </div>
@@ -108,25 +108,27 @@
 
   <!-- KPI Section -->
   <div class="kpi-container">
-    <div class="kpi">
+    <!-- <div class="kpi">
       <h3>Appointments Today</h3>
-      <p>25</p>
-    </div>
-    <div class="kpi">
+      <p>1</p>
+    </div> -->
+    <!-- <div class="kpi">
       <h3>Pending Bills</h3>
       <p>5</p>
-    </div>
+    </div> -->
   </div>
 
   <!-- Modules Section -->
   <div class="module">
     <h2>Upcoming Appointments</h2>
     <p>Display upcoming appointments here...</p>
+    <!-- for requested for medical -->
   </div>
 
   <div class="module">
     <h2>Patient Records</h2>
     <p>Display patient records here...</p>
+    <!-- history of medical or latest medical -->
   </div>
 
 </div>
