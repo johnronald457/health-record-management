@@ -2,10 +2,17 @@
     <!-- Header for Clinic Department -->
     <h4 class="text-center text-white" style="font-size: 20px;">Clinic Department</h4>
     <br><br>
-
+    <!-- Role and Modules Based on User Type -->
+    @php
+        $role = auth()->user()->role;
+    @endphp
     <!-- User Profile Info -->
     <div class="d-flex flex-column align-items-center w-100 text-light">
+        @if($role === 'nurse' || $role === 'doctor')
         <img src="{{ asset('img/medic_logo.png') }}" alt="avatar" class="avatar">
+        @elseif($role === 'teacher' || $role === 'student')
+        <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar">
+        @endif
         <br>
         <span><b>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</b></span>
         <span class="user-mail">{{ Auth::user()->email }}</span>
@@ -13,10 +20,7 @@
     </div>
 
     <div class="container mt-5">
-        <!-- Role and Modules Based on User Type -->
-        @php
-            $role = auth()->user()->role;
-        @endphp
+
 
         @if($role === 'nurse' || $role === 'doctor')
              
@@ -33,7 +37,7 @@
                     
                 <a class="dropdown-a" href="{{ route('admin.patient.index') }}">Student Management</a>
                     <a class="dropdown-a" href="#">Health Record</a>
-                    <a class="dropdown-a" href="#">Treatment Management</a>
+                    <a class="dropdown-a" href="{{ route('admin.treatment.index') }}">Treatment Management</a>
                 </div>
             </div>
     

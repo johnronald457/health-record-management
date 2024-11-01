@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Controllers\Doctor\RequestsController;
 use App\Http\Controllers\Doctor\DashboardController;
+use App\Http\Controllers\Doctor\DoctorTreatmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Nurse;
@@ -29,6 +30,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/patients', [PatientController::class, 'index'])->name('admin.patient.index');
         Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
         Route::delete('/patients/{user}', [PatientController::class, 'destroy'])->name('admin.patient.destroy');
+        //Treatment management routes
+        Route::get('/treatments', [DoctorTreatmentController::class, 'index'])->name('admin.treatment.index');
+        Route::get('/treatment/{id}', [DoctorTreatmentController::class, 'show'])->name('treatment.show');
+        Route::delete('/treatment/{treatment}', [DoctorTreatmentController::class, 'destroy'])->name('admin.treatment.destroy');
         //Requests management routes
         Route::get('/requests', [RequestsController::class, 'index'])->name('admin.requests.index');
         Route::put('/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');

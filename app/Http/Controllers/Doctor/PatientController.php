@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Doctor;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -10,8 +12,7 @@ class PatientController extends Controller
     // Display a listing of the users
     public function index()
     {
-        $patients = User::all();
-        // whereNotIn('role', ['nurse', 'doctor'])->get();
+        $patients = User::whereNotIn('role', ['nurse', 'doctor'])->get();
         return view('admin.patient.index', compact('patients'));
     }
 
@@ -88,7 +89,7 @@ class PatientController extends Controller
     {
         $user = User::findOrFail($patient);
         $user->delete();
-
-        return redirect()->route('admin.patient.index')->with('success', 'Patient deleted successfully.');
+        session()->flash('success', 'Patient deleted successfully.');
+        return redirect()->route('admin.patient.index');
     }
 }
