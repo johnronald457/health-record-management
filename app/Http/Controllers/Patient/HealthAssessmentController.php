@@ -111,7 +111,8 @@ class HealthAssessmentController extends Controller
             'allergies' => $request->allergies,
         ]);
 
-        return redirect()->route('patient.health-assessment')->with('success', 'Medical record updated successfully.');
+        return redirect()->route('patient.health-assessment');
+        // ->with('success', 'Medical record updated successfully.');
     }
 
     
