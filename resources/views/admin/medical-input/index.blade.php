@@ -17,8 +17,7 @@
                     <i class="fas fa-solid fa-user-gear fa-4x text-gray-500 pr-3"></i>
                 </div>
                 <div>
-                    <a href="" class="btn btn-primary"><i class="fas fa-edit me-2"></i>Request</a>
-                    </form>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#createRequestModal" class="btn btn-primary"><i class="fas fa-edit me-2"></i>Request</button>
                 </div>
             </div>
             </div>
@@ -64,3 +63,4 @@
     </div>
 </div>
 @endsection
+@include('admin.medical-input.create')

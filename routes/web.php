@@ -23,7 +23,9 @@ use App\Http\Controllers\Patient\PatientDashboardController;
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
+        Route::get('/health-record-historyy', function () {
+            return view('patient.health-record-history');
+        })->name('patient.health-record-historyy');
 Route::middleware('auth')->group(function () {
     // Doctor routes
     Route::middleware(Doctor::class)->group(function () {
@@ -45,6 +47,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
         Route::delete('/doctor/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
+
+        Route::get('/doctor/health-record', function () {
+            return view('admin.health-record.index');
+        })->name('admin.health-record.index');
     });
 
     // Nurse routes

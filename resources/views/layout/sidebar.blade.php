@@ -36,7 +36,7 @@
                 <div class="dropdown-container">
                     
                 <a class="dropdown-a" href="{{ route('admin.patient.index') }}">Student Management</a>
-                    <a class="dropdown-a" href="#">Health Record</a>
+                    <a class="dropdown-a" href="{{ route('admin.health-record.index') }}">Health Record</a>
                     <a class="dropdown-a" href="{{ route('admin.treatment.index') }}">Treatment Management</a>
                 </div>
             </div>
