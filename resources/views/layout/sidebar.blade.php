@@ -46,7 +46,7 @@
                     <i class='bx bx-user'></i> Medical<i class="fa fa-caret-down" style="float: right;"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a class="dropdown-a" href="#" style="text-decoration: none;"><span>Medical Input</span></a>
+                    <a class="dropdown-a" href="{{ route('admin.requests.index') }}" style="text-decoration: none;"><span>Medical Input</span></a>
                     
                 </div>
             </div>

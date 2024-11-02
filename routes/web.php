@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/doctor/health-assessment/{id}/', [DoctorTreatmentController::class, 'update'])->name('admin.health.update');
         Route::delete('/doctor/treatment/{treatment}', [DoctorTreatmentController::class, 'destroy'])->name('admin.treatment.destroy');
         //Requests management routes
-        Route::get('/doctor/requests', [RequestsController::class, 'index'])->name('admin.requests.index');
+        Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
         Route::delete('/doctor/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
     });
