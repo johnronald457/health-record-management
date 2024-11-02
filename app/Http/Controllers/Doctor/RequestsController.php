@@ -10,8 +10,8 @@ class RequestsController extends Controller
     // Display a listing of the users
     public function index()
     {
-        $requests = MedicalRequest::where('status', 'request')->get();
-        return view('admin.requests.index', compact('requests'));
+        $medicals = MedicalRequest::all();
+        return view('admin.medical-input.index', compact('medicals'));
     }
 
     //     public function show($id)

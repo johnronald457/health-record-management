@@ -10,9 +10,15 @@ class MedicalRequest extends Model
 
     protected $fillable = [
         'patient_id',
-        'preferred_date',
-        'notes',
+        'request_type',
+        'description',
         'status',
+        'priority',
+        'preferred_date',
+        'schedule_date',
+        'testdate_date',
+        'doctor_name',
+        'file_path',
     ];
 
     // Define relationship if needed (assuming 'User' model exists)
