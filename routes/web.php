@@ -74,6 +74,10 @@ Route::middleware('auth')->group(function () {
             return view('patient.health-record');
         })->name('patient.health-record');
 
+        Route::get('/health-record-history', function () {
+            return view('patient.health-record-history');
+        })->name('patient.health-record-history');
+
         // Route::get('/ai-diagnostics', function () {
         //     return view('patient.ai');
         // })->name('patient.ai');
