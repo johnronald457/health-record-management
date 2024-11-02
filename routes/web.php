@@ -6,6 +6,9 @@ use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Controllers\Doctor\RequestsController;
 use App\Http\Controllers\Doctor\DashboardController;
 use App\Http\Controllers\Doctor\DoctorTreatmentController;
+use App\Http\Controllers\Nurse\NursePatientController;
+use App\Http\Controllers\Nurse\NurseDashboardController;
+use App\Http\Controllers\Nurse\NurseTreatmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Nurse;
@@ -27,26 +30,37 @@ Route::middleware('auth')->group(function () {
         //Dahboard routes
         Route::get('/doctor-dashboard', [DashboardController::class, 'index'])->name('doctor.index');
         //Student management routes
-        Route::get('/patients', [PatientController::class, 'index'])->name('admin.patient.index');
-        Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
-        Route::delete('/patients/{user}', [PatientController::class, 'destroy'])->name('admin.patient.destroy');
+        Route::get('/doctor/patients', [PatientController::class, 'index'])->name('admin.patient.index');
+        Route::get('/doctor/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
+        Route::get('/doctor/patient-info/{id}', [PatientController::class, 'edit'])->name('admin.patient.edit');
+        Route::post('/doctor/patient-info/{id}/update', [PatientController::class, 'update'])->name('admin.patient.update');
+        Route::delete('/doctor/patients/{user}', [PatientController::class, 'destroy'])->name('admin.patient.destroy');
         //Treatment management routes
-        Route::get('/treatments', [DoctorTreatmentController::class, 'index'])->name('admin.treatment.index');
-        Route::get('/treatment/{id}', [DoctorTreatmentController::class, 'show'])->name('treatment.show');
-        Route::get('/health-assessment/{id}', [DoctorTreatmentController::class, 'edit'])->name('admin.health.edit');
-        Route::post('/health-assessment/{id}/', [DoctorTreatmentController::class, 'update'])->name('admin.health.update');
-        Route::delete('/treatment/{treatment}', [DoctorTreatmentController::class, 'destroy'])->name('admin.treatment.destroy');
+        Route::get('/doctor/treatments', [DoctorTreatmentController::class, 'index'])->name('admin.treatment.index');
+        Route::get('/doctor/treatment/{id}', [DoctorTreatmentController::class, 'show'])->name('treatment.show');
+        Route::get('/doctor/health-assessment/{id}', [DoctorTreatmentController::class, 'edit'])->name('admin.health.edit');
+        Route::post('/doctor/health-assessment/{id}/', [DoctorTreatmentController::class, 'update'])->name('admin.health.update');
+        Route::delete('/doctor/treatment/{treatment}', [DoctorTreatmentController::class, 'destroy'])->name('admin.treatment.destroy');
         //Requests management routes
-        Route::get('/requests', [RequestsController::class, 'index'])->name('admin.requests.index');
-        Route::put('/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
-        Route::delete('/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
+        Route::get('/doctor/requests', [RequestsController::class, 'index'])->name('admin.requests.index');
+        Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
+        Route::delete('/doctor/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
     });
 
     // Nurse routes
     Route::middleware(Nurse::class)->group(function () {
-        Route::get('/nurse-dashboard', function () {
-            return view('admin.index');
-        });
+        Route::get('/nurse-dashboard', [NurseDashboardController::class, 'index'])->name('nurse.index');
+        //Student management routes
+        Route::get('/nurse/patients', [NursePatientController::class, 'index'])->name('nurse.patient.index');
+        Route::get('/nurse/patients/{id}', [NursePatientController::class, 'show'])->name('nurse.patients.show');
+        Route::get('/nurse/patient-info/{id}', [NursePatientController::class, 'edit'])->name('nurse.patient.edit');
+        Route::post('/nurse/patient-info/{id}/update', [NursePatientController::class, 'update'])->name('nurse.patient.update');
+        //Treatment management routes
+        Route::get('/nurse/treatments', [NurseTreatmentController::class, 'index'])->name('nurse.treatment.index');
+        Route::get('/nurse/treatment/{id}', [NurseTreatmentController::class, 'show'])->name('nurse.treatment.show');
+        Route::get('/nurse/health-assessment/{id}', [NurseTreatmentController::class, 'edit'])->name('nurse.health.edit');
+        Route::post('/nurse/health-assessment/{id}/', [NurseTreatmentController::class, 'update'])->name('nurse.health.update');
+
     });
     
     Route::middleware(Patient::class)->group(function () {

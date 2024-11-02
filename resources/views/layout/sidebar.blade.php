@@ -22,7 +22,7 @@
     <div class="container mt-5">
 
 
-        @if($role === 'nurse' || $role === 'doctor')
+        @if($role === 'doctor')
              
         <div class="container mt-5">
             <div class="dropdownSmsprofile">
@@ -46,13 +46,39 @@
                     <i class='bx bx-user'></i> Medical<i class="fa fa-caret-down" style="float: right;"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;"><span>Request for Medical</span></a>
-                    <a class="dropdown-a" href="#" style="text-decoration: none;"><span>Medical result</span></a>
+                    <a class="dropdown-a" href="#" style="text-decoration: none;"><span>Medical Input</span></a>
                     
                 </div>
             </div>
         </div>
-
+        @elseif($role === 'nurse' )
+                <div class="container mt-5">
+            <div class="dropdownSmsprofile">
+                <a class="dropdown-a" href="{{ route('nurse.index') }}" style="text-decoration: none;"><i class='bx bx-grid-alt'></i> Dashboard</a>  
+            </div>
+            
+            <div class="dropdownSmsprofile">
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">
+                    <i class='bx bx-home-smile'></i> Clinic <i class="fa fa-caret-down" style="float: right;"></i>
+                </button>
+                <div class="dropdown-container">
+                    
+                <a class="dropdown-a" href="{{ route('nurse.patient.index') }}">Student Management</a>
+                    <a class="dropdown-a" href="#">Health Record</a>
+                    <a class="dropdown-a" href="{{ route('nurse.treatment.index') }}">Treatment Management</a>
+                </div>
+            </div>
+    
+            <div class="dropdownSmsprofile">
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">
+                    <i class='bx bx-user'></i> Medical<i class="fa fa-caret-down" style="float: right;"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a class="dropdown-a" href="#" style="text-decoration: none;"><span>Medical input</span></a>
+                    
+                </div>
+            </div>
+        </div>
         @elseif($role === 'teacher' || $role === 'student')
         
         <div class="container mt-5">

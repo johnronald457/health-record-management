@@ -7,11 +7,7 @@
             <div class="d-flex justify-content-between">
                 <h1 class="mb-4">Patient Details</h1>
                 <div>
-                    <a href="{{ route('admin.patient.edit', $patient->id) }}" class="btn btn-primary"><i class="fas fa-edit me-2"></i>Edit</a>
-                    <!-- Delete Button with Form -->
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $patient->id }}">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <a href="{{ route('nurse.patient.edit', $patient->id) }}" class="btn btn-primary"><i class="fas fa-edit me-2"></i>Edit</a>
                     </form>
                 </div>
             </div>
@@ -30,5 +26,4 @@
         </div>
     </div>
 </div>
-@include('admin.patient.ConfirmationDeleteModal')
 @endsection

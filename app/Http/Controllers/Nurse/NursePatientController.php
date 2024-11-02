@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Doctor;
+namespace App\Http\Controllers\Nurse;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
-class PatientController extends Controller
+class NursePatientController extends Controller
 {
     // Display a listing of the users
     public function index()
     {
         $patients = User::whereNotIn('role', ['nurse', 'doctor'])->get();
-        return view('admin.patient.index', compact('patients'));
+        return view('nurse.patient.index', compact('patients'));
     }
 
         public function show($id)
     {
         $patient = User::findOrFail($id);
-        return view('admin.patient.show', compact('patient'));
+        return view('nurse.patient.show', compact('patient'));
     }
 
     // // Show the form for creating a new user
@@ -58,7 +58,7 @@ class PatientController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.patient.edit', compact('user'));
+        return view('nurse.patient.edit', compact('user'));
     }
 
     // Update the specified user in storage
@@ -85,6 +85,6 @@ class PatientController extends Controller
         $user = User::findOrFail($patient);
         $user->delete();
         session()->flash('success', 'Patient deleted successfully.');
-        return redirect()->route('admin.patient.index');
+        return redirect()->route('nurse.patient.index');
     }
 }
