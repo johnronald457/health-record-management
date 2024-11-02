@@ -1,7 +1,5 @@
-@extends('layout.app')
 
-@section('content')
-<div class="container mt-5">
+
   <div class="border p-4">
     <h2>Diagnostics</h2>
     <form>
@@ -49,5 +47,3 @@
 
     </form>
   </div>
-</div>
-@endsection
