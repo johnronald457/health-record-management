@@ -10,11 +10,11 @@
             <div class="mb-4">
                 <h5 class="text-primary">Patient Information</h5>
                 <hr>
-                <p><strong>Patient ID:</strong> 10234</p>
-                <p><strong>Name:</strong> John Doe</p>
-                <p><strong>Date of Birth:</strong> 1990-05-10</p>
-                <p><strong>Gender:</strong> Male</p>
-                <p><strong>Contact Information:</strong> johndoe@example.com, (555) 123-4567</p>
+                <!-- <p><strong>Patient ID:</strong> 10234</p> -->
+                <p><strong>Name:</strong> China Bea</p>
+                <p><strong>Date of Birth:</strong> 2001-12-22</p>
+                <p><strong>Gender:</strong> Female</p>
+                <p><strong>Contact Information:</strong> chinabea@gmail.com</p>
             </div>
 
             <!-- Visit Information Section -->
@@ -22,7 +22,7 @@
                 <h5 class="text-primary">Visit Information</h5>
                 <hr>
                 <p><strong>Visit Date:</strong> 2024-10-28</p>
-                <p><strong>Doctor Name:</strong> Dr. Emily Carter</p>
+                <p><strong>Doctor Name:</strong> Dr. Mark Louis</p>
                 <p><strong>Visit Reason:</strong> Routine check-up</p>
             </div>
 
