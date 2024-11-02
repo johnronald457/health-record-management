@@ -100,14 +100,14 @@ class DatabaseSeeder extends Seeder
             'result_summary' => 'Overall health is good, minor concerns with cholesterol levels.',
         ]);
 
-        Treatment::create([
-            'user_id' => 2, // Assuming user with ID 2 exists
-            'health_assessment_id' => 1, // Assuming health assessment with ID 1 exists
-            'interpretation_comments' => 'Elevated blood pressure noted.',
-            'recommendations' => 'Monitor blood pressure and consider dietary changes.',
-            'prescriptions' => 'Some prescriptions here...',
-            'result_summary' => 'Health shows some concerns, specifically with blood pressure.',
-        ]);
+        // Treatment::create([
+        //     'user_id' => 2, // Assuming user with ID 2 exists
+        //     'health_assessment_id' => 1, // Assuming health assessment with ID 1 exists
+        //     'interpretation_comments' => 'Elevated blood pressure noted.',
+        //     'recommendations' => 'Monitor blood pressure and consider dietary changes.',
+        //     'prescriptions' => 'Some prescriptions here...',
+        //     'result_summary' => 'Health shows some concerns, specifically with blood pressure.',
+        // ]);
         
 
 
