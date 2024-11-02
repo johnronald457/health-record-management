@@ -77,7 +77,7 @@
                 </button>
                 <div class="dropdown-container">
                     <!-- <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;"><span>Request for Medical</span></a> -->
-                    <a class="dropdown-a" href="#" style="text-decoration: none;"><span>Medical result</span></a>
+                    <a class="dropdown-a" href="{{ route('patient.medical-result') }}" style="text-decoration: none;"><span>Medical result</span></a>
                     
                 </div>
             </div>
