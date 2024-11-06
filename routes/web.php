@@ -70,26 +70,19 @@ Route::middleware('auth')->group(function () {
     });
     
     Route::middleware(Patient::class)->group(function () {
-        // Route::get('/dashboard', function () {
-        //     return view('patient.index');
-        // })->name('patient.index');
         
         Route::get('/dashboard', [PatientDashboardController::class, 'dashboard'])->name('patient.index');
         Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
-        Route::get('/health-assessment', [HealthAssessmentController::class, 'getHealthRecord'])->name('patient.health-assessment');
         Route::get('/health-assessment-create', [HealthAssessmentController::class, 'create'])->name('patient.create-health-assessment');
         Route::post('health-assessment-store', [HealthAssessmentController::class, 'store'])->name('patient.health-assessment.store');
         Route::get('/health-assessment/{id}/edit', [HealthAssessmentController::class, 'edit'])->name('health.edit');
         Route::post('/health-assessment/{id}/update', [HealthAssessmentController::class, 'update'])->name('health.update');
 
         Route::get('/treatment', [TreatmentController::class, 'getUserTreatment'])->name('patient.treatment');
-
-        Route::get('medical-request/create', [MedicalRequestController::class, 'create'])->name('patient.medical-request');
-        Route::post('medical-request', [MedicalRequestController::class, 'store'])->name('patient.medical-request.store');
         Route::get('/medical-result', function () {
             return view('patient.medical-result');
         })->name('patient.medical-result');
-
+        // need to edit for resposive
         Route::get('/health-record', function () {
             return view('patient.health-record');
         })->name('patient.health-record');
@@ -97,12 +90,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/health-record-history', function () {
             return view('patient.health-record-history');
         })->name('patient.health-record-history');
-
-        // Route::get('/ai-diagnostics', function () {
-        //     return view('patient.ai');
-        // })->name('patient.ai');
-        
-        
     });
 });
 
