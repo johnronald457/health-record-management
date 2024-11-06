@@ -11,13 +11,14 @@
   /* KPI Section */
   .kpi-container {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 20px;
     margin-top: 20px;
   }
 
   .kpi {
     flex: 1;
+    min-width: 250px;
     padding: 15px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -38,18 +39,19 @@
 
   /* Greeting Card Styles */
   .greeting-card {
-    background-color: #E6E6FA; /* Light purple background */
+    background-color: #E6E6FA;
     border-radius: 15px;
     padding: 20px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     width: 100%;
     margin: 20px auto;
   }
 
   .greeting-card img {
-    width: 170px;
-    height: 170px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin-right: 20px;
   }
@@ -86,6 +88,34 @@
     color: #2a3d66;
     margin-bottom: 15px;
   }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .kpi-container {
+      flex-direction: column;
+    }
+
+    .kpi p {
+      font-size: 1.5rem;
+    }
+
+    .greeting-card {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .greeting-card img {
+      margin: 0 auto 15px;
+    }
+
+    .greeting-text h2 {
+      font-size: 1.5rem;
+    }
+
+    .greeting-text p {
+      font-size: 0.9rem;
+    }
+  }
 </style>
 
 <div class="container main-content">
@@ -108,27 +138,18 @@
 
   <!-- KPI Section -->
   <div class="kpi-container">
-    <!-- <div class="kpi">
-      <h3>Appointments Today</h3>
-      <p>1</p>
-    </div> -->
-    <!-- <div class="kpi">
-      <h3>Pending Bills</h3>
-      <p>5</p>
-    </div> -->
+    <!-- Add KPI items here -->
   </div>
 
   <!-- Modules Section -->
   <div class="module">
     <h2>Upcoming Appointments</h2>
     <p>Display upcoming appointments here...</p>
-    <!-- for requested for medical -->
   </div>
 
   <div class="module">
     <h2>Patient Records</h2>
     <p>Display patient records here...</p>
-    <!-- history of medical or latest medical -->
   </div>
 
 </div>
