@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'firstname' => 'John',
-            'middlename' => 'Del',
-            'lastname' => 'Crus',
+            'firstname' => 'China',
+            'middlename' => 'T.',
+            'lastname' => 'Bea',
             'email' => 's21010791',
             'password' => bcrypt('12345678'),
             'role' => 'student',
