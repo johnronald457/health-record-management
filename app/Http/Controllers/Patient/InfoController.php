@@ -34,8 +34,6 @@ class InfoController extends Controller
             }
             
             return view('patient.info', compact('user', 'fullName', 'healthData', 'showCreateButton'));
-
-            // return view('patient.info', compact('user','fullName','healthData'));
         } else {
             return response()->json(['error' => 'User not authenticated'], 401);
         }
