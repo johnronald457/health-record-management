@@ -102,7 +102,6 @@
                     <i class='bx bx-user'></i> Medical<i class="fa fa-caret-down" style="float: right;"></i>
                 </button>
                 <div class="dropdown-container">
-                    <!-- <a class="dropdown-a" href="{{ route('patient.medical-request') }}" style="text-decoration: none;"><span>Request for Medical</span></a> -->
                     <a class="dropdown-a" href="{{ route('patient.medical-result') }}" style="text-decoration: none;"><span>Medical result</span></a>
                     
                 </div>
