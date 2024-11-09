@@ -10,10 +10,6 @@
   <title>Clinic Dashboard</title>
   <style>
 
-    /* Main Content */
-    .main-content {
-      padding: 14px;
-    }
 
     /* KPI Section */
     .kpi-container {
@@ -138,10 +134,7 @@
   </style>
 </head>
 <body>
-  
-  <!-- Main Content -->
-  <main class="container main-content">
-    
+  <div>
 <div class="row justify-content-center">
   <div class="col-md-8 col-lg-12">
     <div class="card greeting-card p-4 d-flex align-items-center flex-md-row text-center text-md-start">
@@ -187,7 +180,7 @@
       <h2>Patient Records</h2>
       <p>Display patient records here...</p>
     </div>
-  </main>
+</div>
 </body>
 </html>
 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="shadow mb-4 w-full p-5">
+<div class="shadow mb-4 w-full p-3 p-m-5">
     <div class="card-header">
         <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
@@ -19,7 +19,7 @@
         </div>
         <div class="">
 
-            <div class="table">
+            <div class="table table-responsive">
                 <table class="table table-hover" id="myTable" width="100%" cellspacing="0">
                     <thead>
                         <tr class="table-light ">
