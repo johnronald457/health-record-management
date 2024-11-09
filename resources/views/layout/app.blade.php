@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close" />
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -32,10 +33,12 @@
             padding-top: 20px;
             transition: transform 0.3s ease;
             overflow-y: auto; /* Add scroll if content overflows */
+            z-index: 1;
         }
         .sidenav.hidden {
             transform: translateX(-100%);
         }
+
         .sidenav a {
             padding: 10px 15px;
             text-decoration: none;
@@ -54,6 +57,26 @@
             transition: margin-left 0.3s ease;
             flex-grow: 1; /* Allow main content to fill space */
         }
+
+        @media (max-width: 565px) {
+            .main {
+               margin-left: 0;
+            }
+
+            .sidenav {
+                transform: translateX(-100%);
+            }
+
+            .sidenav.hidden {
+            transform: translateX(0%);
+        }
+
+            #toggleButton {
+                display: block;
+            }
+        }
+
+
         .main.shift {
             margin-left: 10px; 
         }
@@ -70,39 +93,36 @@
         hr {
             margin: 20px 0;
         }
-        #toggleButton {
+        #toggleButton1 {
             background-color: #495057;
             border: none;
             color: white;
             margin-right: 15px;
+            position:absolute;
+            left: 1.8em;
         }
-        #toggleButton:hover {
+        #toggleButton1:hover {
             background-color: #6c757d; 
         }
-
         .avatar-container {
             margin-bottom: 15px;
             text-align: center; /* Center align avatar */
         }
-
         .avatar {
             width: 110px;
             height: 110px;
             border-radius: 50%; 
             border: 2px solid white;
         }
-
         .username {
             font-weight: bold;
             margin: 10px 0 0; 
             color: white;
         }
-
         .email {
             color: rgb(218, 213, 213);
             margin: 0;
         }
-
         .nav-links {
             list-style-type: none;
             padding: 0;
@@ -120,6 +140,7 @@
             border-radius: 5px; 
             display: none; 
         }
+        
         .role {
             color: white; 
             display: block; 
@@ -159,6 +180,30 @@
             font-size: 16px;
         }
 
+        .close-btn {
+            font-size: 26px;
+            font-weight: bold;
+            color: ;
+            cursor: pointer;
+            position: absolute;
+            top: 4px;
+            right: 6px;
+            background:none; 
+            border:none; 
+            color:#fff; 
+            margin-top: .3em;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: #ff0000;
+        }
+
+        .close-btn:active {
+            transform: scale(0.9);
+        }
+
+        
     </style>
 </head>
 <body>
@@ -184,10 +229,16 @@
 
     // SideNav
     const toggleButton = document.getElementById('toggleButton');
+    const toggleButton1 = document.getElementById('toggleButton1');
     const sidenav = document.getElementById('sidenav');
     const mainContent = document.getElementById('mainContent');
 
     toggleButton.addEventListener('click', () => {
+        sidenav.classList.toggle('hidden');
+        mainContent.classList.toggle('shift');
+    });
+
+    toggleButton1.addEventListener('click', () => {
         sidenav.classList.toggle('hidden');
         mainContent.classList.toggle('shift');
     });
@@ -210,6 +261,8 @@
             }
         }
     };
+
+    
 </script>
 </body>
 </html>

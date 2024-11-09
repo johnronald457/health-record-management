@@ -1,8 +1,8 @@
-<div class="main" id="mainContent" style="display: flex; flex-direction: column;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <button class="btn" id="toggleButton">&nbsp; ☰ &nbsp;</button>
+<div class="main" id="mainContent" style="display: flex; flex-direction: column; ">
+    <div style=" justify-content: space-between; align-items: center;">
+        <button class="btn" id="toggleButton1">&nbsp; ☰ &nbsp;</button>
         
-        <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; float:right">
             @php
                 $role = auth()->user()->role;
             @endphp

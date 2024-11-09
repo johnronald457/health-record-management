@@ -1,7 +1,14 @@
 <div class="sidenav" id="sidenav">
     <!-- Header for Clinic Department -->
-    <h4 class="text-center text-white" style="font-size: 20px;">Clinic Department</h4>
-    <br><br>
+    <button class="close-btn" id="toggleButton">    
+        <span class="material-symbols-outlined">
+            close
+        </span>
+    </button>
+    <h3 class="text-center text-white" style="font-size: 18px; padding-right: 1em;">Clinic Department</h3>  
+     <br><br>
+    
+
     <!-- Role and Modules Based on User Type -->
     @php
         $role = auth()->user()->role;
