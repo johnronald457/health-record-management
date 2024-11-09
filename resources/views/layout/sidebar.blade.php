@@ -1,11 +1,12 @@
 <div class="sidenav" id="sidenav">
     <!-- Header for Clinic Department -->
-    <button class="close-btn" id="toggleButton">    
-        <span class="material-symbols-outlined">
-            close
-        </span>
-    </button>
-    <h3 class="text-center text-white" style="font-size: 18px; padding-right: 1em;">Clinic Department</h3>  
+        <button class="close-btn" id="toggleButton">    
+            <span class="material-symbols-outlined">
+                <i class="fas fa-bars fa-xs"></i>
+            </span>
+        </button>
+        <h3 class="text-center text-white mt-1" style="font-size: 18px; padding-right: 1em;">Clinic Department</h3>  
+
      <br><br>
     
 
