@@ -1,15 +1,17 @@
 @extends('layout.app')
 
 @section('content')
-
+    
 <div class="shadow mb-4 w-full p-5">
     <div class="card-header">
         <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                 <h1 class="display-6 fw-bolder text-uppercase">Treatments</h1>
+                    <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Total</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $treatments->count() }}</div>
+                    <strong>Total:</strong></div>
+                <div class="h5 mb-1 font-weight-bold text-gray-800">{{ $treatments->count() }}</div>
 
                 </div>
                 <div class="col-auto">
@@ -19,7 +21,7 @@
         </div>
         <div class="">
 
-            <div class="table">
+            <div class="table table-responsive">
                 <table class="table table-hover" id="myTable" width="100%" cellspacing="0">
                     <thead>
                         <tr class="table-light ">
