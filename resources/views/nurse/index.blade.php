@@ -21,6 +21,7 @@
       justify-content: space-between;
       gap: 20px;
       margin-top: 20px;
+      flew-wrap:wrap;
     }
 
     .kpi {
@@ -40,7 +41,23 @@
     .kpi p {
       font-size: 1.8rem;
       font-weight: bold;
-      color: #2a3d66;
+      color: #007bff;
+    }
+
+    @media (max-width: 780px) {
+      .kpi-container {      
+        grid-template-columns: 1fr;
+        gap: 15px; 
+        flex-direction: column;
+      }
+
+      .kpi-container .kpi {
+        margin-bottom: 15px; 
+      }
+
+      .kpi p {
+      font-size: 1.5rem;
+      }
     }
 
     /* Module Styles */
@@ -65,6 +82,8 @@
       align-items: center;
       width: 100%;
       margin: 20px auto;
+      flex-wrap: wrap;
+      z-index:-1;
     }
 
     .greeting-card img {
@@ -92,6 +111,37 @@
       font-size: 14px;
       margin-top: 5px;
     }
+
+    @media (max-width: 780px) {
+
+    .greeting-card {
+      width:100%;
+    }
+    
+    .greeting-card p, .wc h2, h4 {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .greeting-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-right: 20px;
+      align-self:center;
+    }
+    .greeting-card img {
+      margin: 0 auto 15px;
+    }
+
+    .greeting-card h4 {
+      font-size: 1.5rem;
+    }
+
+    .greeting-card p {
+      font-size: 0.9rem;
+    }
+  }
   </style>
 </head>
 <body>
@@ -103,10 +153,10 @@
   <div class="col-md-8 col-lg-12">
     <div class="card greeting-card p-4 d-flex align-items-center flex-md-row text-center text-md-start">
       <!-- Image Avatar -->
-      <img src="{{ asset('img/doctor.webp') }}" alt="Doctor Avatar" class="rounded-circle me-md-4 mb-3 mb-md-0" style="width: 125px; height: 125px; object-fit: cover;">
+      <img src="{{ asset('img/doctor.webp') }}" alt="Doctor Avatar" >
 
       <!-- Greeting Text -->
-      <div >
+      <div class="wc" >
         <h2 class="display-6 mb-1">Good day!</h2>
         <h4 class="text-danger mb-1">Nurse {{ Auth::user()->firstname }}</h4>
         <p class="mb-0 text-muted">Caring for Every Life, Committed to Excellence.</p>

@@ -17,9 +17,8 @@
         <input type="text" id="searchInput" class="form-control" placeholder="Search patient by name...">
     </div> -->
                 </div>
-    
+            </div>
 
-                </div>
                 <div class="col-auto">
                     <i class="fas fa-solid fa-user-gear fa-4x text-gray-500 pr-3"></i>
                 </div>
