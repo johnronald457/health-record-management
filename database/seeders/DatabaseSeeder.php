@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Doe',
             'email' => 's21010795',
             'password' => bcrypt('12345678'),
-            'role' => 'teacher',
+            'role' => 'doctor',
             'birthdate' => '1990-01-01',
             'sex' => 'male',
             'year' => '3rd Year',
