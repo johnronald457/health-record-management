@@ -23,14 +23,16 @@ use App\Http\Controllers\Patient\PatientDashboardController;
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::get('/health-record-historyy', function () {
-            return view('patient.health-record-history');
-        })->name('patient.health-record-historyy');
+Route::get('/health-record-historyy', function () {
+    return view('patient.health-record-history');
+})->name('patient.health-record-historyy');
 Route::middleware('auth')->group(function () {
     // Doctor routes
     Route::middleware(Doctor::class)->group(function () {
         //Dahboard routes
         Route::get('/doctor-dashboard', [DashboardController::class, 'index'])->name('doctor.index');
+        //search route
+        Route::get('/doctor/patients/search', [PatientController::class, 'search'])->name('admin.patient.search');
         //Student management routes
         Route::get('/doctor/patients', [PatientController::class, 'index'])->name('admin.patient.index');
         Route::get('/doctor/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
@@ -66,11 +68,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/nurse/treatment/{id}', [NurseTreatmentController::class, 'show'])->name('nurse.treatment.show');
         Route::get('/nurse/health-assessment/{id}', [NurseTreatmentController::class, 'edit'])->name('nurse.health.edit');
         Route::post('/nurse/health-assessment/{id}/', [NurseTreatmentController::class, 'update'])->name('nurse.health.update');
-
     });
-    
+
     Route::middleware(Patient::class)->group(function () {
-        
+
         Route::get('/dashboard', [PatientDashboardController::class, 'dashboard'])->name('patient.index');
         Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
         Route::get('/health-assessment-create', [HealthAssessmentController::class, 'create'])->name('patient.create-health-assessment');
@@ -96,15 +97,15 @@ Route::middleware('auth')->group(function () {
 // RedirectIfAuthenticated
 Route::get('/', function () {
     return view('auth.login')->withHeaders([
-            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
-            'Pragma' => 'no-cache',
-        ]);
+        'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+        'Pragma' => 'no-cache',
+    ]);
 })->middleware(RedirectIfAuthenticated::class);
 Route::get('/login', function () {
     return view('auth.login')->withHeaders([
-            'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
-            'Pragma' => 'no-cache',
-        ]);
+        'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+        'Pragma' => 'no-cache',
+    ]);
 })->middleware(RedirectIfAuthenticated::class);
 
 // Error 404 Not Found
