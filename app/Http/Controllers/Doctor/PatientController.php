@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Doctor;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -12,11 +13,31 @@ class PatientController extends Controller
     // Display a listing of the users
     public function index()
     {
+
         $patients = User::whereNotIn('role', ['nurse', 'doctor'])->get();
+
         return view('admin.patient.index', compact('patients'));
     }
 
-        public function show($id)
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $patients = User::whereNotIn('role', ['nurse', 'doctor'])
+            ->where(function ($query) use ($search) {
+                $query->where('firstname', 'LIKE', "%{$search}%")
+                    ->orWhere('lastname', 'LIKE', "%{$search}%")
+                    ->orWhere('role', 'LIKE', "%{$search}%")
+                    ->orWhere('email', 'LIKE', "%{$search}%")
+                    ->orWhere('address', 'LIKE', "%{$search}%")
+                    ->orWhere('contact_no', 'LIKE', "%{$search}%");
+            })
+            ->get();
+
+        return response()->json($patients);
+    }
+
+    public function show($id)
     {
         $patient = User::findOrFail($id);
         return view('admin.patient.show', compact('patient'));
