@@ -15,19 +15,10 @@
                             <div class="h5 ms-1 mb-1.5 font-weight-bold text-gray-800" id="patientCount">
                                 {{ $patients->count() }}</div>
                         </div>
-
-                        <div class="mb-4">
-                            <div class="input-group">
-                                <input type="text" id="searchInput" class="form-control" placeholder="Search patients..."
-                                    autocomplete="off">
-                            </div>
-                        </div>
-
+                        {{-- Search bar --}}
+                        <x-searchBar id="patientSearch" placeholder="Search patients..." />
                     </div>
 
-                    {{-- <div class="col-auto">
-                        <i class="fas fa-solid fa-user-gear fa-4x text-gray-500 pr-3"></i>
-                    </div> --}}
                 </div>
             </div>
             <div class="">
