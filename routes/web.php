@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Doctor\HealthRecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doctor\PatientController;
@@ -23,9 +24,6 @@ use App\Http\Controllers\Patient\PatientDashboardController;
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/health-record-historyy', function () {
-    return view('patient.health-record-history');
-})->name('patient.health-record-historyy');
 Route::middleware('auth')->group(function () {
     // Doctor routes
     Route::middleware(Doctor::class)->group(function () {
@@ -39,6 +37,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/doctor/patient-info/{id}', [PatientController::class, 'edit'])->name('admin.patient.edit');
         Route::post('/doctor/patient-info/{id}/update', [PatientController::class, 'update'])->name('admin.patient.update');
         Route::delete('/doctor/patients/{user}', [PatientController::class, 'destroy'])->name('admin.patient.destroy');
+
         //Treatment management routes
         Route::get('/doctor/treatments', [DoctorTreatmentController::class, 'index'])->name('admin.treatment.index');
         Route::get('/doctor/treatment/{id}', [DoctorTreatmentController::class, 'show'])->name('treatment.show');
@@ -49,15 +48,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
         Route::delete('/doctor/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
-
-        Route::get('/doctor/health-record', function () {
-            return view('admin.health-record.index');
-        })->name('admin.health-record.index');
+        //Health record management routes
+        Route::get('/doctor/health-record', [HealthRecordController::class, 'index'])->name('admin.health-record.index');
+        Route::get('/patient/health-record-history/{id}', [HealthRecordController::class, 'show'])->name('patient.health-record-history.show');
     });
 
     // Nurse routes
     Route::middleware(Nurse::class)->group(function () {
         Route::get('/nurse-dashboard', [NurseDashboardController::class, 'index'])->name('nurse.index');
+        //search route
+        Route::get('/nurse/patients/search', [NursePatientController::class, 'search'])->name('admin.patient.search');
         //Student management routes
         Route::get('/nurse/patients', [NursePatientController::class, 'index'])->name('nurse.patient.index');
         Route::get('/nurse/patients/{id}', [NursePatientController::class, 'show'])->name('nurse.patients.show');
