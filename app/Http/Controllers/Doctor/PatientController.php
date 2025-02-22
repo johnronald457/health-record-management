@@ -97,7 +97,7 @@ class PatientController extends Controller
         $user->fill($validatedData);
         $user->save();
 
-        return redirect()->back()->with('success', 'User updated successfully.');
+        return redirect()->route('admin.patient.index')->with('success', 'User updated successfully.');
     }
 
     // Remove the specified user from storage
