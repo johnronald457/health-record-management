@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Doctor\DoctorCommentsController;
 use App\Http\Controllers\Doctor\HealthRecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
@@ -44,6 +45,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/doctor/health-assessment/{id}', [DoctorTreatmentController::class, 'edit'])->name('admin.health.edit');
         Route::post('/doctor/health-assessment/{id}/', [DoctorTreatmentController::class, 'update'])->name('admin.health.update');
         Route::delete('/doctor/treatment/{treatment}', [DoctorTreatmentController::class, 'destroy'])->name('admin.treatment.destroy');
+
+        //Doctor comments routes
+        Route::get('/doctor/comments/create', [DoctorCommentsController::class, 'create'])->name('admin.create.comments');
+        Route::post('/doctor/comments-store', [DoctorCommentsController::class, 'store'])->name('admin.comments.store');
         //Requests management routes
         Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
