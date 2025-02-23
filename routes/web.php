@@ -28,10 +28,15 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     // Doctor routes
     Route::middleware(Doctor::class)->group(function () {
+        //Search routes
+        Route::prefix('doctor')->name('admin.')->group(function () {
+            Route::get('/treatments/search', [DoctorTreatmentController::class, 'search'])->name('treatment.search');
+            Route::get('/patients/search', [PatientController::class, 'search'])->name('patient.search');
+            Route::get('/health-record/search', [HealthRecordController::class, 'search'])->name('health-record.search');
+        });
         //Dahboard routes
         Route::get('/doctor-dashboard', [DashboardController::class, 'index'])->name('doctor.index');
-        //search route
-        Route::get('/doctor/patients/search', [PatientController::class, 'search'])->name('admin.patient.search');
+
         //Student management routes
         Route::get('/doctor/patients', [PatientController::class, 'index'])->name('admin.patient.index');
         Route::get('/doctor/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
@@ -49,12 +54,13 @@ Route::middleware('auth')->group(function () {
         //Doctor comments routes
         Route::get('/doctor/comments/create', [DoctorCommentsController::class, 'create'])->name('admin.create.comments');
         Route::post('/doctor/comments-store', [DoctorCommentsController::class, 'store'])->name('admin.comments.store');
+
         //Requests management routes
         Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
         Route::delete('/doctor/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
+
         //Health record management routes
-        Route::get('/doctor/health-record/search', [HealthRecordController::class, 'search'])->name('admin.health-record.search');
         Route::get('/doctor/health-record', [HealthRecordController::class, 'index'])->name('admin.health-record.index');
         Route::get('/patient/health-record-history/{id}', [HealthRecordController::class, 'show'])->name('patient.health-record-history.show');
     });
