@@ -17,12 +17,22 @@ class HealthRecordController extends Controller
         return view('admin.health-record.index', compact('patients'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
 
-
-    public function create() {}
-
-    public function store(Request $request) {}
-
+        $patients = User::whereNotIn('role', ['nurse', 'doctor'])
+            ->where(function ($query) use ($search) {
+                $query->where('firstname', 'LIKE', "%{$search}%")
+                    ->orWhere('lastname', 'LIKE', "%{$search}%")
+                    ->orWhere('role', 'LIKE', "%{$search}%")
+                    ->orWhere('email', 'LIKE', "%{$search}%")
+                    ->orWhere('address', 'LIKE', "%{$search}%")
+                    ->orWhere('contact_no', 'LIKE', "%{$search}%");
+            })
+            ->get();
+        return response()->json($patients);
+    }
 
     public function show(string $id)
     {

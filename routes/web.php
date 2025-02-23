@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
         Route::delete('/doctor/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
         //Health record management routes
+        Route::get('/doctor/health-record/search', [HealthRecordController::class, 'search'])->name('admin.health-record.search');
         Route::get('/doctor/health-record', [HealthRecordController::class, 'index'])->name('admin.health-record.index');
         Route::get('/patient/health-record-history/{id}', [HealthRecordController::class, 'show'])->name('patient.health-record-history.show');
     });

@@ -36,7 +36,7 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="patientTableBody">
                                 @foreach ($patients as $patient)
                                     <tr onclick="window.location='{{ route('patient.health-record-history.show', $patient->id) }}';"
                                         style="cursor: pointer;">
@@ -58,3 +58,47 @@
     </div>
     </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    //Search
+    $(document).ready(function() {
+        $('#searchInput').on('keyup', function() {
+            let query = $(this).val();
+
+            $.ajax({
+                url: "/doctor/health-record/search",
+                type: 'GET',
+                data: {
+                    search: query
+                },
+                success: function(data) {
+                    let tableBody = $('#patientTableBody');
+                    let patientCount = $('#patientCount');
+                    tableBody.empty();
+
+                    if (data.length > 0) {
+                        $.each(data, function(index, patient) {
+                            let row = `<tr onclick="window.location='patients/${patient.id}';" style="cursor: pointer;">
+                                    <td>${patient.firstname} ${patient.lastname}</td>
+                                    <td>${patient.role.charAt(0).toUpperCase() + patient.role.slice(1)}</td>
+                                    <td>${patient.email}</td>
+                                    <td>${patient.address}</td>
+                                    <td>${patient.contact_no}</td>
+                                </tr>`;
+                            tableBody.append(row);
+                        });
+                        patientCount.text(data.length);
+                    } else {
+                        tableBody.append(
+                            '<tr><td colspan="5" class="text-center text-muted">No patients found.</td></tr>'
+                        );
+                        patientCount.text('0');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', status, error);
+                }
+            });
+        });
+    });
+</script>
