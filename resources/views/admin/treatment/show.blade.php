@@ -18,8 +18,8 @@
                                 class="btn btn-primary"><i class="fas fa-edit me-2"></i>Edit</a>
                             <!-- Delete Button with Form -->
                             <!-- <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $treatment->id }}">
-                                                                        <i class="fas fa-trash"></i>
-                                                                    </button> -->
+                                                                            <i class="fas fa-trash"></i>
+                                                                        </button> -->
                         </div>
                     </div>
 
@@ -49,10 +49,10 @@
                                     class="fas fa-plus me-2"></i>Add</a>
                             <a href="" class="btn btn-warning"><i class="fas fa-edit me-2"></i>Edit</a>
                             <!-- Delete Button with Form -->
-                            <button class="btn btn-danger" data-bs-toggle="modal"
+                            {{-- <button class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#deleteModal{{ $treatment->id }}">
                                 <i class="fas fa-trash"></i>
-                            </button>
+                            </button> --}}
                         </div>
                     </div>
                     <p class="card-text"><strong>Interpretations:</strong> {{ $treatment->interpretation_comments }}</p>
