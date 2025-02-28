@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware(Doctor::class)->group(function () {
         //Search routes
         Route::prefix('doctor')->name('admin.')->group(function () {
-            Route::get('/treatments/search', [DoctorTreatmentController::class, 'search'])->name('treatment.search');
+            Route::get('/treatments/search', [DoctorTreatmentController::class, 'search'])->name('treatments.search');
             Route::get('/patients/search', [PatientController::class, 'search'])->name('patient.search');
             Route::get('/health-record/search', [HealthRecordController::class, 'search'])->name('health-record.search');
         });
@@ -46,14 +46,16 @@ Route::middleware('auth')->group(function () {
 
         //Treatment management routes
         Route::get('/doctor/treatments', [DoctorTreatmentController::class, 'index'])->name('admin.treatment.index');
-        Route::get('/doctor/treatment/{id}', [DoctorTreatmentController::class, 'show'])->name('treatment.show');
+        Route::get('/doctor/treatment/{id}', [DoctorTreatmentController::class, 'show'])->name('admin.treatment.show');
         Route::get('/doctor/health-assessment/{id}', [DoctorTreatmentController::class, 'edit'])->name('admin.health.edit');
         Route::post('/doctor/health-assessment/{id}/', [DoctorTreatmentController::class, 'update'])->name('admin.health.update');
         Route::delete('/doctor/treatment/{treatment}', [DoctorTreatmentController::class, 'destroy'])->name('admin.treatment.destroy');
 
-        //Doctor comments routes
+        //Doctor Treatment comments routes
         Route::get('/doctor/comments/create', [DoctorCommentsController::class, 'create'])->name('admin.create.comments');
-        Route::post('/doctor/comments-store', [DoctorCommentsController::class, 'store'])->name('admin.comments.store');
+        Route::post('/doctor/comments/store', [DoctorCommentsController::class, 'store'])->name('admin.comments.store');
+        Route::get('/admin/comments/edit/{id}', [DoctorCommentsController::class, 'edit'])->name('admin.edit.comments');
+        Route::put('/admin/comments/update/{id}', [DoctorCommentsController::class, 'update'])->name('admin.update.comments');
 
         //Requests management routes
         Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
@@ -80,6 +82,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/nurse/treatment/{id}', [NurseTreatmentController::class, 'show'])->name('nurse.treatment.show');
         Route::get('/nurse/health-assessment/{id}', [NurseTreatmentController::class, 'edit'])->name('nurse.health.edit');
         Route::post('/nurse/health-assessment/{id}/', [NurseTreatmentController::class, 'update'])->name('nurse.health.update');
+
+        // Doctor Comments Routes
     });
 
     Route::middleware(Patient::class)->group(function () {
@@ -87,7 +91,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [PatientDashboardController::class, 'dashboard'])->name('patient.index');
         Route::get('/info', [InfoController::class, 'getUserInfo'])->name('patient.info');
         Route::get('/health-assessment-create', [HealthAssessmentController::class, 'create'])->name('patient.create-health-assessment');
-        Route::post('health-assessment-store', [HealthAssessmentController::class, 'store'])->name('patient.health-assessment.store');
+        Route::post('/health-assessment-store', [HealthAssessmentController::class, 'store'])->name('patient.health-assessment.store');
         Route::get('/health-assessment/{id}/edit', [HealthAssessmentController::class, 'edit'])->name('health.edit');
         Route::post('/health-assessment/{id}/update', [HealthAssessmentController::class, 'update'])->name('health.update');
 
