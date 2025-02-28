@@ -7,24 +7,29 @@
                 <div class="col-md-12 mx-auto">
                     <h2>Add Comments</h2>
                     <form action="{{ route('admin.comments.store') }}" method="POST">
+                        @csrf
                         <div class="form-group mb-4">
-                            <label for="symptoms" class="fw-bold">Interpretations:</label>
-                            <textarea class="form-control" id="symptoms" rows="3" placeholder="Enter interpretations here..."></textarea>
+                            <label for="interpretations" class="fw-bold">Interpretations:</label>
+                            <textarea class="form-control" id="interpretations" name="interpretation_comments" rows="3"
+                                placeholder="Enter interpretations here..."></textarea>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="diagnosisSuggestions" class="fw-bold">Recommendations:</label>
-                            <textarea class="form-control" id="diagnosisSuggestions" rows="2" placeholder="Enter recommendations here..."></textarea>
+                            <label for="recommendations" class="fw-bold">Recommendations:</label>
+                            <textarea class="form-control" id="recommendations" name="recommendations" rows="2"
+                                placeholder="Enter recommendations here..."></textarea>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="recommendedTests" class="fw-bold">Prescriptions:</label>
-                            <textarea class="form-control" id="recommendedTests" rows="2" placeholder="Enter prescriptions here..."></textarea>
+                            <label for="prescriptions" class="fw-bold">Prescriptions:</label>
+                            <textarea class="form-control" id="prescriptions" name="prescriptions" rows="2"
+                                placeholder="Enter prescriptions here..."></textarea>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="recommendedTreatment" class="fw-bold">Result Summary:</label>
-                            <textarea class="form-control" id="recommendedTreatment" rows="2" placeholder="Enter result summary here..."></textarea>
+                            <label for="result_summary" class="fw-bold">Result Summary:</label>
+                            <textarea class="form-control" id="result_summary" name="result_summary" rows="2"
+                                placeholder="Enter result summary here..."></textarea>
                         </div>
 
                         <div class="d-flex float-end">
