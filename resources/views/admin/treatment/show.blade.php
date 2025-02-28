@@ -18,8 +18,8 @@
                                 class="btn btn-primary"><i class="fas fa-edit me-2"></i>Edit</a>
                             <!-- Delete Button with Form -->
                             <!-- <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $treatment->id }}">
-                                                                            <i class="fas fa-trash"></i>
-                                                                        </button> -->
+                                                                                                                                                    <i class="fas fa-trash"></i>
+                                                                                                                                                </button> -->
                         </div>
                     </div>
 
@@ -45,25 +45,41 @@
                     <div class="d-flex justify-content-between">
                         <h4 class="card-text mb-3"><strong>Doctor's Comments:</strong></h4>
                         <div>
-                            <a href="{{ route('admin.create.comments') }}" class="btn btn-primary"><i
-                                    class="fas fa-plus me-2"></i>Add</a>
-                            <a href="" class="btn btn-warning"><i class="fas fa-edit me-2"></i>Edit</a>
-                            <!-- Delete Button with Form -->
-                            {{-- <button class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteModal{{ $treatment->id }}">
-                                <i class="fas fa-trash"></i>
-                            </button> --}}
+                            @if (empty($treatment->interpretation_comments) &&
+                                    empty($treatment->recommendations) &&
+                                    empty($treatment->prescriptions) &&
+                                    empty($treatment->result_summary))
+                                <a href="{{ route('admin.create.comments') }}" class="btn btn-primary">
+                                    Add Comments
+                                </a>
+                            @else
+                                <a href="{{ route('admin.edit.comments', $treatment->id) }}" class="btn btn-warning">
+                                    Update Comments
+                                </a>
+                            @endif
                         </div>
                     </div>
-                    <p class="card-text"><strong>Interpretations:</strong> {{ $treatment->interpretation_comments }}</p>
-                    <p class="card-text"><strong>Recommendations:</strong> {{ $treatment->recommendations }}</p>
-                    <p class="card-text"><strong>Prescriptions:</strong> {{ $treatment->prescriptions }}</p>
-                    <p class="card-text"><strong>Result summary:</strong> {{ $treatment->result_summary }}</p>
-                    <p class="card-text"><strong>Comments Date Taken:</strong>
-                        {{ \Carbon\Carbon::parse($treatment->created_at)->format('F j, Y') }}</p>
+                    @if (
+                        !empty($treatment->interpretation_comments) ||
+                            !empty($treatment->recommendations) ||
+                            !empty($treatment->prescriptions) ||
+                            !empty($treatment->result_summary))
+                        <p class="card-text"><strong>Interpretations:</strong> {{ $treatment->interpretation_comments }}
+                        </p>
+                        <p class="card-text"><strong>Recommendations:</strong> {{ $treatment->recommendations }}</p>
+                        <p class="card-text"><strong>Prescriptions:</strong> {{ $treatment->prescriptions }}</p>
+                        <p class="card-text"><strong>Result summary:</strong> {{ $treatment->result_summary }}</p>
+                        <p class="card-text"><strong>Comments Date Taken:</strong>
+                            {{ \Carbon\Carbon::parse($treatment->created_at)->format('F j, Y') }}</p>
+                    @else
+                        <div>
+                            No doctor comments available...
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+
     @include('admin.treatment.ConfirmationDeleteModal')
 @endsection
