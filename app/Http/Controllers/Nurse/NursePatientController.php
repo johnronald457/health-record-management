@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Nurse;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -16,11 +17,31 @@ class NursePatientController extends Controller
         return view('nurse.patient.index', compact('patients'));
     }
 
-        public function show($id)
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $patients = User::whereNotIn('role', ['nurse', 'doctor'])
+            ->where(function ($query) use ($search) {
+                $query->where('firstname', 'LIKE', "%{$search}%")
+                    ->orWhere('lastname', 'LIKE', "%{$search}%")
+                    ->orWhere('role', 'LIKE', "%{$search}%")
+                    ->orWhere('email', 'LIKE', "%{$search}%")
+                    ->orWhere('address', 'LIKE', "%{$search}%")
+                    ->orWhere('contact_no', 'LIKE', "%{$search}%");
+            })
+            ->get();
+
+        return response()->json($patients);
+    }
+
+    public function show($id)
     {
         $patient = User::findOrFail($id);
         return view('nurse.patient.show', compact('patient'));
     }
+
 
     // // Show the form for creating a new user
     // public function create()
