@@ -69,6 +69,8 @@ Route::middleware('auth')->group(function () {
 
     // Nurse routes
     Route::middleware(Nurse::class)->group(function () {
+        Route::get('/nurse/patients/search', [NursePatientController::class, 'search'])->name('admin.patient.search');
+
         Route::get('/nurse-dashboard', [NurseDashboardController::class, 'index'])->name('nurse.index');
         //search route
         Route::get('/nurse/patients/search', [NursePatientController::class, 'search'])->name('admin.patient.search');
