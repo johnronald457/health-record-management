@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Doctor\DoctorCommentsController;
 use App\Http\Controllers\Doctor\HealthRecordController;
+
+use App\Http\Controllers\Head\ConfidentialResultController;
+use App\Http\Controllers\Head\HeadDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Doctor\PatientController;
@@ -14,6 +17,7 @@ use App\Http\Controllers\Nurse\NurseTreatmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Nurse;
+use App\Http\Middleware\Head;
 use App\Http\Middleware\Patient;
 use App\Http\Middleware\PreventBackHistory;
 use App\Http\Controllers\Patient\InfoController;
@@ -66,6 +70,20 @@ Route::middleware('auth')->group(function () {
         Route::get('/doctor/health-record', [HealthRecordController::class, 'index'])->name('admin.health-record.index');
         Route::get('/patient/health-record-history/{id}', [HealthRecordController::class, 'show'])->name('patient.health-record-history.show');
     });
+
+    //Head Routes
+    Route::middleware(Head::class)->group(function () {
+        //Dashboard routes
+        Route::get('/head-dashboard', [HeadDashboardController::class, 'index'])->name('head.index');
+
+        Route::get('/confidential-result', [ConfidentialResultController::class, 'index'])->name('head.confidential-result.index');
+        Route::get('/confidential-result/{id}', [ConfidentialResultController::class, 'show'])->name('head.confidential-result.show');
+        // Route::post('/health-record', [HealthRecordController::class, 'store'])->name('health-record.store');
+        // Route::put('/health-record/{id}', [HealthRecordController::class, 'update'])->name('health-record.update');
+        // Route::delete('/health-record/{id}', [HealthRecordController::class, 'destroy'])->name('health-record.destroy');
+    });
+
+
 
     // Nurse routes
     Route::middleware(Nurse::class)->group(function () {
