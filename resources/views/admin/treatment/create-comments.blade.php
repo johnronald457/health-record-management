@@ -5,9 +5,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mx-auto">
-                    <h2>Add Comments</h2>
+                    <h2>Add Doctor Comments</h2>
                     <form action="{{ route('admin.comments.store') }}" method="POST">
                         @csrf
+                        <select name="treatment_id" id="treatment_id" class="form-control" required hidden>
+                            @foreach ($treatments as $treatment)
+                                <option value="{{ $treatment->id }}">
+                                    {{ $treatment->user->firstname }} {{ $treatment->user->lastname }} -
+                                    {{ $treatment->id }}
+                                </option>
+                            @endforeach
+                        </select>
                         <div class="form-group mb-4">
                             <label for="interpretations" class="fw-bold">Interpretations:</label>
                             <textarea class="form-control" id="interpretations" name="interpretation_comments" rows="3"
