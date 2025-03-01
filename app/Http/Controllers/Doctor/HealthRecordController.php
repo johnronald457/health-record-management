@@ -13,7 +13,7 @@ class HealthRecordController extends Controller
      */
     public function index()
     {
-        $patients = User::whereNotIn('role', ['nurse', 'doctor'])->get();
+        $patients = User::whereNotIn('role', ['nurse', 'doctor', 'head'])->get();
         return view('admin.health-record.index', compact('patients'));
     }
 
