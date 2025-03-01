@@ -26,7 +26,7 @@
                         <label for="result_summary" class="form-label">Result Summary</label>
                         <textarea class="form-control" id="result_summary" name="result_summary" rows="3" required>{{ $treatment->result_summary }}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-warning float-end">Update Comments</button>
                 </form>
             </div>
         </div>
