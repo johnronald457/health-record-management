@@ -11,7 +11,6 @@ class DoctorCommentsController extends Controller
 {
     public function create()
     {
-
         $treatments = Treatment::whereNull('interpretation_comments')
             ->whereNull('recommendations')
             ->whereNull('prescriptions')
@@ -21,16 +20,16 @@ class DoctorCommentsController extends Controller
 
         return view('admin.treatment.create-comments', compact('treatments'));
     }
+
     public function store(Request $request)
     {
-
         $request->validate([
             'interpretation_comments' => 'required|string',
             'recommendations' => 'required|string',
             'prescriptions' => 'required|string',
             'result_summary' => 'required|string',
+            'treatment_id' => 'required|exists:treatments,id',
         ]);
-
 
         $treatment = Treatment::findOrFail($request->treatment_id);
         $treatment->update([
@@ -40,15 +39,8 @@ class DoctorCommentsController extends Controller
             'result_summary' => $request->result_summary,
         ]);
 
-
         return redirect()->route('admin.treatment.show', $treatment->id)->with('success', 'Comments added successfully.');
     }
-
-    // public function show($id)
-    // {
-    //     $treatment = Treatment::where('id', $id)->first();
-    //     return view('admin.treatment.show', compact('treatment'));
-    // }
 
     public function edit($id)
     {
