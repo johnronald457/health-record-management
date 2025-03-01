@@ -18,9 +18,6 @@
                         {{-- Search bar --}}
                         <x-searchBar placeholder="Search..." />
                     </div>
-                    {{-- <div class="col-auto">
-                    <i class="fas fa-solid fa-user-gear fa-4x text-gray-500 pr-3"></i>
-                </div> --}}
                 </div>
             </div>
             <div class="">
@@ -38,7 +35,7 @@
 
                             </tr>
                         </thead>
-                        <tbody id="patientTableBody">
+                        <tbody id="treatmentTableBody">
                             @foreach ($treatments as $treatment)
                                 <tr onclick="window.location='{{ route('admin.treatment.show', $treatment->id) }}';"
                                     style="cursor: pointer;">

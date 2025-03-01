@@ -80,6 +80,7 @@ class DoctorTreatmentController extends Controller
             ->when(empty($search), function ($query) {
                 return $query->limit(10);
             })
+            ->with(['user', 'health_assessment']) // Eager load relationships
             ->get();
 
         return response()->json($treatments);
