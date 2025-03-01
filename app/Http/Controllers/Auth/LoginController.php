@@ -21,22 +21,23 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-    if (Auth::attempt($request->only('email', 'password'))) {
-        
-        $request->session()->regenerate();
-        
-        $user = Auth::user();
-        
-        // Redirect based on user role
-        if ($user->role === 'doctor') {
-            return redirect()->intended('/doctor-dashboard');
-        } elseif($user->role === 'nurse') {
-            return redirect()->intended('/nurse-dashboard');
+        if (Auth::attempt($request->only('email', 'password'))) {
+
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            // Redirect based on user role
+            if ($user->role === 'doctor') {
+                return redirect()->intended('/doctor-dashboard');
+            } elseif ($user->role === 'nurse') {
+                return redirect()->intended('/nurse-dashboard');
+            } elseif ($user->role === 'head') {
+                return redirect()->intended('/head-dashboard');
+            } else {
+                return redirect()->intended('/dashboard');
+            }
         }
-        else {
-            return redirect()->intended('/dashboard');
-        }
-    }
 
         throw ValidationException::withMessages([
             'email' => __('auth.failed'),
