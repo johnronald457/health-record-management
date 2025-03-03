@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Doctor;
 use App\Http\Controllers\Controller;
 use App\Models\MedicalRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RequestsController extends Controller
@@ -11,8 +12,16 @@ class RequestsController extends Controller
     public function index()
     {
         $medicals = MedicalRequest::all();
-        return view('admin.medical-input.index', compact('medicals'));
+        $users = User::all();
+        return view('admin.medical-input.index', compact('medicals', 'users'));
     }
+
+    public function show($id)
+    {
+        $medical = MedicalRequest::findOrFail($id);
+        return view('admin.medical-input.show', compact('medical'));
+    }
+
 
     //     public function show($id)
     // {
@@ -20,31 +29,51 @@ class RequestsController extends Controller
     //     return view('admin.patient.show', compact('patient'));
     // }
 
-    // // Show the form for creating a new user
-    // public function create()
-    // {
-    //     return view('users.create');
-    // }
+    public function store(Request $request)
+        {
+        $validated = $request->validate([
+            'patient_id' => 'required|exists:users,id', // Ensure the patient exists
+            'request_type' => 'required|string|max:255',
+            'priority' => 'required|string|in:low,medium,high',
+            'preferred_date' => 'required|date',
+        ]);
 
-    // // Store a newly created user in storage
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|email|unique:users,email',
-    //         'password' => 'required|string|min:8|confirmed',
-    //     ]);
+        // Create the new MedicalRequest record
+        $medicalRequest = new MedicalRequest([
+            'patient_id' => $request->input('patient_id'),
+            'request_type' => $request->input('request_type'),
+            'priority' => $request->input('priority'),
+            'preferred_date' => $request->input('preferred_date'),
+            // You can add other fields here if needed (e.g., 'description', 'status', etc.)
+        ]);
 
-    //     // Create a new user
-    //     User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => bcrypt($request->password), // Hash the password
-    //     ]);
+        // Save the MedicalRequest to the database
+        $medicalRequest->save();
 
-    //     return redirect()->route('users.index')->with('success', 'User created successfully.');
-    // }
+        // Redirect or return response
+        return redirect()->back()->with('success', 'Medical request created successfully!');
+    }
 
+
+    // Method to return users for the searchable dropdown
+    public function search(Request $request)
+    {
+        // Validate the search query
+        $query = $request->get('q');
+
+        // Fetch users based on the search query
+        $users = User::where('name', 'LIKE', '%' . $query . '%')
+            ->limit(10) // Limit the number of results
+            ->get();
+
+        // Return the users in a format suitable for Select2
+        return response()->json($users->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'text' => $user->name, // Display user's name
+            ];
+        }));
+    }
     // // Display the specified user
     // public function show($id)
     // {

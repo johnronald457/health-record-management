@@ -32,28 +32,31 @@
                             <!-- <th>Patient ID</th> -->
                             <th>Name</th>
                             <th>Medical Type</th>
-                            <th>Comments</th>
                             <th>Priority level</th>
                             <th>Preferred date</th>
                             <th>Scheduled date</th>
                             <th>Test date</th>
                             <th>Status</th>
-                            <th>Doctor name</th>
+                            <th>Attachment</th>
+                            <th>Comments</th>
+                            <!-- <th>Doctor name</th> -->
 
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($medicals as $medical)
-                            <tr style="cursor: pointer;">
+<tr style="cursor: {{ $medical->status == 'pending' ? 'not-allowed' : 'pointer' }};" 
+    onclick="{{ $medical->status == 'pending' ? 'event.preventDefault();' : 'window.location=\''. route('admin.requests.show', $medical->id) .'\';' }}">                  
                                 <td>{{ $medical->patient->firstname }} {{ $medical->patient->lastname }}</td>
                                 <td>{{ ucfirst($medical->request_type) }}</td>
-                                <td>{{ ucfirst($medical->description) }}</td>
-                                <td>{{ $medical->priority }}</td>
+                                <td>{{ ucfirst($medical->priority) }}</td>
                                 <td>{{ $medical->preferred_date }}</td>
-                                <td>{{ $medical->schedule_date }}</td>
-                                <td>{{ $medical->test_date }}</td>
+                                <td>{{ $medical->schedule_date ?? 'N/A' }}</td>
+                                <td>{{ $medical->test_date ?? 'N/A'}}</td>
                                 <td>{{  ucfirst($medical->status) }}</td>
-                                <td>{{ $medical->doctor_name }}</td>
+                                <td>{{ ucfirst($medical->file_path ?? 'N/A')  }}</td>
+                                <td>{{ ucfirst($medical->description ?? 'N/A')  }}</td>
+                                <!-- <td>{{ $medical->doctor_name ?? 'N/A' }}</td> -->
                             </tr>
                         @endforeach
                     </tbody>

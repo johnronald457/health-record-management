@@ -63,6 +63,9 @@ Route::middleware('auth')->group(function () {
 
         //Requests management routes
         Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
+        Route::get('/doctor/requests-input/{id}', [RequestsController::class, 'show'])->name('admin.requests.show');
+        Route::get('/users/search', [RequestsController::class, 'search'])->name('users.search');
+        Route::post('/doctor/requests-input/store', [RequestsController::class, 'store'])->name('admin.requests.store');
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');
         Route::delete('/doctor/request/{request}', [RequestsController::class, 'destroy'])->name('admin.requests.destroy');
 
@@ -125,6 +128,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/health-record', function () {
             return view('patient.health-record');
         })->name('patient.health-record');
+
+        Route::get('/results', function () {
+            return view('patient.xray');
+        })->name('patient.xray-record');
 
         Route::get('/health-record-history', function () {
             return view('patient.health-record-history');

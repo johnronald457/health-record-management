@@ -19,6 +19,10 @@ class MedicalRequest extends Model
         'testdate_date',
         'doctor_name',
         'file_path',
+        'findings',
+        'doctor_comments',
+        'AI_comments',
+        'condition',
     ];
 
     // Define relationship if needed (assuming 'User' model exists)

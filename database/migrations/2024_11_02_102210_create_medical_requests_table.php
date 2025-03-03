@@ -16,13 +16,17 @@ return new class extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->string('request_type');
             $table->string('description')->nullable();
-            $table->enum('status', ['pending', 'done']);
+            $table->enum('status', ['pending', 'done'])->default('pending');
             $table->enum('priority', ['low', 'medium', 'high']);
             $table->date('preferred_date')->nullable();
             $table->date('schedule_date')->nullable();
             $table->date('test_date')->nullable();
             $table->string('doctor_name')->nullable();
             $table->string('file_path')->nullable();
+            $table->string('findings')->nullable();
+            $table->string('doctor_comments')->nullable();
+            $table->string('AI_comments')->nullable();
+            $table->enum('condition', ['Unspecified', 'Sensitive', 'Non-sensitive'])->default('Unspecified');
             $table->timestamps(); 
             $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
         });
