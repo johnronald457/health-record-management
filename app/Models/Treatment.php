@@ -9,12 +9,13 @@ class Treatment extends Model
     public $primaryKey = 'id';
 
     public $fillable = [
-        'user_id', 
-        'health_assessment_id', 
+        'user_id',
+        'medical_id',
+        'health_assessment_id',
         'interpretation_comments',
         'recommendations',
         'prescriptions',
-        'result_summary'
+        'result_summary',
     ];
     public function user()
     {

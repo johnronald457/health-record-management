@@ -64,6 +64,8 @@ Route::middleware('auth')->group(function () {
         //Requests management routes
         Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
         Route::get('/doctor/requests-input/{id}', [RequestsController::class, 'show'])->name('admin.requests.show');
+        Route::get('/doctor/requests-input/{id}/edit', [RequestsController::class, 'edit'])->name('admin.requests.edit');
+        Route::put('/admin/edit-request/{id}', [RequestsController::class, 'update'])->name('admin.request.update');
         Route::get('/users/search', [RequestsController::class, 'search'])->name('users.search');
         Route::post('/doctor/requests-input/store', [RequestsController::class, 'store'])->name('admin.requests.store');
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');

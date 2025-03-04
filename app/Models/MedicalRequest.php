@@ -16,7 +16,7 @@ class MedicalRequest extends Model
         'priority',
         'preferred_date',
         'schedule_date',
-        'testdate_date',
+        'test_date',
         'doctor_name',
         'file_path',
         'findings',
@@ -29,5 +29,10 @@ class MedicalRequest extends Model
     public function patient()
     {
         return $this->belongsTo(User::class, 'patient_id');
+    }
+    // Define relationship if needed (assuming 'Treatment' model exists)
+    public function treatments()
+    {
+        return $this->hasMany(Treatment::class, 'medical_request_id');
     }
 }
