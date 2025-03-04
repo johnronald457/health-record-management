@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Doctor;
+
 use App\Http\Controllers\Controller;
 use App\Models\MedicalRequest;
+use App\Models\Treatment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,8 +20,11 @@ class RequestsController extends Controller
 
     public function show($id)
     {
+
         $medical = MedicalRequest::findOrFail($id);
-        return view('admin.medical-input.show', compact('medical'));
+        $treatment = Treatment::where('medical_id', $medical->id)->first();
+
+        return view('admin.medical-input.show', compact('medical', 'treatment'));
     }
 
 
@@ -30,7 +35,7 @@ class RequestsController extends Controller
     // }
 
     public function store(Request $request)
-        {
+    {
         $validated = $request->validate([
             'patient_id' => 'required|exists:users,id', // Ensure the patient exists
             'request_type' => 'required|string|max:255',
@@ -52,6 +57,45 @@ class RequestsController extends Controller
 
         // Redirect or return response
         return redirect()->back()->with('success', 'Medical request created successfully!');
+    }
+    // Show the form for editing the specified request
+    public function edit($id)
+    {
+        $medical = MedicalRequest::findOrFail($id);
+        return view('admin.medical-input.edit', compact('medical'));
+    }
+
+    // Update the specified request in storage
+    public function update(Request $request, $id)
+    {
+
+        $medical = MedicalRequest::findOrFail($id);
+
+        // I-validate ang input
+        $request->validate([
+            'request_type' => 'required|string',
+            'status' => 'required|string',
+            'priority' => 'required|string',
+            'test_date' => 'required|date',
+            'condition' => 'required|string',
+            'findings' => 'nullable|string',
+            'description' => 'nullable|string',
+        ]);
+
+        // I-update ang medical record
+        $medical->update([
+            'request_type' => $request->input('request_type'),
+            'status' => $request->input('status'),
+            'priority' => $request->input('priority'),
+            'test_date' => $request->input('test_date'),
+            'preferred_date' => $request->input('preferred_date'),
+            'condition' => $request->input('condition'),
+            'findings' => $request->input('findings'),
+            'description' => $request->input('description'),
+        ]);
+
+        // I-redirect pabalik sa show page kasama ang success message
+        return redirect()->route('admin.requests.show', $medical->id)->with('success', 'Medical details updated successfully.');
     }
 
 
@@ -104,7 +148,7 @@ class RequestsController extends Controller
 
     //     $user->name = $request->name;
     //     $user->email = $request->email;
-        
+
     //     if ($request->filled('password')) {
     //         $user->password = bcrypt($request->password);
     //     }
