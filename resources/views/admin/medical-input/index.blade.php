@@ -55,7 +55,13 @@
                                 <td class="text-center">{{ $medical->preferred_date }}</td>
                                 <td class="text-center">{{ $medical->schedule_date ?? 'N/A' }}</td>
                                 <td class="text-center">{{ $medical->test_date ?? 'N/A' }}</td>
-                                <td class="text-center">{{ ucfirst($medical->status) }}</td>
+                                <td class="text-center">
+                                    @if ($medical->status == 'pending')
+                                        <span class="badge bg-warning">{{ ucfirst($medical->status) }}</span>
+                                    @else
+                                        <span class="badge bg-success">{{ ucfirst($medical->status) }}</span>
+                                    @endif
+                                </td>
                                 <td class="text-center"
                                     style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     @if ($medical->file_path)
