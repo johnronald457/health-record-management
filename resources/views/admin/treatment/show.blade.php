@@ -18,8 +18,8 @@
                                 class="btn btn-primary"><i class="fas fa-edit me-2"></i>Edit</a>
                             <!-- Delete Button with Form -->
                             <!-- <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $treatment->id }}">
-                                                                                                                                                    <i class="fas fa-trash"></i>
-                                                                                                                                                </button> -->
+                                                                                                                                                        <i class="fas fa-trash"></i>
+                                                                                                                                                    </button> -->
                         </div>
                     </div>
 
@@ -53,7 +53,8 @@
                                     Add Comments
                                 </a>
                             @else
-                                <a href="{{ route('admin.edit.comments', $treatment->id) }}" class="btn btn-warning">
+                                <a href="{{ route('admin.treatment-edit.comments', $treatment->id) }}"
+                                    class="btn btn-warning">
                                     Update Comments
                                 </a>
                             @endif
