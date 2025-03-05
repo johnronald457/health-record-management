@@ -7,6 +7,8 @@ use App\Models\MedicalRequest;
 use App\Models\Treatment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Http;
 
 class RequestsController extends Controller
 {
@@ -27,12 +29,37 @@ class RequestsController extends Controller
         return view('admin.medical-input.show', compact('medical', 'treatment'));
     }
 
+public function AI_Generate(Request $request): JsonResponse
+{   
+    $AI_Request = $request->input('findings');
+    $apiKey = env('OPEN_API_KEY');
 
-    //     public function show($id)
-    // {
-    //     $patient = User::findOrFail($id);
-    //     return view('admin.patient.show', compact('patient'));
-    // }
+    $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $apiKey,
+            'Content-Type' => 'application/json',
+        ])
+        ->post('https://api.openai.com/v1/chat/completions', [
+            'model' => 'gpt-4',
+            'messages' => [
+                ['role' => 'user', 'content' => $AI_Request],
+            ],
+            'max_tokens' => 50,
+            'temperature' => 0.3,
+        ]);
+    // dd($response->json());
+
+    // Check if the request was successful
+    if ($response->successful()) {
+        return response()->json($response->json(), 200); // Return the AI response as JSON
+    } else {
+        return response()->json([
+            'error' => 'Unable to generate response',
+            'details' => $response->body(),
+        ], $response->status());
+    }
+}
+
+
 
     public function store(Request $request)
     {

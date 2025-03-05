@@ -1,49 +1,67 @@
-
-
-  <div class="border p-4">
-    <h2>Diagnostics</h2>
+<div class="border p-3">
+    <h2>AI Insights</h2>
     <form>
-      <div class="form-group mb-4">
-        <label for="symptoms" class="fw-bold">What are the Symptoms of the Patient:</label>
-        <textarea class="form-control" id="symptoms" rows="3" placeholder="Enter symptoms here..."></textarea>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="bloodPressure" class="fw-bold">Blood Pressure:</label>
-          <input type="text" class="form-control" id="bloodPressure" placeholder="Enter BP">
+      <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
+      <input type="hidden" id="findings" value="{{$medical->findings}}">
+        <div class="form-group mb-3">
+            <label for="symptoms" class="fw-bold">Analysis of the Patient's Result:</label>
+            <textarea class="form-control" id="symptoms" rows="3" placeholder="AI generated here..."></textarea>
         </div>
-        <div class="col-md-6">
-          <label for="temperature" class="fw-bold">Temperature:</label>
-          <input type="text" class="form-control" id="temperature" placeholder="Enter temperature">
+        <div class="text-end">
+            <!-- Placeholder button to fetch the result -->
+            <button type="button" id="generate-btn" class="btn btn-dark">Generate</button>
         </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="pulseRate" class="fw-bold">Pulse Rate:</label>
-          <input type="text" class="form-control" id="pulseRate" placeholder="Enter pulse rate">
-        </div>
-      </div>
-
-      <div class="text-end">
-        <button type="submit" class="btn btn-dark">Submit for AI Diagnosis</button>
-      </div>
-
-      <hr>
-      <div class="form-group mb-4">
-        <label for="diagnosisSuggestions" class="fw-bold">Diagnosis Suggestions:</label>
-        <textarea class="form-control" id="diagnosisSuggestions" rows="2" placeholder="Enter diagnosis suggestions here..."></textarea>
-      </div>
-
-      <div class="form-group mb-4">
-        <label for="recommendedTests" class="fw-bold">Recommended Tests:</label>
-        <textarea class="form-control" id="recommendedTests" rows="2" placeholder="Enter recommended tests here..."></textarea>
-      </div>
-
-      <div class="form-group mb-4">
-        <label for="recommendedTreatment" class="fw-bold">Recommended Treatment:</label>
-        <textarea class="form-control" id="recommendedTreatment" rows="2" placeholder="Enter recommended treatment here..."></textarea>
-      </div>
-
     </form>
-  </div>
+</div>
+
+<script>
+    document.getElementById('generate-btn').addEventListener('click', async function() {
+        try {
+
+            const csrfToken = document.getElementById('csrf-token').value;
+            // Get the value from the hidden input (findings)
+            const findings = document.getElementById('findings').value;
+
+            // Concatenate the shortened prompt (or directly use the findings)
+            const promptText = findings + " Provide a short recommendation.";
+
+            // Perform a POST request to send the findings to the backend and retrieve the AI response data
+            const response = await fetch('{{ route("admin.requests.generate") }}', {
+                method: 'POST',  // Use POST request
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                body: JSON.stringify({
+                    findings: promptText  // Send the concatenated prompt in the body
+                })
+            });
+
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch AI data');
+            }
+            // Parse the JSON response
+            const data = await response.json();
+         
+            // Check if the response contains valid AI content
+            if (data) {
+                const aiContent = data.choices[0].message.content;
+
+                // Set the content in the textarea
+                document.getElementById('symptoms').value = aiContent;
+            } else {
+                // If no response from AI, set an error message in the textarea
+                document.getElementById('symptoms').value = 'No AI response generated.';
+            }
+        } catch (error) {
+            console.error('Error fetching AI data:', error);
+
+            // If there's an error, display it in the textarea
+            document.getElementById('symptoms').value = 'Error fetching AI data: ' + error.message;
+        }
+    });
+</script>
+
+
+
