@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/doctor/requests-input', [RequestsController::class, 'index'])->name('admin.requests.index');
         Route::get('/doctor/requests-input/{id}', [RequestsController::class, 'show'])->name('admin.requests.show');
         Route::post('/doctor/req', [RequestsController::class, 'AI_Generate'])->name('admin.requests.generate');
+        Route::post('/doctor/req/{id}/update-ai-comments', [RequestsController::class, 'updateAIComments'])->name('admin.requests.updateAIComments');
         Route::get('/doctor/requests-input/{id}/edit', [RequestsController::class, 'edit'])->name('admin.requests.edit');
         Route::put('/admin/edit-request/{id}', [RequestsController::class, 'update'])->name('admin.request.update');
         Route::get('/admin/comments-edit/{id}', [RequestsController::class, 'editComments'])->name('admin.medical-edit.comments');

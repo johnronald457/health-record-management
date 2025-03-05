@@ -1,17 +1,22 @@
 <div class="border p-3">
     <h2>AI Insights</h2>
-    <form>
+    <form action="{{ route('admin.requests.updateAIComments', $medical->id) }}" method="POST">
+      @csrf
       <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
       <input type="hidden" id="findings" value="{{$medical->findings}}">
         <div class="form-group mb-3">
             <label for="symptoms" class="fw-bold">Analysis of the Patient's Result:</label>
-            <textarea class="form-control" id="symptoms" rows="3" placeholder="AI generated here..."></textarea>
+            <textarea class="form-control" id="symptoms" name="symptoms" rows="3" placeholder="{{$medical->AI_comments ?? 'AI generated here...'}}" disabled></textarea>
         </div>
         <div class="text-end">
             <!-- Placeholder button to fetch the result -->
             <button type="button" id="generate-btn" class="btn btn-dark">Generate</button>
+            <button type="submit" id="generate-btn1" class="btn btn-dark">Put in</button>
         </div>
+
     </form>
+
+
 </div>
 
 <script>
