@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
+use App\Models\HealthAssessment;
 use App\Models\MedicalRequest;
 use App\Models\Treatment;
 use App\Models\User;
@@ -59,6 +60,31 @@ public function AI_Generate(Request $request): JsonResponse
     }
 }
 
+    public function editComments($id)
+    {
+        $treatment = Treatment::findOrFail($id);
+        return view('admin.medical-input.edit-comments', compact('treatment'));
+    }
+
+    public function updateComments(Request $request, $id)
+    {
+        $request->validate([
+            'interpretation_comments' => 'required|string',
+            'recommendations' => 'required|string',
+            'prescriptions' => 'required|string',
+            'result_summary' => 'required|string',
+        ]);
+
+        $treatment = Treatment::findOrFail($id);
+        $treatment->update([
+            'interpretation_comments' => $request->interpretation_comments,
+            'recommendations' => $request->recommendations,
+            'prescriptions' => $request->prescriptions,
+            'result_summary' => $request->result_summary,
+        ]);
+
+        return redirect()->route('admin.requests.show', $treatment->id)->with('success', 'Doctor comments updated successfully.');
+    }
 
 
     public function store(Request $request)
@@ -95,37 +121,26 @@ public function AI_Generate(Request $request): JsonResponse
     // Update the specified request in storage
     public function update(Request $request, $id)
     {
-
-        $medical = MedicalRequest::findOrFail($id);
-
-        // I-validate ang input
-        $request->validate([
-            'request_type' => 'required|string',
-            'status' => 'required|string',
-            'priority' => 'required|string',
-            'test_date' => 'required|date',
-            'condition' => 'required|string',
+        // Validate the request data
+        $validatedData = $request->validate([
+            'request_type' => 'string',
+            // 'status' => 'string',
+            'condition' => 'string',
+            'priority' => 'string',
+            'test_date' => 'date',
             'findings' => 'nullable|string',
             'description' => 'nullable|string',
         ]);
 
-        // I-update ang medical record
-        $medical->update([
-            'request_type' => $request->input('request_type'),
-            'status' => $request->input('status'),
-            'priority' => $request->input('priority'),
-            'test_date' => $request->input('test_date'),
-            'preferred_date' => $request->input('preferred_date'),
-            'condition' => $request->input('condition'),
-            'findings' => $request->input('findings'),
-            'description' => $request->input('description'),
-        ]);
+        // Find the medical record by ID
+        $medical = MedicalRequest::findOrFail($id);
 
-        // I-redirect pabalik sa show page kasama ang success message
+        // Update the medical record with the validated data
+        $medical->update($validatedData);
+
+        // Redirect back with a success message
         return redirect()->route('admin.requests.show', $medical->id)->with('success', 'Medical details updated successfully.');
     }
-
-
     // Method to return users for the searchable dropdown
     public function search(Request $request)
     {

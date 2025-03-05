@@ -30,27 +30,16 @@
 
                         <!-- Medical Type -->
                         <div class="col-md-6 mb-3">
-                            <label for="requestType" class="form-label"><strong>Medical Type:</strong></label>
-                            <select class="form-select" id="requestType" name="request_type" required>
-                                <option value="checkup" {{ $medical->request_type == 'checkup' ? 'selected' : '' }}>Checkup
-                                </option>
-                                <option value="surgery" {{ $medical->request_type == 'surgery' ? 'selected' : '' }}>Surgery
-                                </option>
-                                <option value="lab_test" {{ $medical->request_type == 'lab_test' ? 'selected' : '' }}>Lab
-                                    Test
-                                </option>
-                            </select>
+                            <label for="request_type" class="form-label">Medical Type</label>
+                            <input type="text" class="form-control" id="request_type" name="request_type"
+                                value="{{ $medical->request_type }}" required>
                         </div>
 
                         <!-- Status -->
                         <div class="col-md-6 mb-3">
                             <label for="status" class="form-label"><strong>Status:</strong></label>
-                            <select class="form-select" id="status" name="status" required>
-                                <option value="pending" {{ $medical->status == 'pending' ? 'selected' : '' }}>Pending
-                                </option>
-                                <option value="done" {{ $medical->status == 'done' ? 'selected' : '' }}>Done
-                                </option>
-                            </select>
+                            <input type="text" class="form-control" id="status" name="status"
+                                value="{{ $medical->status == 'pending' ? 'Pending' : 'Done' }}" readonly>
                         </div>
 
                         <!-- Condition -->
@@ -61,10 +50,11 @@
                                     Unspecified</option>
                                 <option value="sensitive" {{ $medical->condition == 'sensitive' ? 'selected' : '' }}>
                                     Sensitive</option>
-                                <option value="non_sensitive"
-                                    {{ $medical->condition == 'non_sensitive' ? 'selected' : '' }}>Non Sensitive</option>
+                                <option value="non-sensitive"
+                                    {{ $medical->condition == 'non-sensitive' ? 'selected' : '' }}>Non-Sensitive</option>
                             </select>
                         </div>
+
 
                         <!-- Priority -->
                         <div class="col-md-6 mb-3">
@@ -86,7 +76,7 @@
 
 
                         <!-- Findings -->
-                        <div class="col-md-6 mb-3">
+                        {{-- <div class="col-md-6 mb-3">
                             <label for="findings" class="form-label"><strong>Findings:</strong></label>
                             <textarea class="form-control" id="findings" name="findings" rows="3">{{ $medical->findings ?? '' }}</textarea>
                         </div>
@@ -94,13 +84,13 @@
                         <div class="col-md-6 mb-3">
                             <label for="description" class="form-label"><strong>Comments:</strong></label>
                             <textarea class="form-control" id="description" name="description" rows="3">{{ $medical->description ?? '' }}</textarea>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <!-- Submit Button -->
                     <div class="d-flex float-end">
                         <a href="{{ url()->previous() }}" class="btn btn-secondary me-2">Go Back</a>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-warning">Update Details</button>
                     </div>
                 </form>
 
