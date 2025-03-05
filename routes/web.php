@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
         //Doctor Treatment comments routes
         Route::get('/doctor/comments/create', [DoctorCommentsController::class, 'create'])->name('admin.create.comments');
         Route::post('/doctor/comments/store', [DoctorCommentsController::class, 'store'])->name('admin.comments.store');
-        Route::get('/admin/comments/edit/{id}', [DoctorCommentsController::class, 'edit'])->name('admin.edit.comments');
+        Route::get('/admin/comments/edit/{id}', [DoctorCommentsController::class, 'edit'])->name('admin.treatment-edit.comments');
         Route::put('/admin/comments/update/{id}', [DoctorCommentsController::class, 'update'])->name('admin.update.comments');
 
         //Requests management routes
@@ -66,6 +66,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/doctor/requests-input/{id}', [RequestsController::class, 'show'])->name('admin.requests.show');
         Route::get('/doctor/requests-input/{id}/edit', [RequestsController::class, 'edit'])->name('admin.requests.edit');
         Route::put('/admin/edit-request/{id}', [RequestsController::class, 'update'])->name('admin.request.update');
+        Route::get('/admin/comments-edit/{id}', [RequestsController::class, 'editComments'])->name('admin.medical-edit.comments');
+        Route::put('/admin/comments-update/{id}', [RequestsController::class, 'updateComments'])->name('admin.medical-update.comments');
         Route::get('/users/search', [RequestsController::class, 'search'])->name('users.search');
         Route::post('/doctor/requests-input/store', [RequestsController::class, 'store'])->name('admin.requests.store');
         Route::put('/doctor/approve-request/{id}', [RequestsController::class, 'approve'])->name('admin.requests.approve-status');

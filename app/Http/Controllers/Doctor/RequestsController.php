@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
+use App\Models\HealthAssessment;
 use App\Models\MedicalRequest;
 use App\Models\Treatment;
 use App\Models\User;
@@ -27,12 +28,32 @@ class RequestsController extends Controller
         return view('admin.medical-input.show', compact('medical', 'treatment'));
     }
 
+    public function editComments($id)
+    {
+        $treatment = Treatment::findOrFail($id);
+        return view('admin.medical-input.edit-comments', compact('treatment'));
+    }
 
-    //     public function show($id)
-    // {
-    //     $patient = User::findOrFail($id);
-    //     return view('admin.patient.show', compact('patient'));
-    // }
+    public function updateComments(Request $request, $id)
+    {
+        $request->validate([
+            'interpretation_comments' => 'required|string',
+            'recommendations' => 'required|string',
+            'prescriptions' => 'required|string',
+            'result_summary' => 'required|string',
+        ]);
+
+        $treatment = Treatment::findOrFail($id);
+        $treatment->update([
+            'interpretation_comments' => $request->interpretation_comments,
+            'recommendations' => $request->recommendations,
+            'prescriptions' => $request->prescriptions,
+            'result_summary' => $request->result_summary,
+        ]);
+
+        return redirect()->route('admin.requests.show', $treatment->id)->with('success', 'Doctor comments updated successfully.');
+    }
+
 
     public function store(Request $request)
     {
@@ -71,7 +92,7 @@ class RequestsController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'request_type' => 'string',
-            'status' => 'string',
+            // 'status' => 'string',
             'condition' => 'string',
             'priority' => 'string',
             'test_date' => 'date',
@@ -88,8 +109,6 @@ class RequestsController extends Controller
         // Redirect back with a success message
         return redirect()->route('admin.requests.show', $medical->id)->with('success', 'Medical details updated successfully.');
     }
-
-
     // Method to return users for the searchable dropdown
     public function search(Request $request)
     {
