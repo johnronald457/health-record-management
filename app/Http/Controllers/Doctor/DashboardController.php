@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Doctor;
+
 use App\Http\Controllers\Controller;
+use App\Models\MedicalRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,9 @@ class DashboardController extends Controller
         $totalDoctors = User::where('role', 'doctor')->count();
         $totalNurses = User::where('role', 'nurse')->count();
 
-        return view('admin.index', compact('totalPatients', 'totalDoctors', 'totalNurses'));
+        $medicals = MedicalRequest::all();
+        $users = User::all();
+
+        return view('admin.index', compact('totalPatients', 'totalDoctors', 'totalNurses', 'medicals', 'users'));
     }
 }
