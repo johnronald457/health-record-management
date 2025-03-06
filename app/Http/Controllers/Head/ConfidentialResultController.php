@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Head;
 
 use App\Http\Controllers\Controller;
+use App\Models\MedicalRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,13 @@ class ConfidentialResultController extends Controller
 {
     public function index()
     {
-        $patients = User::whereNotIn('role', ['nurse', 'doctor', 'head'])->get();
-        return view('head.confidential-result.index', compact('patients'));
+        $medicals = MedicalRequest::all();
+        $users = User::all();
+        $medicals = MedicalRequest::whereIn('patient_id', $users->pluck('id'))
+            ->where('status', 'done')
+            ->where('condition', 'sensitive')
+            ->get();
+        return view('head.confidential-result.index', compact('medicals', 'users'));
     }
 
     public function search(Request $request)

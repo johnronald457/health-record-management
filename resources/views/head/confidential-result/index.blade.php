@@ -1,122 +1,92 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="shadow mb-4 w-full p-md-5">
-        <div class="container">
-            <div class="row">
-                <div class="col mr-0">
-                    <h1 class="display-6 fw-bolder text-uppercase">Confidential Result</h1>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                <strong>Total:</strong>
-                            </div>
-                            <div class="h5 ms-1 mb-1.5 font-weight-bold text-gray-800" id="patientCount">
-                                {{ $patients->count() }}</div>
-                        </div>
-                        {{-- Search bar --}}
-                        <x-searchBar placeholder="Search patients..." />
+    <div class="shadow mb-4 w-full p-3 p-m-5">
+        <div class="card-header">
+            <div class="row no-gutters align-items-center">
+                <div class="d-flex justify-content-between">
+
+                    <div class="col mr-2">
+                        <h1 class="display-6 fw-bolder text-uppercase">Confidential Result</h1>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Total</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $medicals->count() }}</div>
+
                     </div>
-
-                </div>
-
-                <div class="card-body">
-
-
-                    <div class="table table-responsive">
-                        <table class="table table-hover" id="myTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr class="table-light ">
-                                    <!-- <th>Patient ID</th> -->
-                                    <th>Name</th>
-                                    <th>Individual</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Contact #</th>
-                                    <th class="text-center">Status</th>
-
-                                </tr>
-                            </thead>
-                            <tbody id="patientTableBody">
-                                <tr onclick="window.location='{{ route('head.confidential-result.show', 1) }}';"
-                                    style="cursor: pointer;">
-                                    <td>John Doe</td>
-                                    <td>Patient</td>
-                                    <td>john.doe@example.com</td>
-                                    <td>123 Main St</td>
-                                    <td>555-1234</td>
-                                    <td class="badge bg-success text-white mt-2 ms-5">Active</td>
-                                </tr>
-                                <tr onclick="window.location='{{ route('head.confidential-result.show', 2) }}';"
-                                    style="cursor: pointer;">
-                                    <td>Jane Smith</td>
-                                    <td>Doctor</td>
-                                    <td>jane.smith@example.com</td>
-                                    <td>456 Elm St</td>
-                                    <td>555-5678</td>
-                                    <td class="badge bg-danger text-white mt-2 ms-5">Inactive</td>
-                                </tr>
-                                <tr onclick="window.location='{{ route('head.confidential-result.show', 3) }}';"
-                                    style="cursor: pointer;">
-                                    <td>Bob Johnson</td>
-                                    <td>Nurse</td>
-                                    <td>bob.johnson@example.com</td>
-                                    <td>789 Oak St</td>
-                                    <td>555-9012</td>
-                                    <td class="badge bg-success text-white mt-2 ms-5">Active</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-auto">
+                        <i class="fas fa-solid fa-user-gear fa-4x text-gray-500 pr-3"></i>
+                    </div>
+                    <div>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#createRequestModal"
+                            class="btn btn-primary"><i class="fas fa-edit me-2"></i>Request</button>
                     </div>
                 </div>
+            </div>
+
+        </div>
+        <div class="">
+
+            <div class="table table-responsive">
+                <table class="table table-hover" id="myTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="table-light ">
+                            <!-- <th>Patient ID</th> -->
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Medical Type</th>
+                            <th class="text-center">Priority level</th>
+                            <th class="text-center">Preferred date</th>
+                            <th class="text-center">Scheduled date</th>
+                            <th class="text-center">Test date</th>
+                            <th class="text-center">Status</th>
+                            {{-- <th class="text-center">Attachment</th> --}}
+                            <th class="text-center">Condition</th>
+                            <!-- <th>Doctor name</th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($medicals as $medical)
+                            <tr class="not-clickable">
+                                <td class="text-center">{{ $medical->patient->firstname }} {{ $medical->patient->lastname }}
+                                </td>
+                                <td class="text-center">{{ ucfirst($medical->request_type) }}</td>
+                                <td class="text-center">{{ ucfirst($medical->priority) }}</td>
+                                <td class="text-center">{{ $medical->preferred_date }}</td>
+                                <td class="text-center">{{ $medical->schedule_date ?? 'N/A' }}</td>
+                                <td class="text-center">{{ $medical->test_date ?? 'N/A' }}</td>
+                                <td class="text-center">
+                                    @if ($medical->status == 'pending')
+                                        <span class="badge bg-warning">{{ ucfirst($medical->status) }}</span>
+                                    @else
+                                        <span class="badge bg-success">{{ ucfirst($medical->status) }}</span>
+                                    @endif
+                                </td>
+                                {{-- <td class="text-center"
+                                    style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    @if ($medical->file_path)
+                                        <a href="{{ asset($medical->file_path) }}" target="_blank"
+                                            title="{{ $medical->file_path }}">
+                                            {{ ucfirst(basename($medical->file_path)) }}
+                                        </a>
+                                    @else
+                                        N/A
+                                    @endif
+                                </td> --}}
+                                <td class="text-center">
+                                    @if ($medical->condition == 'sensitive')
+                                        <span class="badge bg-danger">{{ Str::ucfirst($medical->condition) }}</span>
+                                    @else
+                                        {{ Str::ucfirst($medical->condition ?? 'N/A') }}
+                                    @endif
+                                </td>
+                                <!-- <td>{{ $medical->doctor_name ?? 'N/A' }}</td> -->
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
     </div>
-    </div>
-    </div>
 @endsection
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    //Search
-    $(document).ready(function() {
-        $('#searchInput').on('keyup', function() {
-            let query = $(this).val();
-
-            $.ajax({
-                url: "/doctor/health-record/search",
-                type: 'GET',
-                data: {
-                    search: query
-                },
-                success: function(data) {
-                    let tableBody = $('#patientTableBody');
-                    let patientCount = $('#patientCount');
-                    tableBody.empty();
-
-                    if (data.length > 0) {
-                        $.each(data, function(index, patient) {
-                            let row = `<tr onclick="window.location='patients/${patient.id}';" style="cursor: pointer;">
-                                    <td>${patient.firstname} ${patient.lastname}</td>
-                                    <td>${patient.role.charAt(0).toUpperCase() + patient.role.slice(1)}</td>
-                                    <td>${patient.email}</td>
-                                    <td>${patient.address}</td>
-                                    <td>${patient.contact_no}</td>
-                                </tr>`;
-                            tableBody.append(row);
-                        });
-                        patientCount.text(data.length);
-                    } else {
-                        tableBody.append(
-                            '<tr><td colspan="5" class="text-center text-muted">No patients found.</td></tr>'
-                        );
-                        patientCount.text('0');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX error:', status, error);
-                }
-            });
-        });
-    });
-</script> --}}
+@include('admin.medical-input.create')

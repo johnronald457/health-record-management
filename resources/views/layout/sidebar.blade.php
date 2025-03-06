@@ -20,6 +20,8 @@
             <img src="{{ asset('img/medic_logo.png') }}" alt="avatar" class="avatar">
         @elseif($role === 'teacher' || $role === 'student')
             <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar">
+        @elseif($role === 'head')
+            <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar">
         @endif
         <br>
         <span><b>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</b></span>
@@ -92,10 +94,10 @@
             </div>
         @elseif($role === 'head')
             <div class="container mt-5">
-                <div class="dropdownSmsprofile">
+                {{-- <div class="dropdownSmsprofile">
                     <a class="dropdown-a" href="{{ route('head.index') }}" style="text-decoration: none;"><i
                             class='bx bx-grid-alt'></i> Dashboard</a>
-                </div>
+                </div> --}}
 
                 <div class="dropdownSmsprofile">
                     <a class="dropdown-a" href="{{ route('head.confidential-result.index') }}"
