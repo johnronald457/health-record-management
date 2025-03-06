@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Doctor;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Treatment;
+use App\Models\HealthAssessment;
+use App\Models\MedicalRequest;
 
 class HealthRecordController extends Controller
 {
@@ -38,6 +42,25 @@ class HealthRecordController extends Controller
     {
         $patient = User::findOrFail($id);
         return view('patient.health-record-history', compact('patient'));
+    }
+
+    public function index_patient()
+    {
+        $user = Auth::user();
+        if ($user) {
+            $fullName = trim($user->firstname . ' ' . $user->middlename . ' ' . $user->lastname);
+            $patient = User::where('id', $user->id)->first();
+            $health_records = Treatment::all();
+            $healthData = HealthAssessment::where('user_id', $user->id)->first();
+            $medicals = MedicalRequest::where('patient_id', $user->id)
+                            ->where('status', 'done')
+                            ->where('condition', 'Non-sensitive')
+                            ->get();
+            return view('patient.health-record', compact('user', 'fullName', 'health_records', 'patient' , 'healthData', 'medicals'));
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
+        return view('patient.health-record');
     }
 
 

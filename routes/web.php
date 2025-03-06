@@ -131,11 +131,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/generate-pdf/{id}', [MedicalRequestController::class, 'generatePdf'])->name('print.medical-result');
 
-
-        // need to edit for resposive
-        Route::get('/health-record', function () {
-            return view('patient.health-record');
-        })->name('patient.health-record');
+        Route::get('/health-record', [HealthRecordController::class, 'index_patient'])->name('patient.health-record');
 
         Route::get('/results', function () {
             return view('patient.xray');
