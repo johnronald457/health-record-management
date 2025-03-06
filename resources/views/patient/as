@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Medical Result</title>
+    </head>
+
+    <body>
+        <h1>{{ $medical_data->request_type }}</h1>
+        <!-- Medical Image Section -->
+        <img
+            src="/public/{{ $medical_data->file_path }}"
+            class="print-image"
+            alt="Medical Image"
+        />x`
+
+        <!-- Report Section (Optional, won't be printed if you only need the image) -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Patient Information</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>Patient Name:</strong>
+                                    {{ $medical_data->patient->lastname }},
+                                    {{ $medical_data->patient->firstname }}
+                                    {{ $medical_data->patient->middlename }}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Gender:</strong>
+                                    {{ ucfirst($medical_data->patient->sex) }}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Year & Section:</strong>
+                                    {{ $medical_data->patient->year }} -
+                                    {{ $medical_data->patient->section }}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Emergency Contact:</strong>
+                                    {{ $medical_data->patient->emergency_contact }}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Test Date:</strong>
+                                    {{ $medical_data->test_date }}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Condition:</strong>
+                                    {{ $medical_data->condition }}
+                                </li>
+                            </ul>
+
+                            <h5 class="card-title">Findings</h5>
+                            <p>{{ $medical_data->findings }}</p>
+
+                            <h5>Recommendation</h5>
+                            <p>{{ $medical_data->AI_comments }}</p>
+
+                            <h5>AI Analysis and Recommendations</h5>
+                            <p>{{ $medical_data->AI_comments }}</p>
+                        </div>
+                        <div class="card-footer text-center bg-light"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            &copy; 2025 PANMED Medical Laboratory Services. All rights reserved.
+        </p>
+    </body>
+</html>

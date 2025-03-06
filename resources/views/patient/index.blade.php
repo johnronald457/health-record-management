@@ -141,16 +141,34 @@
     <!-- Add KPI items here -->
   </div>
 
-  <!-- Modules Section -->
-  <div class="module">
-    <h2>Upcoming Appointments</h2>
-    <p>Display upcoming appointments here...</p>
-  </div>
+<h2 class="mb-4">Upcoming Appointments</h2>
 
+@if($medicals->isEmpty())
+    <!-- No Upcoming Appointments Message -->
+    <div class="alert alert-info text-center">
+        <strong>No upcoming appointments</strong><br>
+        It seems you don't have any upcoming medical appointments. Check back later!
+    </div>
+@else
+    @foreach ($medicals as $medical)
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><strong>Medical Type:</strong> {{ $medical->request_type }}</h5>
+                <p class="card-text"><strong>Schedule Date:</strong> {{ \Carbon\Carbon::parse($medical->schedule_date)->format('l, F j, Y g:i A') }}</p>
+            </div>
+        </div>
+    @endforeach
+@endif
+
+
+
+
+
+<!-- 
   <div class="module">
     <h2>Patient Records</h2>
     <p>Display patient records here...</p>
-  </div>
+  </div> -->
 
 </div>
 

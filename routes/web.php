@@ -127,9 +127,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/health-assessment/{id}/update', [HealthAssessmentController::class, 'update'])->name('health.update');
 
         Route::get('/treatment', [TreatmentController::class, 'getUserTreatment'])->name('patient.treatment');
-        Route::get('/medical-result', function () {
-            return view('patient.medical-result');
-        })->name('patient.medical-result');
+        Route::get('/medical-result', [MedicalRequestController::class, 'index'])->name('patient.medical-result');
+
+        Route::get('/generate-pdf/{id}', [MedicalRequestController::class, 'generatePdf'])->name('print.medical-result');
+
+
         // need to edit for resposive
         Route::get('/health-record', function () {
             return view('patient.health-record');
