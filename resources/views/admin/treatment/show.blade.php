@@ -38,7 +38,6 @@
                         {{ \Carbon\Carbon::parse($treatment->health_assessment->created_at)->format('F j, Y') }}</p>
                 </div>
                 <hr>
-                @include('patient.ai')
                 <hr>
                 <!-- Doctor Comments Section -->
                 <div class="doctor-comments mt-4">

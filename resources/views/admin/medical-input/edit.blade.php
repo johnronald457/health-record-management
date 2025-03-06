@@ -46,12 +46,12 @@
                         <div class="col-md-6 mb-3">
                             <label for="condition" class="form-label"><strong>Condition:</strong></label>
                             <select class="form-select" id="condition" name="condition" required>
-                                <option value="unspecified" {{ $medical->condition == 'unspecified' ? 'selected' : '' }}>
+                                <option value="unspecified" {{ $medical->condition == 'Unspecified' ? 'selected' : '' }}>
                                     Unspecified</option>
-                                <option value="sensitive" {{ $medical->condition == 'sensitive' ? 'selected' : '' }}>
+                                <option value="sensitive" {{ $medical->condition == 'Sensitive' ? 'selected' : '' }}>
                                     Sensitive</option>
-                                <option value="non-sensitive"
-                                    {{ $medical->condition == 'non-sensitive' ? 'selected' : '' }}>Non-Sensitive</option>
+                                <option value="Non-sensitive"
+                                    {{ $medical->condition == 'Non-sensitive' ? 'selected' : '' }}>Non-Sensitive</option>
                             </select>
                         </div>
 

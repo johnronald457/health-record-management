@@ -11,46 +11,32 @@
                 <h5 class="text-primary">Patient Information</h5>
                 <hr>
                 <!-- <p><strong>Patient ID:</strong> 10234</p> -->
-                <p><strong>Name:</strong> China Bea</p>
-                <p><strong>Date of Birth:</strong> 2001-12-22</p>
-                <p><strong>Gender:</strong> Female</p>
-                <p><strong>Contact Information:</strong> chinabea@gmail.com</p>
-            </div>
-
-            <!-- Visit Information Section -->
-            <div class="mb-4">
-                <h5 class="text-primary">Visit Information</h5>
-                <hr>
-                <p><strong>Visit Date:</strong> 2024-10-28</p>
-                <p><strong>Doctor Name:</strong> Dr. Mark Louis</p>
-                <p><strong>Visit Reason:</strong> Routine check-up</p>
-            </div>
-
-            <!-- Symptoms Section -->
-            <div class="mb-4">
-                <h5 class="text-primary">Symptoms</h5>
-                <hr>
-                <p>Fever, headache, mild chest pain, fatigue</p>
+                <p><strong>Name:</strong> {{ $fullName }}</p>
+                <p><strong>Date of Birth:</strong>{{ \Carbon\Carbon::parse($patient->birthdate)->format('Y-m-d') }}</p>
+                <p><strong>Gender:</strong> {{ UCFirst($patient->sex) }}</p>
+                <p><strong>Address:</strong> {{ $patient->address}}</p>
+                <p><strong>Emergency Contact:</strong> {{ $patient->emergency_contact}}</p>
             </div>
 
             <!-- Vital Signs Section -->
             <div class="mb-4">
-                <h5 class="text-primary">Vital Signs</h5>
+                <h5 class="text-primary">Health Assessment</h5>
                 <hr>
-                <p><strong>Blood Pressure:</strong> 120/80 mmHg</p>
-                <p><strong>Pulse Rate:</strong> 75 bpm</p>
-                <p><strong>Temperature:</strong> 98.6°F</p>
-                <p><strong>Respiratory Rate:</strong> 16 breaths/min</p>
-                <p><strong>Oxygen Saturation:</strong> 98%</p>
+                <p><strong>Weight:</strong>  {{$healthData->weight}}</p>
+                <p><strong>Height:</strong> {{$healthData->height}}</p>
+                <p><strong>Blood Pressure:</strong> {{$healthData->blood_pressure}}</p>
+                <p><strong>Heart Rate:</strong> {{$healthData->heart_rate}}</p>
+                <p><strong>Allergies:</strong> {{$healthData->allergies}}</p>
+                <p><strong>Symptoms:</strong> {{$healthData->symptoms}}</p>
             </div>
 
             <!-- Diagnosis Section -->
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <h5 class="text-primary">Diagnosis</h5>
                 <hr>
                 <p><strong>Diagnosis:</strong> Mild Viral Infection</p>
                 <p><strong>Diagnosis Suggestions:</strong> Monitor symptoms, increase fluid intake, rest</p>
-            </div>
+            </div> -->
 
             <!-- Recommended Tests Section -->
             <div class="mb-4">
@@ -73,22 +59,18 @@
                 <p><strong>Follow-up Required:</strong> Yes, in 1 week</p>
             </div>
 
-            <!-- Additional Notes Section -->
-            <div class="mb-4">
-                <h5 class="text-primary">Additional Notes</h5>
-                <hr>
-                <p><strong>Doctor's Notes:</strong> Patient advised to rest and stay hydrated. Return if symptoms worsen.</p>
-                <p><strong>Patient Feedback:</strong> Feeling slightly better, no severe discomfort</p>
-            </div>
-
             <!-- History Overview Section -->
             <div class="mb-4">
-                <h5 class="text-primary">History Overview</h5>
+                <h5 class="text-primary">Medical Taken</h5>
+                @foreach ($medicals as $medical)
                 <hr>
-                <p><strong>Previous Conditions:</strong> Seasonal allergies, mild asthma</p>
-                <p><strong>Allergies:</strong> None reported</p>
-                <p><strong>Immunization Records:</strong> Up-to-date, including flu vaccine</p>
-                <p><strong>Family Medical History:</strong> History of heart disease in paternal side</p>
+                <p><strong>Medical Type:</strong> {{$medical->request_type}}</p>
+                <p><strong>Doctor:</strong> {{$medical->doctor_name}}</p>
+                <p><strong>Test Date:</strong> {{$medical->test_date}}</p>
+                <p><strong>Findings:</strong> {{$medical->findings}}</p>
+                <p><strong>Doctor Comments:</strong> {{$medical->doctor_comments}}</p>
+                <p><strong>AI Analysis Comments:</strong> {{$medical->AI_comments}}</p>
+                 @endforeach
             </div>
         </div>
     </div>

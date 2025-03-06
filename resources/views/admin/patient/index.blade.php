@@ -28,7 +28,7 @@
                             <tr class="table-light">
                                 <th>Name</th>
                                 <th>Individual</th>
-                                <th>Email</th>
+                                <th>Student No.</th>
                                 <th>Address</th>
                                 <th>Contact #</th>
                             </tr>

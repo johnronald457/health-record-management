@@ -8,7 +8,7 @@
             @endphp
             
             @if($role === 'nurse' || $role === 'doctor')      
-                <a class="text-sm" href="#" style="margin-right: 15px;">Submissions</a>
+                <!-- <a class="text-sm" href="#" style="margin-right: 15px;">Submissions</a> -->
             @elseif($role === 'teacher' || $role === 'student')
                 <!-- <a href="#" style="margin-right: 15px;">Create Form</a> -->
             @endif

@@ -13,45 +13,6 @@ class RequestsController extends Controller
         $requests = MedicalRequest::where('status', 'request')->get();
         return view('admin.requests.index', compact('requests'));
     }
-
-    //     public function show($id)
-    // {
-    //     $patient = User::findOrFail($id);
-    //     return view('admin.patient.show', compact('patient'));
-    // }
-
-    // // Show the form for creating a new user
-    // public function create()
-    // {
-    //     return view('users.create');
-    // }
-
-    // // Store a newly created user in storage
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|email|unique:users,email',
-    //         'password' => 'required|string|min:8|confirmed',
-    //     ]);
-
-    //     // Create a new user
-    //     User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => bcrypt($request->password), // Hash the password
-    //     ]);
-
-    //     return redirect()->route('users.index')->with('success', 'User created successfully.');
-    // }
-
-    // // Display the specified user
-    // public function show($id)
-    // {
-    //     $user = User::findOrFail($id); // Find user or throw 404
-    //     return view('users.show', compact('user'));
-    // }
-
     // Show the form for editing the specified user
     public function approve($id)
     {

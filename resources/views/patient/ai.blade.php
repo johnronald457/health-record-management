@@ -5,8 +5,8 @@
       <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
       <input type="hidden" id="findings" value="{{$medical->findings}}">
         <div class="form-group mb-3">
-            <label for="symptoms" class="fw-bold">Analysis of the Patient's Result:</label>
-            <textarea class="form-control" id="symptoms" name="symptoms" rows="3" placeholder="{{$medical->AI_comments ?? 'AI generated here...'}}" disabled></textarea>
+            <label for="AI_comments" class="fw-bold">Analysis of the Patient's Result:</label>
+            <textarea class="form-control" id="AI_comments" name="AI_comments" rows="3"  value="{{$medical->AI_comments ?? 'AI generated here'}}" placeholder="{{$medical->AI_comments}}" disabled></textarea>
         </div>
         <div class="text-end">
             <!-- Placeholder button to fetch the result -->
@@ -54,16 +54,16 @@
                 const aiContent = data.choices[0].message.content;
 
                 // Set the content in the textarea
-                document.getElementById('symptoms').value = aiContent;
+                document.getElementById('AI_comments').value = aiContent;
             } else {
                 // If no response from AI, set an error message in the textarea
-                document.getElementById('symptoms').value = 'No AI response generated.';
+                document.getElementById('AI_comments').value = 'No AI response generated.';
             }
         } catch (error) {
             console.error('Error fetching AI data:', error);
 
             // If there's an error, display it in the textarea
-            document.getElementById('symptoms').value = 'Error fetching AI data: ' + error.message;
+            document.getElementById('AI_comments').value = 'Error fetching AI data: ' + error.message;
         }
     });
 </script>

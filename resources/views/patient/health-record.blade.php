@@ -18,22 +18,6 @@
                 <p><strong>Emergency Contact:</strong> {{ $patient->emergency_contact}}</p>
             </div>
 
-            <!-- Visit Information Section -->
-            <!-- <div class="mb-4">
-                <h5 class="text-primary">Visit Information</h5>
-                <hr>
-                <p><strong>Visit Date:</strong> 2024-10-28</p>
-                <p><strong>Doctor Name:</strong> Dr. Mark Louis</p>
-                <p><strong>Visit Reason:</strong> Routine check-up</p>
-            </div> -->
-
-            <!-- Symptoms Section -->
-            <!-- <div class="mb-4">
-                <h5 class="text-primary">Health Assessment</h5>
-                <hr>
-                <p>Fever, headache, mild chest pain, fatigue</p>
-            </div> -->
-
             <!-- Vital Signs Section -->
             <div class="mb-4">
                 <h5 class="text-primary">Health Assessment</h5>

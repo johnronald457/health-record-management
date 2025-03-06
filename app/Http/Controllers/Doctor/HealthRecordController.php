@@ -39,9 +39,14 @@ class HealthRecordController extends Controller
     }
 
     public function show(string $id)
-    {
-        $patient = User::findOrFail($id);
-        return view('patient.health-record-history', compact('patient'));
+        {       $patient = User::where('id', $id)->first();
+                $fullName = trim($patient->firstname . ' ' . $patient->middlename . ' ' . $patient->lastname);
+                $health_records = Treatment::all();
+                $healthData = HealthAssessment::where('user_id', $patient->id)->first();
+                $medicals = MedicalRequest::where('patient_id', $patient->id)
+                                ->where('status', 'done')
+                                ->get();
+        return view('patient.health-record-history', compact('fullName', 'health_records', 'patient' , 'healthData', 'medicals'));
     }
 
     public function index_patient()

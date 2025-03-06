@@ -30,20 +30,25 @@ class RequestsController extends Controller
         return view('admin.medical-input.show', compact('medical', 'treatment'));
     }
 
-    public function updateAIComments(Request $request, $id)
+public function updateAIComments(Request $request, $id)
 {
     // Find the medical record by ID
     $medical = MedicalRequest::findOrFail($id);
 
-    // Retrieve the findings from the form submission
-    $findings = $request->input('symptoms');
-    // Update the AI_comments in the model
-    $medical->AI_comments = $findings;
-    $medical->save(); // Save the updated record
 
-    // Redirect back to the form with a success message
+    // Retrieve the new AI_comments value from the form submission
+    $newAIComments = $request->input('AI_comments');
+
+    // Update the AI_comments field in the model
+    $medical->AI_comments = $newAIComments;
+
+    // Save the updated record
+    $medical->save();
+
+    // Redirect back to the form or previous page with a success message
     return redirect()->back()->with('success', 'AI Comments updated successfully!');
 }
+
 
 
 public function AI_Generate(Request $request): JsonResponse
@@ -60,8 +65,8 @@ public function AI_Generate(Request $request): JsonResponse
             'messages' => [
                 ['role' => 'user', 'content' => $AI_Request],
             ],
-            'max_tokens' => 50,
-            'temperature' => 0.3,
+            'max_tokens' => 150,
+            'temperature' => 1,
         ]);
     // dd($response->json());
 
