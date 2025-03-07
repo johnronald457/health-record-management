@@ -46,7 +46,9 @@
                     </thead>
                     <tbody>
                         @foreach ($medicals as $medical)
-                            <tr class="not-clickable">
+                            <tr style="cursor: {{ $medical->status == 'pending' ? 'not-allowed' : 'pointer' }};"
+                                onclick="{{ $medical->status == 'pending' ? 'event.preventDefault();' : 'window.location=\'' . route('head.confidential-result.show', $medical->id) . '\';' }}">
+                                {{-- <td class="text-center">{{ $medical->patient->firstname }} {{ $medical->patient->lastname }} --}}
                                 <td class="text-center">{{ $medical->patient->firstname }} {{ $medical->patient->lastname }}
                                 </td>
                                 <td class="text-center">{{ ucfirst($medical->request_type) }}</td>
