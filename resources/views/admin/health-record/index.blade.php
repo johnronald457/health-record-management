@@ -29,7 +29,7 @@
                                 <tr class="table-light ">
                                     <!-- <th>Patient ID</th> -->
                                     <th>Name</th>
-                                    <th>Individual</th>
+                                    <th>Course</th>
                                     <th>Email</th>
                                     <th>Address</th>
                                     <th>Contact #</th>
@@ -41,7 +41,7 @@
                                     <tr onclick="window.location='{{ route('patient.health-record-history.show', $patient->id) }}';"
                                         style="cursor: pointer;">
                                         <td>{{ $patient->firstname }} {{ $patient->lastname }}</td>
-                                        <td>{{ ucfirst($patient->role) }}</td>
+                                        <td>{{ ucfirst($patient->course) }}</td>
                                         <td>{{ $patient->email }}</td>
                                         <td>{{ $patient->address }}</td>
                                         <td>{{ $patient->contact_no }}</td>

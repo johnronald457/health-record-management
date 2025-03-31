@@ -29,7 +29,7 @@ class HealthRecordController extends Controller
             ->where(function ($query) use ($search) {
                 $query->where('firstname', 'LIKE', "%{$search}%")
                     ->orWhere('lastname', 'LIKE', "%{$search}%")
-                    ->orWhere('role', 'LIKE', "%{$search}%")
+                    ->orWhere('course', 'LIKE', "%{$search}%")
                     ->orWhere('email', 'LIKE', "%{$search}%")
                     ->orWhere('address', 'LIKE', "%{$search}%")
                     ->orWhere('contact_no', 'LIKE', "%{$search}%");
@@ -39,14 +39,15 @@ class HealthRecordController extends Controller
     }
 
     public function show(string $id)
-        {       $patient = User::where('id', $id)->first();
-                $fullName = trim($patient->firstname . ' ' . $patient->middlename . ' ' . $patient->lastname);
-                $health_records = Treatment::all();
-                $healthData = HealthAssessment::where('user_id', $patient->id)->first();
-                $medicals = MedicalRequest::where('patient_id', $patient->id)
-                                ->where('status', 'done')
-                                ->get();
-        return view('patient.health-record-history', compact('fullName', 'health_records', 'patient' , 'healthData', 'medicals'));
+    {
+        $patient = User::where('id', $id)->first();
+        $fullName = trim($patient->firstname . ' ' . $patient->middlename . ' ' . $patient->lastname);
+        $health_records = Treatment::all();
+        $healthData = HealthAssessment::where('user_id', $patient->id)->first();
+        $medicals = MedicalRequest::where('patient_id', $patient->id)
+            ->where('status', 'done')
+            ->get();
+        return view('patient.health-record-history', compact('fullName', 'health_records', 'patient', 'healthData', 'medicals'));
     }
 
     public function index_patient()
@@ -58,10 +59,10 @@ class HealthRecordController extends Controller
             $health_records = Treatment::all();
             $healthData = HealthAssessment::where('user_id', $user->id)->first();
             $medicals = MedicalRequest::where('patient_id', $user->id)
-                            ->where('status', 'done')
-                            ->where('condition', 'Non-sensitive')
-                            ->get();
-            return view('patient.health-record', compact('user', 'fullName', 'health_records', 'patient' , 'healthData', 'medicals'));
+                ->where('status', 'done')
+                ->where('condition', 'Non-sensitive')
+                ->get();
+            return view('patient.health-record', compact('user', 'fullName', 'health_records', 'patient', 'healthData', 'medicals'));
         } else {
             return response()->json(['error' => 'User not authenticated'], 401);
         }

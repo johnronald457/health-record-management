@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('role', ['doctor', 'nurse', 'head', 'student', 'teacher']);
             $table->date('birthdate');
             $table->enum('sex', ['male', 'female', 'other']);
+            $table->string('course');
             $table->string('year');
             $table->string('section');
             $table->string('contact_no');
