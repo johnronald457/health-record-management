@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-                <div class="dropdownSmsprofile">
+                {{-- <div class="dropdownSmsprofile">
                     <button class="dropdown-btn" onclick="toggleDropdown(this)">
                         <i class='bx bx-user'></i> Medical<i class="fa fa-caret-down" style="float: right;"></i>
                     </button>
@@ -90,7 +90,7 @@
                                 input</span></a>
 
                     </div>
-                </div>
+                </div> --}}
             </div>
         @elseif($role === 'head')
             <div class="container mt-5">
