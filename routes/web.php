@@ -128,7 +128,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/treatment', [TreatmentController::class, 'getUserTreatment'])->name('patient.treatment');
         Route::get('/medical-result', [MedicalRequestController::class, 'index'])->name('patient.medical-result');
-
+        Route::get('/view-medical-result/{id}', [MedicalRequestController::class, 'view'])->name('view.medical-result');
         Route::get('/generate-pdf/{id}', [MedicalRequestController::class, 'generatePdf'])->name('print.medical-result');
 
         Route::get('/health-record', [HealthRecordController::class, 'index_patient'])->name('patient.health-record');

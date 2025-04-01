@@ -17,27 +17,22 @@
                         {{-- Search bar --}}
                         <x-searchBar placeholder="Search patients..." />
                     </div>
-
                 </div>
 
                 <div class="card-body">
-
-
                     <div class="table table-responsive">
                         <table class="table table-hover" id="myTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr class="table-light ">
-                                    <!-- <th>Patient ID</th> -->
+                                <tr class="table-light">
                                     <th>Name</th>
-                                    <th>Course</th>
+                                    <th id="courseHeader" style="cursor: pointer;">Course <i class="fas fa-sort"></i></th>
                                     <th>Email</th>
                                     <th>Address</th>
                                     <th>Contact #</th>
-
                                 </tr>
                             </thead>
                             <tbody id="patientTableBody">
-                                @foreach ($patients as $patient)
+                                @foreach ($patients->sortBy('course') as $patient)
                                     <tr onclick="window.location='{{ route('patient.health-record-history.show', $patient->id) }}';"
                                         style="cursor: pointer;">
                                         <td>{{ $patient->firstname }} {{ $patient->lastname }}</td>
@@ -54,51 +49,50 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
 @endsection
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    //Search
+    // Search
     $(document).ready(function() {
-        $('#searchInput').on('keyup', function() {
-            let query = $(this).val();
+                $('#searchInput').on('keyup', function() {
+                    let query = $(this).val();
 
-            $.ajax({
-                url: "/doctor/health-record/search",
-                type: 'GET',
-                data: {
-                    search: query
-                },
-                success: function(data) {
-                    let tableBody = $('#patientTableBody');
-                    let patientCount = $('#patientCount');
-                    tableBody.empty();
+                    $.ajax({
+                        url: "/doctor/health-record/search",
+                        type: 'GET',
+                        data: {
+                            search: query
+                        },
+                        success: function(data) {
+                            let tableBody = $('#patientTableBody');
+                            let patientCount = $('#patientCount');
+                            tableBody.empty();
 
-                    if (data.length > 0) {
-                        $.each(data, function(index, patient) {
-                            let row = `<tr onclick="window.location='patients/${patient.id}';" style="cursor: pointer;">
+                            if (data.length > 0) {
+                                $.each(data, function(index, patient) {
+                                    let row = `<tr onclick="window.location='patients/${patient.id}';" style="cursor: pointer;">
                                     <td>${patient.firstname} ${patient.lastname}</td>
                                     <td>${patient.role.charAt(0).toUpperCase() + patient.role.slice(1)}</td>
                                     <td>${patient.email}</td>
                                     <td>${patient.address}</td>
                                     <td>${patient.contact_no}</td>
                                 </tr>`;
-                            tableBody.append(row);
-                        });
-                        patientCount.text(data.length);
-                    } else {
-                        tableBody.append(
-                            '<tr><td colspan="5" class="text-center text-muted">No patients found.</td></tr>'
-                        );
-                        patientCount.text('0');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX error:', status, error);
-                }
-            });
-        });
-    });
+                                    tableBody.append(row);
+                                });
+                                patientCount.text(data.length);
+                            } else {
+                                tableBody.append(
+                                    '<tr><td colspan="5" class="text-center text-muted">No patients found.</td></tr>'
+                                );
+                                patientCount.text('0');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('AJAX error:', status, error);
+                        }
+                    });
+                });
+
+                // Sorting for Course column
 </script>
