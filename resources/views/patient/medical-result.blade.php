@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-sm">
             <div class="card-body">
-                <h2 class="card-title mb-4  border-bottom">Medical Result</h2>
+                <h2 class="card-title mb-4 border-bottom">Medical Result</h2>
                 @foreach ($medicals as $medical)
                     <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
                         <div>
@@ -12,7 +12,7 @@
                             <div class="text-muted">{{ $medical->test_date }}</div>
                         </div>
                         <div class="">
-                            <button type="button" class="btn btn-primary btn-sm ml-2 " data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary btn-sm ml-2" data-bs-toggle="modal"
                                 data-bs-target="#medicalResultModal"
                                 data-image-url="{{ route('view.medical-result', ['id' => $medical->id]) }}">
                                 View
@@ -24,11 +24,11 @@
                         </div>
                     </div>
 
-                    {{-- Modal  --}}
+                    {{-- Modal --}}
                     <div class="modal fade" id="medicalResultModal" tabindex="-1" aria-labelledby="medicalResultModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content ">
+                            <div class="modal-content">
                                 <div class="modal-header border-0 pb-0">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -39,32 +39,15 @@
                                     @if ($medical->file_path)
                                         <a href="{{ asset($medical->file_path) }}" target="_blank">
                                             <img src="{{ asset($medical->file_path) }}" alt="Medical Result"
-                                                class="img-fluid mw-100" </a>
-                                        @else
-                                            <div class="empty-state py-5">
-                                                <i class="far fa-file-image fa-3x text-muted mb-3"></i>
-                                                <p class="text-muted">No image available</p>
-                                            </div>
+                                                class="img-fluid mw-100 blurred-image" id="medicalResultImage">
+                                        </a>
+                                    @else
+                                        <div class="empty-state py-5">
+                                            <i class="far fa-file-image fa-3x text-muted mb-3"></i>
+                                            <p class="text-muted">No image available</p>
+                                        </div>
                                     @endif
                                 </div>
-
-                                <!-- Minimal footer with action buttons -->
-                                {{-- <div class="modal-footer border-0 pt-0 justify-content-center">
-                                    @if ($medical->file_path)
-                                        <a href="{{ asset($medical->file_path) }}" target="_blank"
-                                            class="btn btn-sm btn-outline-secondary rounded-pill mx-1">
-                                            <i class="fas fa-expand"></i>
-                                        </a>
-                                        <button class="btn btn-sm btn-outline-secondary rounded-pill mx-1"
-                                            onclick="window.print()">
-                                            <i class="fas fa-print"></i>
-                                        </button>
-                                        <a href="{{ asset($medical->file_path) }}" download
-                                            class="btn btn-sm btn-outline-secondary rounded-pill mx-1">
-                                            <i class="fas fa-download"></i>
-                                        </a>
-                                    @endif
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -74,12 +57,19 @@
                             background-color: transparent;
                         }
 
-                        /* .image-container {
-                                            background-color: #f8f9fa;
-                                            padding: 8px;
-                                            border-radius: 8px;
-                                            display: inline-block;
-                                        } */
+                        .blurred-image {
+                            filter: blur(10px);
+                            transition: filter 0.3s ease;
+                            cursor: pointer;
+                        }
+
+                        .blurred-image:hover {
+                            filter: blur(5px);
+                        }
+
+                        .blurred-image.clicked {
+                            filter: none;
+                        }
 
                         .empty-state {
                             background-color: #f8f9fa;
@@ -108,12 +98,9 @@
                 var modalImage = document.getElementById('medicalResultImage');
                 modalImage.src = imageUrl;
 
-                var downloadLink = document.getElementById('downloadMedicalResult');
-                downloadLink.href = imageUrl;
-
-                // Set the filename for download
-                var filename = 'medical-result-' + new Date().toISOString().split('T')[0] + '.jpg';
-                downloadLink.setAttribute('download', filename);
+                modalImage.addEventListener('click', function() {
+                    modalImage.classList.toggle('clicked');
+                });
             });
         });
     </script>
