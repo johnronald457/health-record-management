@@ -27,11 +27,14 @@
                     {{-- Modal --}}
                     <div class="modal fade" id="medicalResultModal" tabindex="-1" aria-labelledby="medicalResultModalLabel"
                         aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
+                        <div class="modal-dialog modal-md modal-dialog-centered">
+                            <div class="modal-content border-0 ">
                                 <div class="modal-header border-0 pb-0">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+
+                                    <button type="button" class="btn p-0 custom-close-btn float-end ms-auto"
+                                        style="font-size: 1.5em;" data-bs-dismiss="modal" aria-label="Close">
+                                        ×
+                                    </button>
                                 </div>
 
                                 <!-- Image-focused body -->
@@ -53,8 +56,15 @@
                     </div>
 
                     <style>
-                        .modal-content {
-                            background-color: transparent;
+                        .custom-close-btn {
+                            filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+                            opacity: 1;
+                            transform: scale(1.3);
+                        }
+
+                        .custom-close-btn:hover {
+                            filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+                            opacity: 1;
                         }
 
                         .blurred-image {
