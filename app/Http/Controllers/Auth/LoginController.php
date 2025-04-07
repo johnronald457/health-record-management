@@ -34,6 +34,8 @@ class LoginController extends Controller
                 return redirect()->intended('/nurse-dashboard');
             } elseif ($user->role === 'head') {
                 return redirect()->intended('/confidential-result');
+            } elseif ($user->role === 'staff') {
+                return redirect()->intended('/staff-dashboard');
             } else {
                 return redirect()->intended('/dashboard');
             }

@@ -25,6 +25,8 @@ use App\Http\Controllers\Patient\HealthAssessmentController;
 use App\Http\Controllers\Patient\TreatmentController;
 use App\Http\Controllers\Patient\MedicalRequestController;
 use App\Http\Controllers\Patient\PatientDashboardController;
+use App\Http\Controllers\Staff\StaffDashboardController;
+use App\Http\Middleware\Staff;
 
 // Auth routes
 Route::middleware(PreventBackHistory::class)->post('/login', [LoginController::class, 'login'])->name('login');
@@ -92,7 +94,11 @@ Route::middleware('auth')->group(function () {
         // Route::delete('/health-record/{id}', [HealthRecordController::class, 'destroy'])->name('health-record.destroy');
     });
 
-
+    // Nurse routes
+    Route::middleware(Staff::class)->group(function () {
+        // Staff Dashboard Route
+        Route::get('/staff-dashboard', [StaffDashboardController::class, 'index'])->name('staff.index');
+    });
 
     // Nurse routes
     Route::middleware(Nurse::class)->group(function () {
