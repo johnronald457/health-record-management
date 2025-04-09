@@ -38,7 +38,6 @@ public function updateAIComments(Request $request, $id)
 
     // Retrieve the new AI_comments value from the form submission
     $newAIComments = $request->input('AI_comments');
-
     // Update the AI_comments field in the model
     $medical->AI_comments = $newAIComments;
 
@@ -65,7 +64,7 @@ public function AI_Generate(Request $request): JsonResponse
             'messages' => [
                 ['role' => 'user', 'content' => $AI_Request],
             ],
-            'max_tokens' => 150,
+            'max_tokens' => 50,
             'temperature' => 1,
         ]);
     // dd($response->json());

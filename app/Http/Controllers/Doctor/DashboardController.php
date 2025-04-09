@@ -22,6 +22,29 @@ class DashboardController extends Controller
 
         $users = User::all();
 
-        return view('admin.index', compact('totalPatients', 'totalDoctors', 'totalNurses', 'medicals', 'users'));
+    // Example for fetching orders count per month
+    $status = 'done';  // You can replace this with 'done', 'finalized', etc.
+
+    // Fetch the count of completed medicals per month
+    $monthlyCounts = MedicalRequest::where('status', $status)
+        ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+        ->groupBy('month')
+        ->orderBy('month')  // Ensure the months are ordered numerically
+        ->get()
+        ->pluck('count', 'month') // Pluck counts and months into an associative array
+        ->toArray();
+
+    // Month names for the chart
+    $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    // Ensure all months are represented in the chart, even if there are no medicals in some months
+    // If a month doesn't exist in the data, fill it with 0
+    $counts = [];
+    for ($i = 1; $i <= 12; $i++) {
+        // If the month exists in the fetched data, use its count; otherwise, default to 0
+        $counts[] = isset($monthlyCounts[$i]) ? $monthlyCounts[$i] : 0;
+    }
+
+        return view('admin.index', compact('totalPatients', 'totalDoctors', 'totalNurses', 'medicals', 'users', 'months', 'counts'));
     }
 }

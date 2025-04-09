@@ -7,6 +7,7 @@ use App\Http\Controllers\Head\ConfidentialResultController;
 use App\Http\Controllers\Head\HeadDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Doctor\NotifyController;
 use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Controllers\Doctor\RequestsController;
 use App\Http\Controllers\Doctor\DashboardController;
@@ -80,6 +81,9 @@ Route::middleware('auth')->group(function () {
         //Health record management routes
         Route::get('/doctor/health-record', [HealthRecordController::class, 'index'])->name('admin.health-record.index');
         Route::get('/patient/health-record-history/{id}', [HealthRecordController::class, 'show'])->name('patient.health-record-history.show');
+    
+        Route::resource('/notify_students', NotifyController::class);
+        
     });
 
     //Head Routes
@@ -146,6 +150,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/health-record-history', function () {
             return view('patient.health-record-history');
         })->name('patient.health-record-history');
+
+        Route::get('/notification', [NotifyController::class, 'patient_index'])->name('patient.notication');
+        Route::get('notify_students/{id}/agree', [NotifyController::class, 'agree'])->name('notify_students.agree');
+        // Route::get('notify_students/{id}/decline', [NotifyController::class, 'decline'])->name('notify_students.decline');
+        Route::post('notify_students/{id}/decline', [NotifyController::class, 'decline'])->name('notify_students.decline');
+
+
     });
 });
 

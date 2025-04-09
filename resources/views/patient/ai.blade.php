@@ -6,7 +6,7 @@
       <input type="hidden" id="findings" value="{{$medical->findings}}">
         <div class="form-group mb-3">
             <label for="AI_comments" class="fw-bold">Analysis of the Patient's Result:</label>
-            <textarea class="form-control" id="AI_comments" name="AI_comments" rows="3"  value="{{$medical->AI_comments ?? 'AI generated here'}}" placeholder="{{$medical->AI_comments}}" disabled></textarea>
+            <textarea class="form-control" id="AI_comments" name="AI_comments" rows="3"  value="{{$medical->AI_comments }}" placeholder="{{$medical->AI_comments}}"></textarea>
         </div>
         <div class="text-end">
             <!-- Placeholder button to fetch the result -->

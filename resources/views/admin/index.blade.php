@@ -9,6 +9,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Clinic Dashboard</title>
         <style>
+            #contact {
+            font-size: 18px;  /* Adjust the font size */
+            font-family: 'Arial', sans-serif;  /* Choose a clear font */
+            color: #46474b;  /* Set text color */
+            background-color: #c1edff;  /* Background color for marquee */
+            padding: 10px 20px;  /* Add padding for spacing */
+            border-radius: 5px;  /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow */
+            width: 100%;  /* Ensure the marquee takes the full width */
+            text-align: center;
+            }
             /* KPI Section */
             .kpi-container {
                 display: grid;
@@ -135,6 +146,9 @@
 
     <body>
         <div>
+            <h6 id="contact">
+                Hospital contact no.: 09923428141, Barangay contact no.: 0937627624
+            </h6>
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-12">
                     <div class="card greeting-card p-4 d-flex align-items-center flex-md-row text-center text-md-start">
@@ -185,9 +199,36 @@
                                     </div>
                                 </div>
                             @endforeach
-                        @endif                                                    
+                        @endif  
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>                                                 
                 </div>
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: @json($months),
+        datasets: [{
+            label: '# of Completed Medicals per Month',
+            data: @json($counts),
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
+    </script>
 
     </html>
 @endsection
