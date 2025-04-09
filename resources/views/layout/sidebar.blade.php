@@ -142,7 +142,6 @@
                                 class='bx bx-grid-alt'></i> Dashboard</a>
                     </div>
 
-<<<<<<< Updated upstream
                     <div class="dropdownSmsprofile">
                         <button class="dropdown-btn" onclick="toggleDropdown(this)">
                             <i class='bx bx-home-smile'></i> Clinic <i class="fa fa-caret-down"
@@ -168,16 +167,14 @@
 
                         </div>
                     </div>
-
-                </div>
-=======
                 <div class="dropdownSmsprofile">
                     <a class="dropdown-a" href="{{ route('patient.notication') }}" style="text-decoration: none;"><i
                             class='bx bx-bell'></i> Notification</a>
                 </div>
 
+                </div>
+
             </div>
->>>>>>> Stashed changes
         @endif
 
         <button type="button" style="text-align: center; width: 100%;" class="btn-logout" data-bs-toggle="modal"

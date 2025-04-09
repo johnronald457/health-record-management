@@ -5,6 +5,11 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <h2 class="card-title mb-4 border-bottom">Medical Result</h2>
+                @if($medicals->isEmpty())
+                    <div class="alert alert-warning" role="alert">
+                        No records found.
+                    </div>
+                @else
                 @foreach ($medicals as $medical)
                     <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
                         <div>
@@ -95,6 +100,7 @@
             </div>
         </div>
     </div>
+            @endif
 @endsection
 @push('scripts')
     <script>

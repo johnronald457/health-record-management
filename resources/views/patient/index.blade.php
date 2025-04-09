@@ -3,6 +3,17 @@
 @section('content')
 
 <style>
+              #contact {
+            font-size: 18px;  /* Adjust the font size */
+            font-family: 'Arial', sans-serif;  /* Choose a clear font */
+            color: #46474b;  /* Set text color */
+            background-color: #c1edff;  /* Background color for marquee */
+            padding: 10px 20px;  /* Add padding for spacing */
+            border-radius: 5px;  /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow */
+            width: 100%;  /* Ensure the marquee takes the full width */
+            text-align: center;
+            }
   /* Main Content */
   .main-content {
     padding: 20px;
@@ -119,7 +130,9 @@
 </style>
 
 <div class="container main-content">
-  
+              <h6 id="contact">
+                Hospital contact no.: 09923428141, Barangay contact no.: 0937627624
+            </h6>
   <!-- Full-Width Greeting Card Section -->
   <div class="row">
     <div class="col-12">
