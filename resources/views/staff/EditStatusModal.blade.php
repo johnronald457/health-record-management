@@ -20,7 +20,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="test_date" class="form-label">Test Date</label>
-                            <input type="date" class="form-control" id="test_date" name="test_date"
+                            <input type="date" class="form-control" id="test_date" name="test_date" value="{{ \Carbon\Carbon::parse($medical->test_date)->format('Y-m-d') }}"
                                 >
                         </div>
                         <div class="mb-3">

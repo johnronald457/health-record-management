@@ -62,7 +62,7 @@
                 </div>
                 <div class="dropdownSmsprofile">
                     <a class="dropdown-a" href="{{ route('notify_students.index') }}" style="text-decoration: none;">
-                        <i class='bx bx-bell'></i> Notification
+                        <i class='bx bx-bell'></i> Notify
                     </a>
                 </div>
             </div>
