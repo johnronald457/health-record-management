@@ -109,7 +109,7 @@
                             <p>{{ $medical_data->findings }}</p>
 
                             <h5>Recommendation</h5>
-                            <p>{{ $medical_data->AI_comments }}</p>
+                            <p>{{ $medical_data->doctor_comments }}</p>
 
                             <h5>AI Analysis and Recommendations</h5>
                             <p>{{ $medical_data->AI_comments }}</p>

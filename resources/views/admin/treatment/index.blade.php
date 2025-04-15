@@ -28,6 +28,7 @@
                             <tr class="table-light ">
                                 <!-- <th>Patient ID</th> -->
                                 <th>Name</th>
+                                <th>Course</th>
                                 <th>Health history</th>
                                 <th>Allergies</th>
                                 <th>Symptoms</th>
@@ -40,6 +41,7 @@
                                 <tr onclick="window.location='{{ route('admin.treatment.show', $treatment->id) }}';"
                                     style="cursor: pointer;">
                                     <td>{{ $treatment->user->firstname }} {{ $treatment->user->lastname }}</td>
+                                    <td>{{ $treatment->user->course }}</td>
                                     <td>{{ ucfirst($treatment->health_assessment->medical_history) }}</td>
                                     <td>{{ $treatment->health_assessment->allergies }}</td>
                                     <td>{{ $treatment->health_assessment->symptoms }}</td>

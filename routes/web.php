@@ -102,6 +102,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware(Staff::class)->group(function () {
         // Staff Dashboard Route
         Route::get('/staff-dashboard', [StaffDashboardController::class, 'index'])->name('staff.index');
+        Route::get('/status-monitoring', [StaffDashboardController::class, 'status_monitoring'])->name('staff.status_monitoring');
+        Route::put('/update-status/{id}', [StaffDashboardController::class, 'update'])->name('staff.updateStatus');
     });
 
     // Nurse routes

@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-              #contact {
+        #contact {
             font-size: 18px;  /* Adjust the font size */
             font-family: 'Arial', sans-serif;  /* Choose a clear font */
             color: #46474b;  /* Set text color */
@@ -13,7 +13,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow */
             width: 100%;  /* Ensure the marquee takes the full width */
             text-align: center;
-            }
+        }
   /* Main Content */
   .main-content {
     padding: 20px;
@@ -173,16 +173,34 @@
     @endforeach
 @endif
 
-
-
-
-
-<!-- 
-  <div class="module">
-    <h2>Patient Records</h2>
-    <p>Display patient records here...</p>
-  </div> -->
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>   
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: @json($months),
+        datasets: [{
+            label: 'Top reported Disease: {{ $topMedicalCondition }}',
+            data: @json($counts),
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
+    </script>
 
 @endsection

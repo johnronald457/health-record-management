@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
-use App\Models\MedicalRequest;
+use App\Models\MedicalRequest;  
+use App\Models\HealthAssessment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,29 +23,34 @@ class DashboardController extends Controller
 
         $users = User::all();
 
-    // Example for fetching orders count per month
-    $status = 'done';  // You can replace this with 'done', 'finalized', etc.
 
-    // Fetch the count of completed medicals per month
-    $monthlyCounts = MedicalRequest::where('status', $status)
-        ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
-        ->groupBy('month')
-        ->orderBy('month')  // Ensure the months are ordered numerically
-        ->get()
-        ->pluck('count', 'month') // Pluck counts and months into an associative array
-        ->toArray();
+// Fetch the count of completed medicals per month
+$monthlyCounts = HealthAssessment::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+    ->groupBy('month')
+    ->orderBy('month')  // Ensure the months are ordered numerically
+    ->get()
+    ->pluck('count', 'month') // Pluck counts and months into an associative array
+    ->toArray();
 
-    // Month names for the chart
-    $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+// Month names for the chart
+$months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    // Ensure all months are represented in the chart, even if there are no medicals in some months
-    // If a month doesn't exist in the data, fill it with 0
-    $counts = [];
-    for ($i = 1; $i <= 12; $i++) {
-        // If the month exists in the fetched data, use its count; otherwise, default to 0
-        $counts[] = isset($monthlyCounts[$i]) ? $monthlyCounts[$i] : 0;
-    }
+// Ensure all months are represented in the chart, even if there are no medicals in some months
+$counts = [];
+for ($i = 1; $i <= 12; $i++) {
+    $counts[] = isset($monthlyCounts[$i]) ? $monthlyCounts[$i] : 0;
+}
 
-        return view('admin.index', compact('totalPatients', 'totalDoctors', 'totalNurses', 'medicals', 'users', 'months', 'counts'));
+// Fetch the top (most common) medical condition
+$topCondition = HealthAssessment::select('medical_conditions')
+    ->selectRaw('COUNT(*) as count')
+    ->groupBy('medical_conditions')
+    ->orderByDesc('count')
+    ->first();
+
+// Default to "N/A" if no record found
+$topMedicalCondition = $topCondition ? $topCondition->medical_conditions : 'N/A';
+
+        return view('admin.index', compact('totalPatients', 'totalDoctors', 'totalNurses', 'medicals', 'users', 'months', 'counts','topMedicalCondition'));
     }
 }

@@ -188,8 +188,34 @@
                             </div>
                         @endforeach
                         @endif
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>   
                     </div>
     </body>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: @json($months),
+        datasets: [{
+            label: 'Top reported Disease: {{ $topMedicalCondition }}',
+            data: @json($counts),
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
+    </script>
     </html>
 @endsection

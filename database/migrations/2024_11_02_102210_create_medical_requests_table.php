@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->string('request_type');
             $table->string('description')->nullable();
-            $table->enum('status', ['pending', 'done'])->default('pending');
+            $table->enum('status', ['pending', 'in-progress', 'done'])->default('pending');
             $table->enum('priority', ['low', 'medium', 'high']);
             $table->date('preferred_date')->nullable();
             $table->date('schedule_date')->nullable();

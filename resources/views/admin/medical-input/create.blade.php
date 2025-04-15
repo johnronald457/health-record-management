@@ -48,7 +48,7 @@
 
                         <!-- Create a searchable dropdown for users -->
 
-
+<!-- 
                         <div class="mb-3">
                             <label for="priority" class="form-label">Priority Level</label>
                             <select class="form-control" id="priority" name="priority" required>
@@ -56,7 +56,7 @@
                                 <option value="medium">Medium</option>
                                 <option value="high">High</option>
                             </select>
-                        </div>
+                        </div> -->
 
                         <div class="mb-3">
                             <label for="preferred_date" class="form-label">Preferred Date</label>

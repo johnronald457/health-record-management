@@ -14,7 +14,7 @@ class PatientController extends Controller
     public function index()
     {
 
-        $patients = User::whereNotIn('role', ['nurse', 'doctor'])->get();
+        $patients = User::whereNotIn('role', ['nurse', 'doctor', 'staff'])->get();
 
         return view('admin.patient.index', compact('patients'));
     }

@@ -29,6 +29,7 @@
                                 <th>Name</th>
                                 <th>Individual</th>
                                 <th>Student No.</th>
+                                <th>Course</th>
                                 <th>Address</th>
                                 <th>Contact #</th>
                             </tr>
@@ -40,6 +41,7 @@
                                     <td>{{ $patient->firstname }} {{ $patient->lastname }}</td>
                                     <td>{{ ucfirst($patient->role) }}</td>
                                     <td>{{ $patient->email }}</td>
+                                    <td>{{ $patient->course }}</td>
                                     <td>{{ $patient->address }}</td>
                                     <td>{{ $patient->contact_no }}</td>
                                 </tr>

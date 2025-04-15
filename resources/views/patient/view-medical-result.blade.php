@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container m-5">
         <div class="card shadow-sm">
             <div class="card-body">
                 <h2 class="card-title mb-4  border-bottom">Medical Result</h2>

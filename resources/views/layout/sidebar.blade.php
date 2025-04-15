@@ -16,7 +16,7 @@
     @endphp
     <!-- User Profile Info -->
     <div class="d-flex flex-column align-items-center w-100 text-light">
-        @if ($role === 'nurse' || $role === 'doctor')
+        @if ($role === 'nurse' || $role === 'doctor' || $role === 'staff')
             <img src="{{ asset('img/medic_logo.png') }}" alt="avatar" class="avatar">
         @elseif($role === 'teacher' || $role === 'student')
             <img src="{{ asset('img/profile.webp') }}" alt="avatar" class="avatar">
@@ -58,9 +58,14 @@
                     <div class="dropdown-container">
                         <a class="dropdown-a" href="{{ route('admin.requests.index') }}"
                             style="text-decoration: none;"><span>Medical Input</span></a>
-
                     </div>
                 </div>
+                <div class="dropdownSmsprofile">
+                    <a class="dropdown-a" href="{{ route('notify_students.index') }}" style="text-decoration: none;">
+                        <i class='bx bx-bell'></i> Notification
+                    </a>
+                </div>
+            </div>
             @elseif ($role === 'staff')
                 <div class="container mt-5">
                     <div class="dropdownSmsprofile">
@@ -70,25 +75,9 @@
                     </div>
 
                     <div class="dropdownSmsprofile">
-                        <button class="dropdown-btn" onclick="toggleDropdown(this)">
-                            <i class='bx bx-home-smile'></i> Clinic <i class="fa fa-caret-down"
-                                style="float: right;"></i>
-                        </button>
-                        <div class="dropdown-container">
-                            <a class="dropdown-a" href="#">Patients Management</a>
-                            <a class="dropdown-a" href="#">Health Record</a>
-                            <a class="dropdown-a" href="#">Treatment Management</a>
-                        </div>
-                    </div>
-
-                    <div class="dropdownSmsprofile">
-                        <button class="dropdown-btn" onclick="toggleDropdown(this)">
-                            <i class='bx bx-user'></i> Medical<i class="fa fa-caret-down" style="float: right;"></i>
-                        </button>
-                        <div class="dropdown-container">
-                            <a class="dropdown-a" href="#" style="text-decoration: none;"><span>Medical
-                                    Input</span></a>
-                        </div>
+                        <a class="dropdown-a" href="{{ route('staff.status_monitoring') }}" style="text-decoration: none;"><i
+                                class='bx bx-grid-alt'></i>
+                            Status Monitoring</a>
                     </div>
                 </div>
             @elseif($role === 'nurse')
@@ -168,10 +157,10 @@
                         </div>
                     </div>
                 <div class="dropdownSmsprofile">
-                    <a class="dropdown-a" href="{{ route('patient.notication') }}" style="text-decoration: none;"><i
-                            class='bx bx-bell'></i> Notification</a>
+                    <a class="dropdown-a" href="{{ route('patient.notication') }}" style="text-decoration: none;">
+                        <i class='bx bx-bell'></i> Notification
+                    </a>
                 </div>
-
                 </div>
 
             </div>

@@ -215,7 +215,7 @@
         data: {
         labels: @json($months),
         datasets: [{
-            label: '# of Completed Medicals per Month',
+            label: 'Top reported Disease: {{ $topMedicalCondition }}',
             data: @json($counts),
             borderWidth: 1
         }]

@@ -17,7 +17,7 @@
                     <tr class="table-light ">
                         <th>Patient ID</th>
                         <th>Target Date</th>
-                        <th>Description</th>
+                        <th style="width: 500px;">Description</th>
                         <th>Decision</th>
                         <th>Contact No</th>
                         <th>Actions</th>
@@ -33,7 +33,7 @@
                                 <span class="badge 
                                     @if($notifyStudent->decision == 'pending') text-warning 
                                     @elseif($notifyStudent->decision == 'yes') text-success 
-                                    @else badge-danger @endif">
+                                    @else text-danger @endif">
                                     {{ ucfirst($notifyStudent->decision) }}
                                 </span>
                             </td>

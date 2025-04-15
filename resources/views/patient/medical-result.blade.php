@@ -43,7 +43,7 @@
                                 </div>
 
                                 <!-- Image-focused body -->
-                                <div class="modal-body p-0 h-64 text-center">
+                                <div class="modal-body p-0 h-64 text-center mb-5">
                                     @if ($medical->file_path)
                                         <a href="{{ asset($medical->file_path) }}" target="_blank">
                                             <img src="{{ asset($medical->file_path) }}" alt="Medical Result"
